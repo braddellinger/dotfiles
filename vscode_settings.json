@@ -1,0 +1,10 @@
+{
+    "terminal.integrated.shell.linux": "/usr/bin/zsh",
+    "terminal.integrated.fontFamily": "monospace",
+    "editor.fontFamily": "Inconsolata Nerd Font Mono",
+    "editor.fontLigatures": true,
+    "breadcrumbs.enabled": false,
+    "python.linting.pylintEnabled": false,
+    "python.linting.pep8Enabled": true,
+    "python.linting.enabled": true
+}
