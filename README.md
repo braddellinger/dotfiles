@@ -1,5 +1,4 @@
 # local-setup
-Local setup made easy.
 
 ### Setup Steps
 1. Install & configure [nerdfont](https://www.nerdfonts.com/)
