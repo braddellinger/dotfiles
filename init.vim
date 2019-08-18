@@ -8,6 +8,13 @@
 "   - neovim (https://neovim.io/)
 "   - nodejs (https://nodejs.org/en/)
 "   - extensions (https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions) 
+"       - coc-python (https://github.com/neoclide/coc-python)
+"       - coc-yaml (https://github.com/neoclide/coc-yaml)
+"       - coc-json (https://github.com/neoclide/coc-json)
+"       - coc-tsserver (https://github.com/neoclide/coc-tsserver)
+"       - coc-html (https://github.com/neoclide/coc-html)
+"       - coc-css (https://github.com/neoclide/coc-css)
+"   - gopls for golang support (https://github.com/golang/go/wiki/gopls)
 " fzf.nvim
 "   - ag (https://github.com/ggreer/the_silver_searcher)
 
@@ -17,7 +24,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'drewtempelmeyer/palenight.vim'
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'niklaas/lightline-gitdiff'
@@ -30,7 +36,6 @@ Plug 'joshdick/onedark.vim'
 Plug 'ntk148v/vim-horizon'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
-Plug 'ervandew/supertab'
 Plug 'ayu-theme/ayu-vim'
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
@@ -65,7 +70,7 @@ let g:lightline={
     \    'active':   ['tabnum', 'filename'],
     \    'inactive': ['tabnum', 'filename'] },
     \ 'tabline' : {
-    \    'left':  [["ﳨ", 'tabs']],
+    \    'left':  [['ﳨ', 'tabs']],
     \    'right': [] },
     \ 'tabline_separator': {
     \    'left':  '',
@@ -144,19 +149,19 @@ let g:fzf_action={
     \ 'ctrl-x': 'split',
     \ 'ctrl-v': 'vsplit' }
 let g:fzf_colors={
-    \ 'spinner': ['fg', 'Label'],
-    \ 'pointer': ['fg', 'Exception'],
-    \ 'border':  ['fg', 'Ignore'],
+    \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+    \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
     \ 'prompt':  ['fg', 'Conditional'],
+    \ 'pointer': ['fg', 'Exception'],
+    \ 'hl+':     ['fg', 'Statement'],
     \ 'marker':  ['fg', 'Keyword'],
     \ 'header':  ['fg', 'Comment'],
     \ 'info':    ['fg', 'PreProc'],
-    \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-    \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-    \ 'hl+':     ['fg', 'Statement'],
+    \ 'hl':      ['fg', 'Comment'],
+    \ 'border':  ['fg', 'Ignore'],
     \ 'fg':      ['fg', 'Normal'],
     \ 'bg':      ['bg', 'Normal'],
-    \ 'hl':      ['fg', 'Comment'] }
+    \ 'spinner': ['fg', 'Label'] }
 command! -bang -nargs=* Ag
     \ call fzf#vim#ag(<q-args>,
     \                 <bang>0 ? fzf#vim#with_preview('up:60%')
@@ -168,6 +173,25 @@ autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
     \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
+" coc
+""""""""""""""""""""""""""""""
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+inoremap <silent><expr> <Tab>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<Tab>" :
+    \ coc#refresh()
 
 " devicons
 """"""""""""""""""""""""""""""
@@ -206,14 +230,32 @@ set hlsearch
 
 " keymapping
 """"""""""""""""""""""""""""""
-map <F2> :%!python -m json.tool<CR>
-map <F1> :NERDTreeToggle<CR>
+let mapleader=' '
+nnoremap <silent> <Leader>b :buffers<CR>:buffer<Space>
+nnoremap <silent> <Leader>j :%!python -m json.tool<CR>
+nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>f :Files<CR>
+nnoremap <silent> <Leader>l :Lines<CR>
+nnoremap <silent> <Leader>a :Ag<CR>
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+nnoremap <A-l> >>
+nnoremap <A-h> <<
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <ESC>:m .-2<CR>==gi
+inoremap <A-l> <Esc>>>gi
+inoremap <A-h> <Esc><<gi
+inoremap jj <Esc>
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+vnoremap <A-l> >gv
+vnoremap <A-h> <gv
+vnoremap > >gv
+vnoremap < <gv
 map <C-h> <C-W>h
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-l> <C-W>l
-nnoremap <C-b> :buffers<CR>:buffer<Space>
-inoremap jj <Esc>
 
 " general
 """"""""""""""""""""""""""""""
@@ -225,16 +267,18 @@ colorscheme ayu
 set backupdir=~/.config/nvim/backup//
 set directory=~/.config/nvim/swp//
 set background=dark
+set updatetime=300
 set termguicolors
+set nowritebackup
 set statusline=2
 set laststatus=2
 set scrolloff=3
 set splitright
 set path+=**
+set nobackup
 set wildmenu
 set showmode
 set showcmd
 set number
 set nowrap
 syntax on
-

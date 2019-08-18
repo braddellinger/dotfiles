@@ -10,8 +10,6 @@ Local setup made easy.
     3. Copy .zshrc: `cp ./.zshrc ~/.zshrc`
     4. Install [fzf](https://github.com/junegunn/fzf)
     5. Install [ag / silver_searcher](https://github.com/ggreer/the_silver_searcher)
-    6. Install ctags (steps differ depending on OS)
-    7. Copy .ctags: `cp ./.ctags ~/.ctags` 
 4. Install & configure [python3](https://realpython.com/installing-python/). To install python3 for Ubuntu or Debian, as well as setup a virtual environment, follow below steps.
 ```
 sudo apt install python3 python3-pip python3-venv
@@ -24,8 +22,9 @@ deactivate
     1. Install [NeoVim](https://neovim.io/)
     2. Install [vim-plug](https://github.com/junegunn/vim-plug)
     3. Install and configure [coc.vim](https://github.com/neoclide/coc.nvim)
-    4. Copy init.vim: `cp ./init.vim ~/config/nvim/init.vim`
-    5. Open nvim & install plugins: `:PlugInstall`
+    4. Copy init.vim: `cp ./init.vim ~/.config/nvim/init.vim`
+    5. Copy coc-settings.json: `cp ./coc-settings.json ~/.config/nvim/coc-settings.json`
+    6. Open nvim & install plugins: `:PlugInstall`
 6. Install & configure VS Code
     1. Install [VS Code](https://code.visualstudio.com/)
     2. Copy settings.json: `cp ./vscode_settings.json ~/.config/Code/User/settings.json`
