@@ -180,16 +180,16 @@ let g:NERDTreeWinPos='right'
 let g:NERDTreeDirArrowCollapsible=' '
 let g:NERDTreeDirArrowExpandable=' '
 let g:NERDTreeIndicatorMapCustom={
-    \ 'Untracked': '~ ',
-    \ 'Modified':  '* ',
-    \ 'Unmerged':  '= ',
-    \ 'Renamed':   '> ',
-    \ 'Deleted':   'X ',
-    \ 'Ignored':   'i ',
-    \ 'Unknown':   '? ',
-    \ 'Staged':    '+ ',
-    \ 'Dirty':     'x ',
-    \ 'Clean':     ' ' }
+    \ 'Untracked': 'x',
+    \ 'Modified':  '',
+    \ 'Unmerged':  '=',
+    \ 'Renamed':   '﬌',
+    \ 'Deleted':   '',
+    \ 'Ignored':   '',
+    \ 'Unknown':   '?',
+    \ 'Staged':    '+',
+    \ 'Dirty':     'ﭖ',
+    \ 'Clean':     '' }
 highlight! link NERDTreeFlags NERDTreeDir
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
