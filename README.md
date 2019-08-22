@@ -8,7 +8,8 @@
     2. Install [powerlevel9k](https://github.com/Powerlevel9k/powerlevel9k)
     3. Copy .zshrc: `cp ./.zshrc ~/.zshrc`
     4. Install [fzf](https://github.com/junegunn/fzf)
-    5. Install [ag / silver_searcher](https://github.com/ggreer/the_silver_searcher)
+    5. Install [rg / ripgrep](https://github.com/BurntSushi/ripgrep)
+    6. Install [ag / silver_searcher](https://github.com/ggreer/the_silver_searcher)
 4. Install & configure [python3](https://realpython.com/installing-python/). To install python3 for Ubuntu or Debian, as well as setup a virtual environment, follow below steps.
 ```
 sudo apt install python3 python3-pip python3-venv

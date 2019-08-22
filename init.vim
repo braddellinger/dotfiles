@@ -16,6 +16,7 @@
 "       - coc-css (https://github.com/neoclide/coc-css)
 "   - gopls for golang support (https://github.com/golang/go/wiki/gopls)
 " fzf.nvim
+"   - rg (https://github.com/BurntSushi/ripgrep)
 "   - ag (https://github.com/ggreer/the_silver_searcher)
 
 " plug
@@ -40,6 +41,69 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
 call plug#end()
+
+" general
+""""""""""""""""""""""""""""""
+autocmd InsertEnter * set nocul
+autocmd InsertLeave * set cul
+autocmd WinLeave * set nocul
+autocmd WinEnter * set cul
+colorscheme ayu
+set backupdir=~/.config/nvim/backup//
+set directory=~/.config/nvim/swp//
+set background=dark
+set updatetime=300
+set termguicolors
+set nowritebackup
+set statusline=2
+set laststatus=2
+set scrolloff=3
+set splitright
+set path+=**
+set nobackup
+set wildmenu
+set showmode
+set showcmd
+set number
+set nowrap
+syntax on
+
+" general keymapping
+""""""""""""""""""""""""""""""
+let mapleader=' '
+nnoremap <silent> <Leader>j :%!python -m json.tool<CR>
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+nnoremap <A-l> >>
+nnoremap <A-h> <<
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <ESC>:m .-2<CR>==gi
+inoremap <A-l> <Esc>>>gi
+inoremap <A-h> <Esc><<gi
+inoremap jj <Esc>
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+vnoremap <A-l> >gv
+vnoremap <A-h> <gv
+vnoremap > >gv
+vnoremap < <gv
+map <C-h> <C-W>h
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-l> <C-W>l
+
+" indentation
+""""""""""""""""""""""""""""""
+set shiftwidth=4
+set autoindent
+set tabstop=4
+set expandtab
+
+" search
+""""""""""""""""""""""""""""""
+set ignorecase
+set incsearch
+set hlsearch
 
 " lightline
 """"""""""""""""""""""""""""""
@@ -108,6 +172,7 @@ endfunction
 
 " nerdtree
 """"""""""""""""""""""""""""""
+nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
 let NERDTreeMinimalUI=1
 let NERDTreeShowHidden=1
 let g:NERDDTreeWinSize=30
@@ -142,6 +207,11 @@ autocmd BufEnter * call SyncTree()
 
 " fzf
 """"""""""""""""""""""""""""""
+nnoremap <silent> <Leader>b :Buffers<CR>
+nnoremap <silent> <Leader>f :Files<CR>
+nnoremap <silent> <Leader>l :Lines<CR>
+nnoremap <silent> <Leader>a :Ag<CR>
+nnoremap <silent> <Leader>r :Rg<CR>
 let g:fzf_history_dir='~/.local/share/fzf-history'
 let g:fzf_layout={ 'down': '~30%' }
 let g:fzf_action={
@@ -163,10 +233,15 @@ let g:fzf_colors={
     \ 'bg':      ['bg', 'Normal'],
     \ 'spinner': ['fg', 'Label'] }
 command! -bang -nargs=* Ag
-    \ call fzf#vim#ag(<q-args>,
-    \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-    \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-    \                 <bang>0)
+    \ call fzf#vim#ag(
+    \   <q-args>,
+    \   <bang>0 ? fzf#vim#with_preview('up:60%') : fzf#vim#with_preview('right:50%:hidden', '?'),
+    \   <bang>0)
+command! -bang -nargs=* Rg
+    \ call fzf#vim#grep(
+    \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+    \   <bang>0 ? fzf#vim#with_preview('up:60%') : fzf#vim#with_preview('right:50%:hidden', '?'),
+    \   <bang>0)
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 autocmd! FileType fzf
@@ -175,23 +250,20 @@ autocmd  FileType fzf set laststatus=0 noshowmode noruler
 
 " coc
 """"""""""""""""""""""""""""""
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+nnoremap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> gy <Plug>(coc-type-definition)
+nnoremap <silent> gi <Plug>(coc-implementation)
+nnoremap <silent> gr <Plug>(coc-references)
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<Tab>" : coc#refresh()
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
-inoremap <silent><expr> <Tab>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<Tab>" :
-    \ coc#refresh()
 
 " devicons
 """"""""""""""""""""""""""""""
@@ -205,80 +277,13 @@ endif
 " gitgutter
 """"""""""""""""""""""""""""""
 let g:gitgutter_override_sign_column_highlight = 0
-let g:gitgutter_sign_removed_first_line='◥'
-let g:gitgutter_sign_modified_removed='◢'
+let g:gitgutter_sign_removed_first_line=''
+let g:gitgutter_sign_modified_removed=''
 let g:gitgutter_sign_modified='┃'
-let g:gitgutter_sign_removed='◢'
+let g:gitgutter_sign_removed=''
 let g:gitgutter_sign_added='┃'
 
 " ayu
 """"""""""""""""""""""""""""""
 let ayucolor='mirage' " mirage, light, dark
 
-" indentation
-""""""""""""""""""""""""""""""
-set shiftwidth=4
-set autoindent
-set tabstop=4
-set expandtab
-
-" search
-""""""""""""""""""""""""""""""
-set ignorecase
-set incsearch
-set hlsearch
-
-" keymapping
-""""""""""""""""""""""""""""""
-let mapleader=' '
-nnoremap <silent> <Leader>b :buffers<CR>:buffer<Space>
-nnoremap <silent> <Leader>j :%!python -m json.tool<CR>
-nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
-nnoremap <silent> <Leader>f :Files<CR>
-nnoremap <silent> <Leader>l :Lines<CR>
-nnoremap <silent> <Leader>a :Ag<CR>
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-nnoremap <A-l> >>
-nnoremap <A-h> <<
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <ESC>:m .-2<CR>==gi
-inoremap <A-l> <Esc>>>gi
-inoremap <A-h> <Esc><<gi
-inoremap jj <Esc>
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
-vnoremap <A-l> >gv
-vnoremap <A-h> <gv
-vnoremap > >gv
-vnoremap < <gv
-map <C-h> <C-W>h
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-l> <C-W>l
-
-" general
-""""""""""""""""""""""""""""""
-autocmd InsertEnter * set nocul
-autocmd InsertLeave * set cul
-autocmd WinLeave * set nocul
-autocmd WinEnter * set cul
-colorscheme ayu
-set backupdir=~/.config/nvim/backup//
-set directory=~/.config/nvim/swp//
-set background=dark
-set updatetime=300
-set termguicolors
-set nowritebackup
-set statusline=2
-set laststatus=2
-set scrolloff=3
-set splitright
-set path+=**
-set nobackup
-set wildmenu
-set showmode
-set showcmd
-set number
-set nowrap
-syntax on
