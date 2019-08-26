@@ -48,10 +48,12 @@ autocmd InsertEnter * set nocul
 autocmd InsertLeave * set cul
 autocmd WinLeave * set nocul
 autocmd WinEnter * set cul
+let ayucolor='mirage' " mirage, light, dark
 colorscheme ayu
 set backupdir=~/.config/nvim/backup//
 set directory=~/.config/nvim/swp//
 set background=dark
+set signcolumn=yes
 set updatetime=300
 set termguicolors
 set nowritebackup
@@ -276,14 +278,9 @@ endif
 
 " gitgutter
 """"""""""""""""""""""""""""""
-let g:gitgutter_override_sign_column_highlight = 0
 let g:gitgutter_sign_removed_first_line=''
 let g:gitgutter_sign_modified_removed=''
 let g:gitgutter_sign_modified='┃'
 let g:gitgutter_sign_removed=''
 let g:gitgutter_sign_added='┃'
-
-" ayu
-""""""""""""""""""""""""""""""
-let ayucolor='mirage' " mirage, light, dark
 
