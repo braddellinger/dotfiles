@@ -29,6 +29,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'niklaas/lightline-gitdiff'
 Plug 'arcticicestudio/nord-vim'
+Plug 'tomasiser/vim-code-dark'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
@@ -37,6 +38,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'ntk148v/vim-horizon'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-startify'
 Plug 'ayu-theme/ayu-vim'
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
@@ -49,7 +51,7 @@ autocmd InsertLeave * set cul
 autocmd WinLeave * set nocul
 autocmd WinEnter * set cul
 let ayucolor='mirage' " mirage, light, dark
-colorscheme ayu
+colorscheme codedark
 set backupdir=~/.config/nvim/backup//
 set directory=~/.config/nvim/swp//
 set background=dark
@@ -192,20 +194,6 @@ let g:NERDTreeIndicatorMapCustom={
     \ 'Staged':    '+',
     \ 'Dirty':     'ﭖ',
     \ 'Clean':     '' }
-highlight! link NERDTreeFlags NERDTreeDir
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
-autocmd VimEnter * wincmd p
-function! IsNERDTreeOpen()
-    return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
-function! SyncTree()
-    if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-        NERDTreeFind
-        wincmd p
-    endif    
-endfunction
-autocmd BufEnter * call SyncTree()
 
 " fzf
 """"""""""""""""""""""""""""""
@@ -283,4 +271,9 @@ let g:gitgutter_sign_modified_removed=''
 let g:gitgutter_sign_modified='┃'
 let g:gitgutter_sign_removed=''
 let g:gitgutter_sign_added='┃'
+
+" startify
+""""""""""""""""""""""""""""""
+let g:startify_change_to_vcs_root=0
+let g:startify_change_to_dir=0
 
