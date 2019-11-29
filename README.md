@@ -1,4 +1,5 @@
 # local-setup
+Local setup steps for Debian-based distros. Depending on OS, the steps may vary.
 
 ### Setup Steps
 1. Install & configure [nerdfont](https://www.nerdfonts.com/)
@@ -15,16 +16,17 @@
 sudo apt install python3 python3-pip python3-venv
 python3 -m venv ~/sandbox
 . ~/sandbox/bin/activate
-pip3 install requests flask click boto
+pip3 install neovim requests flask click boto
 deactivate
 ```
 5. Install & configure NeoVim
     1. Install [NeoVim](https://neovim.io/)
-    2. Install [vim-plug](https://github.com/junegunn/vim-plug)
-    3. Install and configure [coc.vim](https://github.com/neoclide/coc.nvim)
-    4. Copy init.vim: `cp ./init.vim ~/.config/nvim/init.vim`
-    5. Copy coc-settings.json: `cp ./coc-settings.json ~/.config/nvim/coc-settings.json`
-    6. Open nvim & install plugins: `:PlugInstall`
+    2. Install xclip to enable NeoVim to interact with system clipboard: `sudo apt install xclip`
+    3. Install [vim-plug](https://github.com/junegunn/vim-plug)
+    4. Install and configure [coc.vim](https://github.com/neoclide/coc.nvim)
+    5. Copy init.vim: `cp ./init.vim ~/.config/nvim/init.vim`
+    6. Copy coc-settings.json: `cp ./coc-settings.json ~/.config/nvim/coc-settings.json`
+    7. Open nvim & install plugins: `:PlugInstall`
 6. Install & configure VS Code
     1. Install [VS Code](https://code.visualstudio.com/)
     2. Copy settings.json: `cp ./vscode_settings.json ~/.config/Code/User/settings.json`

@@ -54,11 +54,14 @@ let ayucolor='mirage' " mirage, light, dark
 colorscheme codedark
 set backupdir=~/.config/nvim/backup//
 set directory=~/.config/nvim/swp//
+set clipboard=unnamedplus
+set foldmethod=syntax
 set background=dark
 set signcolumn=yes
 set updatetime=300
 set termguicolors
 set nowritebackup
+set foldlevel=99
 set statusline=2
 set laststatus=2
 set scrolloff=3
