@@ -1,5 +1,5 @@
 # dotfiles
-Dotfile & local setup steps for Debian-based distros. Depending on OS, the steps may vary.
+Dotfiles & local setup steps for Debian-based distros. Depending on OS, the steps may vary.
 
 ### Setup Steps
 1. Install & configure [nerdfont](https://www.nerdfonts.com/). Preferred fonts include:
@@ -31,8 +31,8 @@ Dotfile & local setup steps for Debian-based distros. Depending on OS, the steps
     2. Install xclip to enable NeoVim to interact with system clipboard: `sudo apt install xclip`
     3. Install [vim-plug](https://github.com/junegunn/vim-plug)
     4. Install and configure [coc.vim](https://github.com/neoclide/coc.nvim)
-    5. Copy init.vim: `cp ./.conf/nvim/init.vim ~/.config/nvim/init.vim`
-    6. Copy coc-settings.json: `cp ./.conf/nvim/coc-settings.json ~/.config/nvim/coc-settings.json`
+    5. Copy init.vim: `cp ./.config/nvim/init.vim ~/.config/nvim/init.vim`
+    6. Copy coc-settings.json: `cp ./.config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json`
     7. Open nvim & install plugins: `:PlugInstall`
 7. Install & configure VS Code
     1. Install [VS Code](https://code.visualstudio.com/)
