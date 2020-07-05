@@ -1,7 +1,7 @@
 # dotfiles
 
 ### Installation
-1. Install [recommended fonts](#preferred-fonts) from [nerdfonts](https://www.nerdfonts.com/)
+1. Install [preferred fonts](#preferred-fonts) from [nerdfonts](https://www.nerdfonts.com/)
 2. Clone or download this repository, then navigate to the repo and run `make ubuntu`
 
 ### Todo
