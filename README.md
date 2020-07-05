@@ -1,13 +1,17 @@
 # dotfiles
 
 ### Installation
-1. Install [recommended fonts](#Preferred Fonts) from [nerdfonts](https://www.nerdfonts.com/)
-2. Clone or download this repository, then navigate to the repo and run `make all`
-3. Install & configure VS Code
+1. Install [recommended fonts](#preferred-fonts) from [nerdfonts](https://www.nerdfonts.com/)
+2. Clone or download this repository, then navigate to the repo and run `make ubuntu`
+
+### Todo
+These steps are manual until I incorporate them into the Makefile.
+
+1. Install & configure VS Code
     1. Install [VS Code](https://code.visualstudio.com/)
     2. Copy settings.json: `cp ./.config/Code/User/settings.json ~/.config/Code/User/settings.json`
-4. Install [Insomnia](https://insomnia.rest/)
-5. Install [Docker](https://docs.docker.com/install/)
+2. Install [Insomnia](https://insomnia.rest/)
+3. Install [Docker](https://docs.docker.com/install/)
 
 ### Preferred Color Schemes
 1. [Challenger Deep](https://challenger-deep-theme.github.io)
