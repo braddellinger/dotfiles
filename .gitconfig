@@ -1,0 +1,15 @@
+[core]
+    editor = nvim
+[merge]
+    tool = nvimdiff3
+[mergetool]
+    prompt = false
+[mergetool "nvimdiff3"]
+    cmd = nvim -d "$LOCAL" "$REMOTE" "$MERGED"
+[diff]
+    tool = nvimdiff2
+[difftool]
+    prompt = false
+[difftool "nvimdiff2"]
+    cmd = nvim -d "$LOCAL" "$REMOTE"
+

@@ -25,10 +25,20 @@ function sandbox {
     . ~/sandbox/bin/activate
 }
 
+# aliases
+########################
+alias mv='mv -i'
+alias rm='rm -i'
+alias cp='cp -i'
+alias g='git'
+alias gs='git status'
+
 # exports
 ########################
 export PATH=$HOME:$PATH
 export ZSH=$HOME/.oh-my-zsh
+export EDITOR=nvim
+export BAT_THEME=TwoDark
 
 # start tmux
 ########################
@@ -37,3 +47,4 @@ export ZSH=$HOME/.oh-my-zsh
 # source
 ########################
 source $ZSH/oh-my-zsh.sh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
