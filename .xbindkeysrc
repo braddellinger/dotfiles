@@ -1,0 +1,19 @@
+# Mute volume
+"pactl set-sink-mute @DEFAULT_SINK@ toggle"
+   XF86AudioMute
+
+# Increase volume
+"pactl set-sink-volume @DEFAULT_SINK@ +1000"
+   XF86AudioRaiseVolume
+
+# Decrease volume
+"pactl set-sink-volume @DEFAULT_SINK@ -1000"
+   XF86AudioLowerVolume
+
+# Increase backlight
+"light -A 10"
+   XF86MonBrightnessUp
+
+# Decrease backlight
+"light -U 10"
+   XF86MonBrightnessDown

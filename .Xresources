@@ -1,0 +1,16 @@
+Xft.dpi: 168 ! should be increments of 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
+
+*.transparent: #00000000
+*.color0:      #aaFFFFFF
+*.color1:      #5C6370
+*.color2:      #C678DD
+*.color3:      #98C379
+*.color4:      #E5C07B
+*.color5:      #E06C75
+*.color6:      #61AFEF
