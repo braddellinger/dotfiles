@@ -1,4 +1,4 @@
-# zsh & powerlevel10k
+# powerlevel10k
 ########################
 ZSH_THEME="powerlevel10k/powerlevel10k"
 POWERLEVEL9K_MODE='nerdfont-complete'
@@ -22,7 +22,7 @@ POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='  '  # 勞
 # functions
 ########################
 function sandbox {
-    . ~/sandbox/bin/activate
+    source ~/sandbox/bin/activate
 }
 
 # aliases
