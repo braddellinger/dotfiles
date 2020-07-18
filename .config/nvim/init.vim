@@ -128,6 +128,8 @@ set expandtab
 
 " search
 """"""""""""""""""""""""""""""
+nnoremap <silent><Esc> :noh<return>
+set inccommand=nosplit
 set ignorecase
 set incsearch
 set hlsearch
@@ -158,8 +160,8 @@ let g:lightline={
     \ 'component_expand': {
     \    'gitdiff': 'lightline#gitdiff#get' },
     \ 'tab': {
-    \    'active':   ['tabnum', 'filename', 'modified'],
-    \    'inactive': ['tabnum', 'filename', 'modified'] },
+    \    'active':   ['filename', 'modified'],
+    \    'inactive': ['filename', 'modified'] },
     \ 'tabline' : {
     \    'left':  [['tabs']],
     \    'right': [] },
