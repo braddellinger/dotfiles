@@ -1,4 +1,4 @@
-### Details
+## Details
 The core components which comprise the desktop environment.
 
 * **OS:** [Ubuntu DDE](https://ubuntudde.com/)
@@ -9,7 +9,7 @@ The core components which comprise the desktop environment.
 * **Editor:** [Neovim](https://github.com/neovim/neovim)
 * **Font:** [FiraMono Nerd Font](https://www.nerdfonts.com/font-downloads)
 
-### Installation
+## Installation
 Installation steps are written for Ubuntu & Debian based distros. To install on a different distro, update the package installation steps in the [Makefile](https://github.com/braddellinger/dotfiles/blob/master/Makefile) to work with your package manager.
 
 1. Clone this repo: `git clone https://github.com/braddellinger/dotfiles.git`
@@ -38,10 +38,10 @@ Installation steps are written for Ubuntu & Debian based distros. To install on 
             * `~/.config/polybar/modules/network.ini` - Update the `interface` property based on the output of `nmcli connection show`
             * `~/.config/polybar/conig.ini` - Update the `font-0` property based on your installed fonts. Depending on your resolution and font, the `height` property may also require updating.
 
-### Keybindings
+## Keybindings
 TBD
 
-### Recommended color schemes
+## Recommended color schemes
 A collection of quality color schemes developed by others.
 
 * [Challenger Deep](https://challenger-deep-theme.github.io)
@@ -55,7 +55,7 @@ A collection of quality color schemes developed by others.
 * [Nord](https://www.nordtheme.com)
 * [Forest Night](https://github.com/sainnhe/forest-night)
 
-### Recommended fonts
+## Recommended fonts
 A collection of quality fonts from [nerdfonts](https://www.nerdfonts.com/).
 
 * Inconsolata
