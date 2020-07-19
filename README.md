@@ -12,9 +12,9 @@ The core components which comprise the desktop environment.
 ## Installation
 Installation steps are written for Ubuntu & Debian based distros. To install on a different distro, update the package installation steps in the [Makefile](https://github.com/braddellinger/dotfiles/blob/master/Makefile) to work with your package manager.
 
-1. Clone this repo: `git clone https://github.com/braddellinger/dotfiles.git`
+1. Clone this repo with `git clone https://github.com/braddellinger/dotfiles.git`
 2. Install a [recommended font](#recommended-fonts) to ensure glyphs render properly.
-3. Install everything at once with `make ubuntu` OR individually with the below steps. Any preexisting directories & files will be renamed with the format `name-YYYMMDDTHHMMDD`.
+3. Install everything at once with `make ubuntu` or individually with the below steps. Any preexisting directories & files will be renamed with the format `name-YYYYMMDDTHHMMDD`.
     * **X window system**
         1. Run `make xws`
         2. Enable user to adjust the backlight's brightness by identifying your username with `whoami` and then running `sudo usermod -a -G video <user>` to add the user to the _video_ group. Log out and back in to apply the change.
