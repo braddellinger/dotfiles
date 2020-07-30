@@ -1,5 +1,5 @@
 # powerlevel10k
-########################
+##########################################
 ZSH_THEME="powerlevel10k/powerlevel10k"
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(background_jobs virtualenv dir vcs)
@@ -20,13 +20,13 @@ POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX=''
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='  '  # 勞
 
 # functions
-########################
+##########################################
 function sandbox {
     source ~/sandbox/bin/activate
 }
 
 # aliases
-########################
+##########################################
 alias mv='mv -i'
 alias rm='rm -i'
 alias cp='cp -i'
@@ -34,17 +34,17 @@ alias g='git'
 alias gs='git status'
 
 # exports
-########################
+##########################################
 export PATH=$HOME:$PATH
 export ZSH=$HOME/.oh-my-zsh
 export EDITOR=nvim
 export BAT_THEME=TwoDark
 
 # start tmux
-########################
+##########################################
 [ -z $TMUX ] && tmux new-session -As 0
 
 # source
-########################
+##########################################
 source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

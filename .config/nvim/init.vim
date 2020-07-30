@@ -1,5 +1,5 @@
 " dependencies
-""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""
 " plugin manager
 "   - vim-plug (https://github.com/junegunn/vim-plug)
 " fonts & glyphs
@@ -21,7 +21,7 @@
 "   - bat (https://github.com/sharkdp/bat)
 
 " plug
-""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -47,7 +47,7 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " colorscheme
-""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""
 let g:oceanic_next_terminal_italic=1
 let g:oceanic_next_terminal_bold=1
 let g:forest_night_enable_italic=1
@@ -59,7 +59,8 @@ set background=dark
 set termguicolors
 
 " general
-""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""
+autocmd VimLeave * set guicursor=a:hor100
 autocmd InsertEnter * set nocul
 autocmd InsertLeave * set cul
 autocmd WinLeave * set nocul
@@ -88,7 +89,7 @@ set nowrap
 syntax on
 
 " hybrid line numbers
-""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""
 augroup numbertoggle
     autocmd!
     autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
@@ -96,7 +97,7 @@ augroup numbertoggle
 augroup END
 
 " general keymapping
-""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""
 let mapleader=' '
 nnoremap <silent> <Leader>j :%!python -m json.tool<CR>
 nnoremap <A-j> :m .+1<CR>==
@@ -120,14 +121,14 @@ map <C-k> <C-W>k
 map <C-l> <C-W>l
 
 " indentation
-""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""
 set shiftwidth=4
 set autoindent
 set tabstop=4
 set expandtab
 
 " search
-""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent><Esc> :noh<return>
 set inccommand=nosplit
 set ignorecase
@@ -135,7 +136,7 @@ set incsearch
 set hlsearch
 
 " lightline
-""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""
 let g:lightline#gitdiff#indicator_modified=' '
 let g:lightline#gitdiff#indicator_deleted=' '
 let g:lightline#gitdiff#indicator_added=' '
@@ -213,7 +214,7 @@ function! GetTabNumber(n) abort
 endfunction
 
 " fzf
-""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>f :Files<CR>
 nnoremap <silent> <Leader>l :Lines<CR>
@@ -257,7 +258,7 @@ command! -bang -nargs=* Ag
     \ call fzf#vim#ag(<q-args>, fzf#vim#with_preview({ 'options': ['--layout=reverse'] }), <bang>0)
 
 " coc
-""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -275,7 +276,7 @@ function! s:check_back_space() abort
 endfunction
 
 " gitgutter
-""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""
 let g:gitgutter_sign_removed_first_line=''
 let g:gitgutter_sign_modified_removed=''
 let g:gitgutter_sign_modified='┃'
@@ -283,7 +284,7 @@ let g:gitgutter_sign_removed=''
 let g:gitgutter_sign_added='┃'
 
 " startify
-""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""
 let g:startify_change_to_vcs_root=0
 let g:startify_change_to_dir=0
 let g:startify_bookmarks=[

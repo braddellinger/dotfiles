@@ -1,4 +1,4 @@
-ubuntu: apt-update xws i3 zsh tmux git python neovim polybar end
+ubuntu: apt-update xws compton i3 rofi zsh tmux git python neovim polybar end
 
 apt-update:
 	echo 'Updating packages...'
@@ -35,6 +35,22 @@ i3: apt-update
 	[ -f "~/.conf/i3/config" ] && mv ~/.conf/i3/config ~/.conf/i3/config-%Y%m%dT%H%M%S
 	cp ./.conf/i3/config ~/.conf/i3/config
 	echo 'Completed i3 configuration!'
+
+compton: apt-update
+	echo 'Configuring compton...'
+	sudo apt install compton
+	mkdir -p ./.conf/compton || true
+	[ -f "~/.conf/compton/compton.conf" ] && mv ~/.conf/compton/compton.conf ~/.conf/compton/compton.conf-%Y%m%dT%H%M%S
+	cp ./.conf/compton/compton.conf ~/.conf/compton/compton.conf
+	echo 'Completed compton configuration!'
+
+rofi: apt-update icons
+	echo 'Configuring rofi...'
+	sudo apt install rofi
+	mkdir -p ~/.conf/rofi || true
+	[ -f "~/.conf/rofi/config.rasi" ] && mv ~/.conf/rofi/config.rasi ~/.conf/rofi/config.rasi-%Y%m%dT%H%M%S
+	cp ./.conf/rofi/config.rasi ~/.conf/rofi/config.rasi
+	echo 'Completed rofi configuration!'
 
 tmux: apt-update xws
 	echo 'Configuring tmux...'
@@ -75,11 +91,17 @@ polybar: xws
 	sudo add-apt-repository ppa:kgilmer/speed-ricer
 	make apt-update
 	sudo apt install polybar
-	mkdir -p ~/.config/polybar || true
 	[ -d "~/.config/polybar" ] && mv ~/.config/polybar ~/.config/polybar-%Y%m%dT%H%M%S
 	cp -r ./.config/polybar ~/.config
 	chmod +x ~/.config/polybar/launch.sh
 	'Completed polybar configuration!'
+
+icons:
+	echo 'Configuring icons...'
+	sudo add-apt-repository ppa:papirus/papirus
+	make apt-update	
+	sudo apt install papirus-icon-theme
+	echo 'Completed icon configuration!'
 
 end:
 	echo -e '\nCompleted all configurations!'

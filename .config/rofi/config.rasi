@@ -1,0 +1,64 @@
+configuration {
+    modi:                   "drun,window,combi";
+    combi-modi:             "window,drun";
+    sidebar-mode:           true;
+    width:                  30;
+    lines:                  10;
+    columns:                1;
+    row-height:             1;
+    font:                   "FiraMono Nerd Font 20";
+    bw:                     0;
+    location:               0;
+    padding:                0;
+    fixed-num-lines:        true;
+    show-icons:             true;
+    icon-theme:             "Papirus";
+    case-sensitive:         false;
+    show-match:             false;
+    matching:               "normal";
+    separator-style:        "none";
+    hide-scrollbar:         true;
+    click-to-exit:          true; 
+    display-window:         "";
+    display-drun:           "";
+    display-combi:          "";
+    combi-hide-mode-prefix: true;
+    fullscreen:             false;
+}
+
+* {
+    background-color: #00000000;
+    text-color: #5C6370;
+}
+
+window {
+    border:        0px;
+    border-radius: 10px;
+}
+
+prompt {
+    enabled: false;
+}
+
+entry {
+    margin:       0px 0px 40px 0px;
+    padding:      0px 0px 10px 40px;
+    border:       0px 0px 3px 0px;
+    border-color: #5C6370;
+    text-color:   #5C6370;
+}
+
+mainbox {
+    background-color: #EDEDED;
+    padding: 40px 40px 40px 40px;
+}
+
+element {
+    margin:  0px 40px 0px 40px;
+    padding: 10px 0px 10px 0px;
+}
+
+element selected {
+    background-color: #DEDEDE;
+    text-color:       #5C6370;
+}

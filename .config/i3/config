@@ -2,9 +2,12 @@
 ########################################## 
 set $mod Mod4
 floating_modifier $mod
-for_window [class=".*"] border pixel 0
-gaps top 60
-gaps inner 25
+for_window [class="^.*"] border pixel 0
+gaps top 91
+gaps right 30
+gaps bottom 25
+gaps left 30
+gaps inner 30
 font pango:FiraMono Nerd Font Mono Medium 0
 
 # layout
@@ -14,7 +17,7 @@ bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
-bindsym $mod+space focus mode_toggle
+#bindsym $mod+space focus mode_toggle
 
 # focus
 ########################################## 
@@ -36,12 +39,6 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 bindsym $mod+a focus parent
-
-# borders
-########################################## 
-default_border none
-default_floating_border none
-hide_edge_borders both
 
 # workspaces
 ########################################## 
@@ -79,14 +76,14 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # resize
 ########################################## 
 mode "resize" {
-    bindsym j resize shrink width 10 px or 10 ppt
-    bindsym k resize grow height 10 px or 10 ppt
-    bindsym l resize shrink height 10 px or 10 ppt
-    bindsym semicolon resize grow width 10 px or 10 ppt
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
+    bindsym j resize shrink width 20 px or 20 ppt
+    bindsym k resize grow height 20 px or 20 ppt
+    bindsym l resize shrink height 20 px or 20 ppt
+    bindsym semicolon resize grow width 20 px or 20 ppt
+    bindsym Left resize shrink width 20 px or 20 ppt
+    bindsym Down resize grow height 20 px or 20 ppt
+    bindsym Up resize shrink height 20 px or 20 ppt
+    bindsym Right resize grow width 20 px or 20 ppt
     bindsym Return mode "default"
     bindsym Escape mode "default"
     bindsym $mod+r mode "default"
@@ -103,7 +100,7 @@ bindsym $mod+f fullscreen toggle
 # apps
 ########################################## 
 bindsym $mod+Return exec kitty
-bindsym $mod+d exec dmenu_run
+bindsym $mod+space exec rofi -show drun
 
 # restart, reolad, exit
 ########################################## 
