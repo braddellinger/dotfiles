@@ -5,7 +5,6 @@ configuration {
     width:                  30;
     lines:                  10;
     columns:                1;
-    row-height:             1;
     font:                   "FiraMono Nerd Font 20";
     bw:                     0;
     location:               0;

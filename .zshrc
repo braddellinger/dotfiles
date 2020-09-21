@@ -1,6 +1,5 @@
 # powerlevel10k
 ##########################################
-ZSH_THEME="powerlevel10k/powerlevel10k"
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(background_jobs virtualenv dir vcs)
 POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
@@ -36,15 +35,19 @@ alias gs='git status'
 # exports
 ##########################################
 export PATH=$HOME:$PATH
-export ZSH=$HOME/.oh-my-zsh
 export EDITOR=nvim
 export BAT_THEME=TwoDark
 
-# start tmux
+# start tmux automatically but only
+# if a graphical environment is running
 ##########################################
-[ -z $TMUX ] && tmux new-session -As 0
+if [[ $DISPLAY ]]; then
+    [[ $- != *i* ]] && return
+    [ -z $TMUX ] && tmux new-session -As 0
+fi
 
 # source
 ##########################################
-source $ZSH/oh-my-zsh.sh
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

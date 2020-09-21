@@ -7,7 +7,10 @@ Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
 
 *.transparent: #00000000
-*.color0:      #aaFFFFFF
+*.background:  #172028
+*.foreground:  #efefef
+
+*.color0:      #172028
 *.color1:      #5C6370
 *.color2:      #C678DD
 *.color3:      #98C379

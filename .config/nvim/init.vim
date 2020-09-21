@@ -29,13 +29,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'gruvbox-community/gruvbox'
-Plug 'niklaas/lightline-gitdiff'
 Plug 'mhartington/oceanic-next'
 Plug 'arcticicestudio/nord-vim'
 Plug 'tomasiser/vim-code-dark'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
-Plug 'itchyny/lightline.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'joshdick/onedark.vim'
 Plug 'sainnhe/forest-night'
@@ -54,7 +52,7 @@ let g:forest_night_enable_italic=1
 let g:onedark_terminal_italic=1
 let g:onedark_terminal_bold=1
 let ayucolor='mirage'
-colorscheme onedark
+colorscheme challenger_deep
 set background=dark
 set termguicolors
 
@@ -135,84 +133,6 @@ set ignorecase
 set incsearch
 set hlsearch
 
-" lightline
-""""""""""""""""""""""""""""""""""""""""""
-let g:lightline#gitdiff#indicator_modified=' '
-let g:lightline#gitdiff#indicator_deleted=' '
-let g:lightline#gitdiff#indicator_added=' '
-let g:lightline#gitdiff#separator=' '
-let g:lightline={
-    \ 'colorscheme': 'onedark',
-    \ 'active': {
-    \    'left':  [['filename'], ['mode', 'paste']],
-    \    'right': [['lineinfo'], ['percent'], ['gitdiff'], ['status']] },
-    \ 'inactive': {
-    \    'left':  [['filename']],
-    \    'right': [] },
-    \ 'separator': {
-    \    'left':  '',
-    \    'right': '' },
-    \ 'component_function': {
-    \    'gitbranch': 'GetGitBranch',
-    \    'filename':  'GetFileName',
-    \    'lineinfo':  'GetLineInfo',
-    \    'percent':   'GetPercent',
-    \    'status':    'GetStatus' },
-    \ 'component_expand': {
-    \    'gitdiff': 'lightline#gitdiff#get' },
-    \ 'tab': {
-    \    'active':   ['filename', 'modified'],
-    \    'inactive': ['filename', 'modified'] },
-    \ 'tabline' : {
-    \    'left':  [['tabs']],
-    \    'right': [] },
-    \ 'tabline_separator': {
-    \    'left':  '',
-    \    'right': '' },
-    \ 'tab_component_function': {
-    \    'filename': 'GetTabFileName',
-    \    'modified': 'GetTabModified',
-    \    'tabnum':   'GetTabNumber' } }
-function! GetGitBranch()
-    return ' ' . fugitive#head()
-endfunction
-function! GetFileName()
-    let filename = expand('%:t') !=# '' ? WebDevIconsGetFileTypeSymbol() . ' ' . expand('%:t') : '[Untitled]'
-    let modified = &modified ? ' ' : ''
-    return filename . modified
-endfunction
-function! GetPercent()
-    return &filetype !=? 'coc-explorer' ? line('.') * 100 / line('$') . '%' : ''
-endfunction
-function! GetLineInfo()
-    return &filetype !=? 'coc-explorer' ? printf('%3d:%-2d', line('.'), col('.')) : 'ﳨ'
-endfunction
-function! GetStatus()
-    if &filetype !=? 'coc-explorer'
-        let info = get(b:, 'coc_diagnostic_info', {})
-        if get(info, 'error', 0)
-            return 'ﴫ'
-        elseif get(info, 'warning', 0)
-            return ''
-        endif
-        return '' 
-    endif
-    return ''
-endfunction
-function! GetTabFileName(n) abort
-  let buflist = tabpagebuflist(a:n)
-  let winnr = tabpagewinnr(a:n)
-  let _ = expand('#'.buflist[winnr - 1].':t')
-  return _ !=# '' ? _ : '[Untitled]'
-endfunction
-function! GetTabModified(n) abort
-  let winnr = tabpagewinnr(a:n)
-  return gettabwinvar(a:n, winnr, '&modified') ? ' ' : ''
-endfunction
-function! GetTabNumber(n) abort
-  return a:n
-endfunction
-
 " fzf
 """"""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <Leader>b :Buffers<CR>
@@ -292,3 +212,105 @@ let g:startify_bookmarks=[
     \ '~/.config/nvim/coc-settings.json',
     \ '~/.zshrc',
     \ '~/.tmux.conf' ]
+
+" status line
+""""""""""""""""""""""""""""""""""""""""""
+hi StatusLine guibg=none guifg=#ffffff
+hi StatusLineNC guibg=none guifg=none
+hi StatuslineInactive guibg=gray guifg=#ffffff
+hi StatuslineInactiveSeparator guibg=none guifg=gray
+function! Statusline(status)
+    if a:status == "active"
+        setlocal statusline=%{RerenderColors()}
+        setlocal statusline+=\ \ 
+        setlocal statusline+=%#StatuslinePrimarySeparator#%#StatuslinePrimary#\ %{GetFileName()}%{GetModified()}\ %#StatuslinePrimarySeparator#
+        setlocal statusline+=%=
+        setlocal statusline+=%#Statusline#%{GetStatus()}
+        setlocal statusline+=\ \ \ 
+        setlocal statusline+=%#StatuslineSecondarySeparator#%#StatuslineSecondary#\ %{GetPercent()}\ %#StatuslineSecondarySeparator#
+        setlocal statusline+=\ \ 
+        setlocal statusline+=%#StatuslinePrimarySeparator#%#StatuslinePrimary#\ %l:%c\ %#StatuslinePrimarySeparator#
+        setlocal statusline+=\ \ 
+    else
+        setlocal statusline=\ \ 
+        setlocal statusline+=%#StatuslineInactiveSeparator#%#StatuslineInactive#\ %{GetFileName()}%{GetModified()}\ %#StatuslineInactiveSeparator#
+    endif
+endfunction
+function! RerenderColors()
+    if mode() == 'n' || mode() == 'c'
+        hi StatuslinePrimary guibg=green guifg=#ffffff
+        hi StatuslinePrimarySeparator guibg=none guifg=green
+        hi StatuslineSecondary guibg=lightgreen guifg=#ffffff
+        hi StatuslineSecondarySeparator guibg=none guifg=lightgreen
+    elseif mode() == 'v' || mode() == 'V' || mode() == ''
+        hi StatuslinePrimary guibg=blue guifg=#ffffff
+        hi StatuslinePrimarySeparator guibg=none guifg=blue
+        hi StatuslineSecondary guibg=lightblue guifg=#ffffff
+        hi StatuslineSecondarySeparator guibg=none guifg=lightblue
+    elseif mode() == 'i'
+        hi StatuslinePrimary guibg=red guifg=#ffffff
+        hi StatuslinePrimarySeparator guibg=none guifg=red
+        hi StatuslineSecondary guibg=lightred guifg=#ffffff
+        hi StatuslineSecondarySeparator guibg=none guifg=lightred
+    elseif mode() == 'R' || mode() == 'Rv'
+        hi StatuslinePrimary guibg=yellow guifg=#000000
+        hi StatuslinePrimarySeparator guibg=none guifg=yellow
+        hi StatuslineSecondary guibg=lightyellow guifg=#000000
+        hi StatuslineSecondarySeparator guibg=none guifg=lightyellow
+    endif
+    return ''
+endfunction
+function! GetFileName()
+    return WebDevIconsGetFileTypeSymbol() . ' ' . (expand('%:t') !=# '' ?  expand('%:t') : '[Untitled]')
+endfunction
+function GetModified()
+    return &modified ? '  ' : ''
+endfunction
+function! GetPercent()
+    return &filetype !=? 'coc-explorer' ? line('.') * 100 / line('$') . '%' : ''
+endfunction
+function! GetStatus()
+    if &filetype !=? 'coc-explorer'
+        let info = get(b:, 'coc_diagnostic_info', {})
+        if get(info, 'error', 0)
+            return 'ﴫ'
+        elseif get(info, 'warning', 0)
+            return ''
+        endif
+        return '' 
+    endif
+    return ''
+endfunction
+set laststatus=2
+call Statusline("active")
+autocmd WinEnter,BufEnter * call Statusline("active")
+autocmd WinLeave * call Statusline("inactive")
+
+" tab line
+""""""""""""""""""""""""""""""""""""""""""
+hi TablineActive guibg=green guifg=#ffffff
+hi TablineActiveSeparator guibg=none guifg=green
+hi TablineInactive guibg=gray guifg=#ffffff
+hi TablineInactiveSeparator guibg=none guifg=gray
+function! Tabline()
+    let line = '%#StatusLineNC#  '
+    let tabcount = tabpagenr('$')
+    for i in range(tabcount)
+        let tab = i + 1
+        let winnr = tabpagewinnr(tab)
+        let buflist = tabpagebuflist(tab)
+        let bufnr = buflist[winnr - 1]
+        let bufname = bufname(bufnr)
+        let bufmodified = getbufvar(bufnr, "&mod")
+        
+        let line .= '%' . tab . 'T'
+        let line .= (tab == tabpagenr() ? '%#TablineActiveSeparator#%#TablineActive# ' : '%#TablineInactiveSeparator#%#TablineInactive# ')
+        let line .= WebDevIconsGetFileTypeSymbol(bufname(bufnr)) . ' ' . (bufname != '' ? fnamemodify(bufname, ':t') : '[Untitled]')
+        let line .= (bufmodified ? '  ' : '')
+        let line .= (tab == tabpagenr() ? ' %#TablineActiveSeparator#' : ' %#TablineInactiveSeparator#')
+        let line .= ( tab == tabcount ? '' : '  ')
+    endfor
+    return line
+endfunction
+set tabline=%!Tabline()
+
