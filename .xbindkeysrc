@@ -1,4 +1,4 @@
-# Mute volume
+# Mute volumes
 "pactl set-sink-mute @DEFAULT_SINK@ toggle"
    XF86AudioMute
 
@@ -17,3 +17,8 @@
 # Decrease backlight
 "light -U 10"
    XF86MonBrightnessDown
+
+# Screenshot
+"flameshot full --path ~/screenshots"
+    m:0x0 + c:107
+    Print

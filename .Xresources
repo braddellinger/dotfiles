@@ -1,4 +1,4 @@
-Xft.dpi: 168 ! should be increments of 96
+Xft.dpi: 192 ! should be increments of 96
 Xft.antialias: true
 Xft.hinting: true
 Xft.rgba: rgb

@@ -1,31 +1,19 @@
 " dependencies
 """"""""""""""""""""""""""""""""""""""""""
-" plugin manager
-"   - vim-plug (https://github.com/junegunn/vim-plug)
-" fonts & glyphs
-"   - nerdfont (https://www.nerdfonts.com/)
-" coc language server protocol
-"   - nodejs (https://nodejs.org/en/)
-"   - gopls for golang support (https://github.com/golang/go/wiki/gopls)
-"   - extensions (https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions) 
-"       - coc-python (https://github.com/neoclide/coc-python)
-"       - coc-yaml (https://github.com/neoclide/coc-yaml)
-"       - coc-json (https://github.com/neoclide/coc-json)
-"       - coc-tsserver (https://github.com/neoclide/coc-tsserver)
-"       - coc-html (https://github.com/neoclide/coc-html)
-"       - coc-css (https://github.com/neoclide/coc-css)
-"       - coc-explorer (https://github.com/weirongxu/coc-explorer)
-" fzf.nvim
-"   - rg (https://github.com/BurntSushi/ripgrep)
-"   - ag (https://github.com/ggreer/the_silver_searcher)
-"   - bat (https://github.com/sharkdp/bat)
+" vim-plug (https://github.com/junegunn/vim-plug)
+" nerdfont (https://www.nerdfonts.com/)
+" nodejs (https://nodejs.org/en/)
+" rg (https://github.com/BurntSushi/ripgrep)
+" ag (https://github.com/ggreer/the_silver_searcher)
+" bat (https://github.com/sharkdp/bat)
 
 " plug
 """"""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'gruvbox-community/gruvbox'
@@ -52,7 +40,7 @@ let g:forest_night_enable_italic=1
 let g:onedark_terminal_italic=1
 let g:onedark_terminal_bold=1
 let ayucolor='mirage'
-colorscheme challenger_deep
+colorscheme OceanicNext
 set background=dark
 set termguicolors
 
@@ -76,6 +64,7 @@ set statusline=2
 set laststatus=2
 set scrolloff=3
 set splitright
+set fcs=eob:\ 
 set path+=**
 set nobackup
 set wildmenu
@@ -179,6 +168,10 @@ command! -bang -nargs=* Ag
 
 " coc
 """"""""""""""""""""""""""""""""""""""""""
+let g:coc_global_extensions=[
+    \ 'coc-python', 'coc-yaml', 'coc-json',
+    \ 'coc-tsserver', 'coc-html', 'coc-css',
+    \ 'coc-explorer', 'coc-gocode' ]
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -188,12 +181,27 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<Tab>" : coc#refresh()
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
+
+" golang
+""""""""""""""""""""""""""""""""""""""""""
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd FileType go nmap <leader>t :GoTest<CR>
+let g:go_metalinter_autosave_enabled=['vet', 'golint']
+let g:go_highlight_variable_declarations=1
+let g:go_highlight_variable_assignments=1
+let g:go_highlight_build_constraints=1
+let g:go_highlight_function_calls=1
+let g:go_highlight_generate_tags=1
+let g:go_highlight_operators=1
+let g:go_highlight_functions=1
+let g:go_metalinter_autosave=1
+let g:go_fmt_fail_silently=1
+let g:go_highlight_types=1
 
 " gitgutter
 """"""""""""""""""""""""""""""""""""""""""
@@ -209,9 +217,7 @@ let g:startify_change_to_vcs_root=0
 let g:startify_change_to_dir=0
 let g:startify_bookmarks=[
     \ '~/.config/nvim/init.vim',
-    \ '~/.config/nvim/coc-settings.json',
-    \ '~/.zshrc',
-    \ '~/.tmux.conf' ]
+    \ '~/.zshrc' ]
 
 " status line
 """"""""""""""""""""""""""""""""""""""""""
@@ -288,7 +294,7 @@ autocmd WinLeave * call Statusline("inactive")
 
 " tab line
 """"""""""""""""""""""""""""""""""""""""""
-hi TablineActive guibg=green guifg=#ffffff
+hi TablineActive guibg=green guifg=none
 hi TablineActiveSeparator guibg=none guifg=green
 hi TablineInactive guibg=gray guifg=#ffffff
 hi TablineInactiveSeparator guibg=none guifg=gray
@@ -313,4 +319,3 @@ function! Tabline()
     return line
 endfunction
 set tabline=%!Tabline()
-

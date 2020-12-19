@@ -1,0 +1,43 @@
+configuration {
+    font: "FiraMono Nerd Font 120";
+    show-icons: false;
+}
+
+* {
+    background: #172028; 
+    foreground: #efefef;
+}
+
+window {
+    border:        5px;
+    border-color:  #61AFEF;
+    border-radius: 10px;
+    width:         1000px;
+    height:        295px;
+}
+
+mainbox {
+    padding:          0px;
+    children:         [listview];
+    background-color: #172028;
+}
+
+listview {
+    columns: 3;
+}
+
+element {
+    margin:        20px;
+    orientation:   vertical;
+    border-radius: 10px;
+}
+
+element-text {
+    horizontal-align: 0.5;
+    vertical-align:   0.5;
+}
+
+element selected {
+    background-color: #61afef;
+    text-color:       #efefef;
+}

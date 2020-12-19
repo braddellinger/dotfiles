@@ -31,6 +31,9 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias g='git'
 alias gs='git status'
+alias startgnome='startx ~/.xinitrc gnome'
+alias starti3='startx ~/.xinitrc i3'
+alias dots='git --git-dir=~/github/dotfiles --work-tree=~'
 
 # exports
 ##########################################
@@ -48,6 +51,7 @@ fi
 
 # source
 ##########################################
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+source ~/.oh-my-zsh/oh-my-zsh.sh
+source ~/github/powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

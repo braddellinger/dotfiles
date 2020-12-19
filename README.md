@@ -1,4 +1,8 @@
-<div align="center"><img width="90%" src="./assets/desktop.png" /></div>
+<p align="center" float="left" >
+    <img width="40%" src="./assets/neovim.png" />
+    <img width="40%" src="./assets/rofi_powermenu.png" />
+    <img width="40%" src="./assets/rofi_apps.png" />
+</p>
 
 ## Details
 The core components which comprise the desktop environment.
@@ -11,22 +15,22 @@ The core components which comprise the desktop environment.
 * **Terminal:** [kitty](https://github.com/kovidgoyal/kitty) with [Challenger Deep](https://challenger-deep-theme.github.io) colors
 * **Editor:** [neovim](https://github.com/neovim/neovim) with [Challenger Deep](https://challenger-deep-theme.github.io) colors & custom statusline
 * **Notifications:** [dunst](https://github.com/dunst-project/dunst)
-* **Wallpaper:** [Haze](https://unsplash.com/photos/GLf7bAwCdYg)
+* **Wallpaper:** [Mountains](https://unsplash.com/photos/k6Z_CKxk1wQ)
 
 
 ## Installation
-Installation steps are written for Arch Linux. Any preexisting directories or files will be renamed with the format `name-YYYYMMDDTHHMMDD`.
+The Makefile is theoretical and hasn't been tested yet, so use at your own risk.
 
-1. Clone this repo with `git clone https://github.com/braddellinger/dotfiles.git`
-2. Install everything at once with `make all` or individually with `make <xxxxxx>`
-3. Some settings are system specific and may require updating:
+1. Install everything at once with `make all` or individual components with `make <xxxxxx>`. Refer to [Makefile](Makefile) for options.
+2. Some settings are system specific and may require updating:
     * **~/.Xresources`** - _dpi_ - display scaling
     * **~/.config/i3/config** - _gaps_ - gaps size between tiled windows
     * **~/.config/i3/config** - _exec --no-startup-id feh_ - points to your wallpaper
+    * **~/scripts/lock.sh** _i3lock_ - points to your lock screen wallpaper
     * **~/.config/polybar/modules/backlight.ini** - _card_ - based on output of `ls -1 /sys/class/backlight/`
     * **~/.config/polybar/modules/battery.ini** - _battery_ & _adapter_ - based on output of `ls -1 /sys/class/power_supply/`
     * **~/.config/polybar/modules/network.ini** - _interface_ - based on output of `iwctl device list`
-4. Log out and back in to ensure all changes take effect.
+3. Restart to ensure all changes take effect.
 
 ## Keybindings
 A summary of important keybindings.
@@ -40,11 +44,14 @@ A summary of important keybindings.
 | <kbd>super number</kbd> | Navigate to the numbered workspace |
 | <kbd>super shift number</kbd> | Move current window to the numbered workspace |
 | <kbd>super space</kbd> | Display app launcher |
+| <kbd>super shift space</kbd> | Display power menu |
 | <kbd>super enter</kbd> | Launch terminal |
-| <kbd>super shift space</kbd> | Toggle between tiled & floating window layouts |
 | <kbd>super r</kbd> and then <kbd>arrow</kbd> | Resize floating window |
 | <kbd>super shift arrow</kbd> | Move floating window |
 | <kbd>super f</kbd> | Toggle full screen |
+| <kbd>super shift l</kbd> | Lock screen |
+| <kbd>super -</kbd> | Minimize window to scratchpad |
+| <kbd>super +</kbd> | Maximixe window from scratchpad |
 
 ### tmux
 | Keybinding | Description |

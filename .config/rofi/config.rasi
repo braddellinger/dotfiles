@@ -5,7 +5,8 @@ configuration {
     width:                  30;
     lines:                  10;
     columns:                1;
-    font:                   "FiraMono Nerd Font 20";
+    font:                   "FiraMono Nerd Font 24";
+    drun-display-format:    "{icon} {name}";
     bw:                     0;
     location:               0;
     padding:                0;
@@ -25,14 +26,19 @@ configuration {
     fullscreen:             false;
 }
 
+element-icon {
+    size: 2ch;
+}
+
 * {
-    background-color: #00000000;
-    text-color: #5C6370;
+    background-color: #172028;
+    text-color: #EFEFEF;
 }
 
 window {
-    border:        0px;
+    border:        5px;
     border-radius: 10px;
+    border-color: #61AFEF;
 }
 
 prompt {
@@ -43,21 +49,22 @@ entry {
     margin:       0px 0px 40px 0px;
     padding:      0px 0px 10px 40px;
     border:       0px 0px 3px 0px;
-    border-color: #5C6370;
-    text-color:   #5C6370;
+    border-color: #EFEFEF;
+    text-color:   #EFEFEF;
 }
 
 mainbox {
-    background-color: #EDEDED;
+    background-color: #172028;
     padding: 40px 40px 40px 40px;
 }
 
 element {
     margin:  0px 40px 0px 40px;
-    padding: 10px 0px 10px 0px;
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
 }
 
 element selected {
-    background-color: #DEDEDE;
-    text-color:       #5C6370;
+    background-color: #61AFEF;
+    text-color:       #EFEFEF;
 }
