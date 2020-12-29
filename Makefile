@@ -13,15 +13,15 @@ dirs:
 	mkdir ~/github
 
 pacman:
-	sudo pacman -S git zsh ripgrep the_silver_searcher bat fzf zsh-syntax-highlighting \
-		xorg-server xorg-xinit xorg-xbacklight xorg-xrandr xbindkeys xclip i3-gaps feh \
-		redshift rofi tmux neovim nodejs npm dunst kitty flameshot papirus-icon-theme \
-		thunar brave udiskie ntfs-3g
+	sudo pacman -S git zsh python python-pip ripgrep the_silver_searcher bat fzf \
+	zsh-syntax-highlighting xorg-server xorg-xinit xorg-xbacklight xorg-xrandr \
+	xbindkeys xclip i3-gaps feh redshift rofi tmux neovim nodejs npm dunst \
+	kitty flameshot papirus-icon-theme thunar brave udiskie ntfs-3g 
 
 yay:
 	git clone https://aur.archlinux.org/yay.git ~/github
 	cd ~/github/yay && makepkg -si && cd ~
-	yay -S picom-ibhagwan-git vim-plug polybar
+	yay -S picom-ibhagwan-git vim-plug polybar git-delta
 
 zsh:
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
