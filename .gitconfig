@@ -1,15 +1,33 @@
 [core]
     editor = nvim
+    pager = delta
+
 [merge]
     tool = nvimdiff3
+
 [mergetool]
     prompt = false
+
 [mergetool "nvimdiff3"]
     cmd = nvim -d "$LOCAL" "$REMOTE" "$MERGED"
+
 [diff]
     tool = nvimdiff2
+
 [difftool]
     prompt = false
+
 [difftool "nvimdiff2"]
     cmd = nvim -d "$LOCAL" "$REMOTE"
 
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    features = side-by-side line-numbers decorations
+    whitespace-error-style = 22 reverse
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
