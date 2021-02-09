@@ -26,6 +26,7 @@ function sandbox {
 
 # aliases
 ##########################################
+alias exa='exa -las modified --icons'
 alias mv='mv -i'
 alias rm='rm -i'
 alias cp='cp -i'
@@ -34,12 +35,14 @@ alias gs='git status'
 alias startgnome='startx ~/.xinitrc gnome'
 alias starti3='startx ~/.xinitrc i3'
 alias dots='git --git-dir=~/github/dotfiles --work-tree=~'
+alias nvim='~/nvim.appimage -u ~/.config/nvim/init.vim'
 
 # exports
 ##########################################
 export PATH=$HOME:$PATH
 export EDITOR=nvim
 export BAT_THEME=TwoDark
+export FZF_DEFAULT_OPTS='--layout=reverse'
 
 # start tmux automatically but only
 # if a graphical environment is running

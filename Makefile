@@ -16,7 +16,7 @@ pacman:
 	sudo pacman -S git zsh python python-pip ripgrep the_silver_searcher bat fzf \
 	zsh-syntax-highlighting xorg-server xorg-xinit xorg-xbacklight xorg-xrandr \
 	xbindkeys xclip i3-gaps feh redshift rofi tmux neovim nodejs npm dunst \
-	kitty flameshot papirus-icon-theme thunar brave udiskie ntfs-3g 
+	kitty flameshot papirus-icon-theme thunar brave udiskie ntfs-3g exa fd
 
 yay:
 	git clone https://aur.archlinux.org/yay.git ~/github
