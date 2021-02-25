@@ -35,7 +35,8 @@ alias gs='git status'
 alias startgnome='startx ~/.xinitrc gnome'
 alias starti3='startx ~/.xinitrc i3'
 alias dots='git --git-dir=~/github/dotfiles --work-tree=~'
-alias nvim='~/nvim.appimage -u ~/.config/nvim/init.vim'
+alias nvimv='~/nvim.appimage -u ~/.config/nvim/init.vim'
+alias nvim='~/nvim.appimage -u ~/.config/nvim/init.lua'
 
 # exports
 ##########################################
