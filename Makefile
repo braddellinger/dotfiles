@@ -42,6 +42,7 @@ fonts:
 	git clone https://github.com/ryanoasis/nerd-fonts.git ~/github
 	~/github/nerd-fonts/install.sh Inconsolata
 	~/github/nerd-fonts/install.sh FiraMono
+	~/github/nerd-fonts/install.sh Lekton
 
 x11:
 	[ -f "/etc/X11/xorg.conf.d/90-touchpad.conf" ] && sudo mv /etc/X11/xorg.conf.d/90-touchpad.conf /etc/X11/xorg.conf.d/90-touchpad.conf_%Y%m%dT%H%M%S
@@ -53,5 +54,6 @@ x11:
 	gpasswd -a $USER video
 
 neovim:
-	nvim --headless +PlugInstall +qa
+	cp ./xterm-256color-italic.terminfo ~/xterm-256color-italic.terminfo && tic ~/xterm-256color-italic.terminfo
+	nvim --headless +PackerInstall +qa
 
