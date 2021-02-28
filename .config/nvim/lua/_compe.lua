@@ -34,18 +34,18 @@ end
 -- tab completion
 _G.tab_complete = function()
     if vim.fn.pumvisible() == 1 then
-        return t "<C-n>"
+        return t '<C-n>'
     else
-        return t "<Tab>"
+        return t '<Tab>'
     end
 end
 
 -- shift + tab completion
 _G.s_tab_complete = function()
     if vim.fn.pumvisible() == 1 then
-        return t "<C-p>"
+        return t '<C-p>'
     else
-        return t "<S-Tab>"
+        return t '<S-Tab>'
     end
 end
 

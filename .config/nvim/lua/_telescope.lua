@@ -17,7 +17,7 @@ require('telescope').setup{
         prompt_position = 'bottom',
         initial_mode = 'insert',
         color_devicons = true,
-        prompt_prefix = ' ',
+        prompt_prefix = '  ',
         layout_defaults = {},
         preview_cutoff = 120,
         results_width = 0.8,
@@ -39,17 +39,17 @@ require('telescope').setup{
         mappings = {
             i = {
                 ['<Esc>'] = actions.close,      
-                ['<C-v>'] = actions.goto_file_selection_vsplit,
-                ['<C-s>'] = actions.goto_file_selection_split,
-                ['<C-t>'] = actions.goto_file_selection_tabedit,
-                ['<CR>'] = actions.goto_file_selection_edit
+                ['<C-v>'] = actions.select_vertical,
+                ['<C-s>'] = actions.select_horizontal,
+                ['<C-t>'] = actions.select_tab,
+                ['<CR>'] = actions.select_default + actions.center
             },
             n = {
-                ['<Esc>'] = actions.close,
-                ['<C-v>'] = actions.goto_file_selection_vsplit,
-                ['<C-s>'] = actions.goto_file_selection_split,
-                ['<C-t>'] = actions.goto_file_selection_tabedit,
-                ['<CR>'] = actions.goto_file_selection_edit
+                ['<Esc>'] = actions.close,      
+                ['<C-v>'] = actions.select_vertical,
+                ['<C-s>'] = actions.select_horizontal,
+                ['<C-t>'] = actions.select_tab,
+                ['<CR>'] = actions.select_default + actions.center
             }
         }
     }
