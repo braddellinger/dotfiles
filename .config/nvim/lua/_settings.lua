@@ -7,8 +7,8 @@ vim.o.syntax = 'on'
 -- backup & swap
 vim.o.backupdir = '~/.config/nvim/backup//'
 vim.o.directory = '~/.config/nvim/swp//'
-vim.o.swapfile = false
-vim.o.backup = false
+-- vim.o.swapfile = false
+-- vim.o.backup = false
 
 -- lines numbers
 vim.wo.relativenumber = true 
@@ -43,3 +43,6 @@ vim.o.inccommand = 'nosplit'
 vim.o.ignorecase = true
 vim.o.incsearch = true
 vim.o.hlsearch = true
+
+-- set cursor shape on leave
+vim.cmd('autocmd VimLeave * set guicursor=a:hor100')

@@ -48,9 +48,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/brad/.local/share/nvim/site/pack/packer/start/gruvbox"
   },
+  kommentary = {
+    loaded = true,
+    path = "/home/brad/.local/share/nvim/site/pack/packer/start/kommentary"
+  },
   ["lspkind-nvim"] = {
     loaded = true,
     path = "/home/brad/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
+  },
+  ["lspsaga.nvim"] = {
+    loaded = true,
+    path = "/home/brad/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
   },
   ["nord-vim"] = {
     loaded = true,
@@ -128,6 +136,10 @@ _G.packer_plugins = {
   ["vim-horizon"] = {
     loaded = true,
     path = "/home/brad/.local/share/nvim/site/pack/packer/start/vim-horizon"
+  },
+  ["vim-nightfly-guicolors"] = {
+    loaded = true,
+    path = "/home/brad/.local/share/nvim/site/pack/packer/start/vim-nightfly-guicolors"
   },
   ["vim-startify"] = {
     loaded = true,

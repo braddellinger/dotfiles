@@ -36,19 +36,30 @@ function icon()
     if icon then return ' '..icon..' ' else return ' ' end
 end
 
+-- get lsp diagnostics
+function diagnostics()
+    local display = ' '
+    if vim.lsp.diagnostic.get_count(0, 'Error') > 0 then display = display .. '  ' end
+    if vim.lsp.diagnostic.get_count(0, 'Warning') > 0 then display = display .. '  ' end
+    if vim.lsp.diagnostic.get_count(0, 'Information') > 0 then display = display .. '  ' end
+    if vim.lsp.diagnostic.get_count(0, 'Hint') > 0 then display = display .. '  ' end
+    return display
+end
+
 -- construct statusline
 function statusline(status)
     local sl = {}
     if status == 'active' then
         sl = {
-            [[%{v:lua.set_statusline_colors()}]],
+            '%{v:lua.set_statusline_colors()}',
             '%#StatusLine#  ',
             '%#StatusLineBackground#',
             '%#StatusLineForeground#',
-            [[%{v:lua.icon()}]],
+            '%{v:lua.icon()}',
             '%#StatusLineForeground#%t ',
-            [[%{v:lua.modified()}]],
+            '%{v:lua.modified()}',
             '%#StatusLineBackground#',
+            '%{v:lua.diagnostics()}',
             '%=',
             '%#StatusLineBackground#',
             '%#StatusLineForeground# %l:%c ',
@@ -60,10 +71,11 @@ function statusline(status)
             '%#StatusLine#  ',
             '%#StatusLineInactiveBackground#',
             '%#StatusLineInactiveForeground#',
-            [[%{v:lua.icon()}]],
+            '%{v:lua.icon()}',
             '%#StatusLineInactiveForeground#%t ',
-            [[%{v:lua.modified()}]],
-            '%#StatusLineInactiveBackground#'
+            '%{v:lua.modified()}',
+            '%#StatusLineInactiveBackground#',
+            '%{v:lua.diagnostics()}'
         }
     end
 

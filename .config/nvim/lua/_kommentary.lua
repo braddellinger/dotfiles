@@ -5,6 +5,6 @@ require('kommentary.config').configure_language('default', {
 
 -- keymaps
 vim.g.kommentary_create_default_mappings = false
-vim.api.nvim_set_keymap('n', '<leader>/', '<Plug>kommentary_line_default', {})
-vim.api.nvim_set_keymap('n', '<leader>/', '<Plug>kommentary_motion_default', {})
-vim.api.nvim_set_keymap('v', '<leader>/', '<Plug>kommentary_visual_default', {})
+vim.api.nvim_set_keymap('n', 'gc', '<Plug>kommentary_line_default', {})
+vim.api.nvim_set_keymap('n', 'gc', '<Plug>kommentary_motion_default', {})
+vim.api.nvim_set_keymap('v', 'gc', '<Plug>kommentary_visual_default', {})

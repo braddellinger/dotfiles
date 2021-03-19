@@ -23,7 +23,7 @@ end
 
 -- construct tabline
 function tabline()
-    local tl = { [[%{v:lua.set_tabline_colors()}]], '%#StatusLineNC#  ' } 
+    local tl = { '%{v:lua.set_tabline_colors()}', '%#StatusLineNC#  ' } 
     local tabcount = vim.fn.tabpagenr('$')
     for t = 1, tabcount do
         local winnr = vim.fn.tabpagewinnr(t)

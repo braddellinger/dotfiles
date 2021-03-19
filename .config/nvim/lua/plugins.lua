@@ -9,10 +9,10 @@
 
 
 -- run :PackerCompile whenever plugins.lua is updated
-vim.cmd [[ autocmd BufWritePost plugins.lua PackerCompile ]]
+vim.cmd('autocmd BufWritePost plugins.lua PackerCompile')
 
 -- required if packer is installed in `opt` pack
-vim.cmd [[packadd packer.nvim]]
+vim.cmd('packadd packer.nvim')
 
 -- use plugins
 return require('packer').startup(function()
@@ -28,6 +28,7 @@ return require('packer').startup(function()
     use { 'nvim-lua/plenary.nvim' }
     use { 'neovim/nvim-lspconfig' }
     use { 'onsails/lspkind-nvim' }
+    use { 'glepnir/lspsaga.nvim' }
     use { 'nvim-lua/popup.nvim' }
     use { 'b3nj5m1n/kommentary' }
     use { 'hrsh7th/nvim-compe' }
@@ -37,6 +38,7 @@ return require('packer').startup(function()
     -- colorschemes
     use { 'challenger-deep-theme/vim', as = 'challenger-deep' }
     use { 'drewtempelmeyer/palenight.vim' }
+    use { 'bluz71/vim-nightfly-guicolors' }
     use { 'NLKNguyen/papercolor-theme' }
     use { 'gruvbox-community/gruvbox' }
     use { 'mhartington/oceanic-next' }
