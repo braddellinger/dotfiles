@@ -5,10 +5,8 @@ vim.o.background = 'dark'
 vim.o.syntax = 'on'
 
 -- backup & swap
-vim.o.backupdir = '~/.config/nvim/backup//'
-vim.o.directory = '~/.config/nvim/swp//'
--- vim.o.swapfile = false
--- vim.o.backup = false
+vim.o.backupdir = os.getenv("HOME") .. '/.config/nvim/backup//'
+vim.o.directory = os.getenv("HOME") .. '/.config/nvim/swp//'
 
 -- lines numbers
 vim.wo.relativenumber = true 
@@ -29,8 +27,6 @@ vim.o.scrolloff = 3
 vim.o.wrap = false
 vim.o.fcs = 'eob: '
 vim.o.mouse = 'a'
--- vim.o.foldmethod = 'syntax'
-----vim.o.path += **
 
 -- indentation
 vim.o.autoindent = true

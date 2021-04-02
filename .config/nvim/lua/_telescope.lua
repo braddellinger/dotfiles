@@ -1,6 +1,6 @@
 -- telescope setup
 local actions = require('telescope.actions')
-require('telescope').setup{
+require('telescope').setup {
     defaults = {
         buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker,
         qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,

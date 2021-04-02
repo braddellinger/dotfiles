@@ -32,7 +32,7 @@ alias nvimold='~/nvim.appimage -u ~/.config/nvim/init.vim'
 alias nvim='~/nvim.appimage -u ~/.config/nvim/init.lua'
 alias startgnome='startx ~/.xinitrc gnome'
 alias starti3='startx ~/.xinitrc i3'
-alias exa='exa -las modified --icons'
+alias e='exa -las modified --icons'
 alias gs='git status'
 alias mv='mv -i'
 alias rm='rm -i'
@@ -41,7 +41,6 @@ alias g='git'
 
 # exports
 ########################################
-# export FZF_DEFAULT_OPTS='--layout=reverse'
 export BAT_THEME=TwoDark
 export PATH=$HOME:$PATH
 export EDITOR=nvim

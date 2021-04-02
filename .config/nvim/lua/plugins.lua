@@ -18,13 +18,14 @@ vim.cmd('packadd packer.nvim')
 return require('packer').startup(function()
 
     -- functional
+    use { 'lukas-reineke/indent-blankline.nvim', branch = 'lua' }
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use { 'dstein64/nvim-scrollview', branch = 'main' }
     use { 'wbthomason/packer.nvim', opt = true }
     use { 'nvim-telescope/telescope.nvim' }
     use { 'kyazdani42/nvim-web-devicons' }
     use { 'kyazdani42/nvim-tree.lua' }
-    use { 'airblade/vim-gitgutter' }
+    use { 'lewis6991/gitsigns.nvim' }
     use { 'nvim-lua/plenary.nvim' }
     use { 'neovim/nvim-lspconfig' }
     use { 'onsails/lspkind-nvim' }

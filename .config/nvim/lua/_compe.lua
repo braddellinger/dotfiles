@@ -1,5 +1,5 @@
 -- compe setup
-require'compe'.setup {
+require('compe').setup {
     incomplete_delay = 400;
     source_timeout = 200;
     max_abbr_width = 100;
@@ -23,7 +23,7 @@ require'compe'.setup {
         calc = true;
         path = true;
         tags = true;
-    };
+    }
 }
 
 -- tab completion helper
