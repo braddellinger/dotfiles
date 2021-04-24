@@ -90,24 +90,3 @@ A summary of important keybindings.
 | <kbd>[d</kbd> | LSP go to previous diagnostic |
 | <kbd>]d</kbd> | LSP go to next diagnostic |
 
-## Recommended color schemes
-A collection of quality color schemes developed by others.
-
-* [Challenger Deep](https://challenger-deep-theme.github.io)
-* [One Dark](https://github.com/joshdick/onedark.vim)
-* [Dracula](https://draculatheme.com/)
-* [Horizon](https://github.com/ntk148v/vim-horizon)
-* [Palenight](https://github.com/drewtempelmeyer/palenight.vim)
-* [Oceanic Next](https://github.com/mhartington/oceanic-next)
-* [Gruvbox](https://github.com/gruvbox-community/gruvbox)
-* [Ayu](https://github.com/ayu-theme/ayu-vim)
-* [Nord](https://www.nordtheme.com)
-* [Forest Night](https://github.com/sainnhe/forest-night)
-
-## Recommended fonts
-A collection of quality fonts.
-
-* [Inconsolata](https://www.nerdfonts.com/)
-* [FiraMono](https://www.nerdfonts.com/)
-* [Iosevka](https://www.nerdfonts.com/)
-* [Cantarell](https://github.com/GNOME/cantarell-fonts)
