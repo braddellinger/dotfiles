@@ -1,2 +1,3 @@
 .config/nvim/.netrwhist
 .config/nvim/swp
+.config/nvim/plugin/packer_compiled.vim

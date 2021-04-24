@@ -1,5 +1,6 @@
 -- colors
-vim.cmd('colorscheme challenger_deep')
+vim.cmd('colorscheme tokyonight')
+vim.g.tokyonight_style = 'storm'
 vim.o.termguicolors = true
 vim.o.background = 'dark'
 vim.o.syntax = 'on'
@@ -29,9 +30,13 @@ vim.o.fcs = 'eob: '
 vim.o.mouse = 'a'
 
 -- indentation
+vim.bo.autoindent = true
 vim.o.autoindent = true
+vim.bo.expandtab = true
 vim.o.expandtab = true
+vim.bo.shiftwidth = 4
 vim.o.shiftwidth = 4
+vim.bo.tabstop = 4
 vim.o.tabstop = 4
 
 -- search

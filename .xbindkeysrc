@@ -11,11 +11,11 @@
    XF86AudioLowerVolume
 
 # Increase backlight
-"light -A 10"
+"light -A 5"
    XF86MonBrightnessUp
 
 # Decrease backlight
-"light -U 10"
+"light -U 5"
    XF86MonBrightnessDown
 
 # Screenshot

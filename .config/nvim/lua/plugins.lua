@@ -45,6 +45,7 @@ return require('packer').startup(function()
     use { 'mhartington/oceanic-next' }
     use { 'arcticicestudio/nord-vim' }
     use { 'tomasiser/vim-code-dark' }
+    use { 'folke/tokyonight.nvim' }
     use { 'joshdick/onedark.vim' }
     use { 'sainnhe/forest-night' }
     use { 'ntk148v/vim-horizon' }

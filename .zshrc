@@ -19,17 +19,12 @@ POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 # POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX=''
 # POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='  '  # 勞
 
-# functions
-########################################
-function sandbox {
-    source ~/sandbox/bin/activate
-}
-
 # aliases
 ########################################
-alias dots='git --git-dir=~/github/dotfiles --work-tree=~'
+alias dots='git --git-dir=$HOME/github/dotfiles --work-tree=$HOME'
 alias nvimold='~/nvim.appimage -u ~/.config/nvim/init.vim'
 alias nvim='~/nvim.appimage -u ~/.config/nvim/init.lua'
+alias sandbox='source ~/sandbox/bin/activate'
 alias startgnome='startx ~/.xinitrc gnome'
 alias starti3='startx ~/.xinitrc i3'
 alias e='exa -las modified --icons'
@@ -41,7 +36,6 @@ alias g='git'
 
 # exports
 ########################################
-export BAT_THEME=TwoDark
 export PATH=$HOME:$PATH
 export EDITOR=nvim
 
