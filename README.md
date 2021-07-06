@@ -35,7 +35,7 @@ The Makefile is theoretical and hasn't been tested yet, so use at your own risk.
 ## Keybindings
 A summary of important keybindings.
 
-* [Awesome keybindings](.config/awesome/README.md)
-* [I3 Keybindings](.config/i3/README.md)
-* [Neovim Keybindings](.config/neovim/README.md)
+* [Awesome](.config/awesome/README.md)
+* [I3](.config/i3/README.md)
+* [Neovim](.config/nvim/README.md)
 * [Tmux](TMUX_README.md)
