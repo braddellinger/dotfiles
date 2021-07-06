@@ -1,23 +1,25 @@
--- tree settings
-vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+-- Tree settings
 vim.g.nvim_tree_side = 'right'
+
+local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 vim.g.nvim_tree_bindings = {
-    ['<CR>'] =   ":lua require'nvim-tree'.on_keypress('edit')<CR>",
-    ['o'] =      ":lua require'nvim-tree'.on_keypress('edit')<CR>",
-    ['<C-v>'] =  ":lua require'nvim-tree'.on_keypress('vsplit')<CR>",
-    ['<C-s>'] =  ":lua require'nvim-tree'.on_keypress('split')<CR>",
-    ['<C-t>'] =  ":lua require'nvim-tree'.on_keypress('tabnew')<CR>",
-    ['<S-CR>'] = ":lua require'nvim-tree'.on_keypress('close_node')<CR>",
-    ['<BS>'] =   ":lua require'nvim-tree'.on_keypress('close_node')<CR>",
-    ['<R>'] =    ":lua require'nvim-tree'.on_keypress('refresh')<CR>",
-    ['c'] =      ":lua require'nvim-tree'.on_keypress('create')<CR>",
-    ['d'] =      ":lua require'nvim-tree'.on_keypress('remove')<CR>",
-    ['r'] =      ":lua require'nvim-tree'.on_keypress('rename')<CR>",
-    ['x'] =      ":lua require'nvim-tree'.on_keypress('cut')<CR>",
-    ['y'] =      ":lua require'nvim-tree'.on_keypress('copy')<CR>",
-    ['p'] =      ":lua require'nvim-tree'.on_keypress('paste')<CR>",
-    ['q'] =      ":lua require'nvim-tree'.on_keypress('close')<CR>"
+    { key = {'<CR>', 'o'}, cb = tree_cb('edit') },
+    { key = '<C-v>',       cb = tree_cb('vsplit') },
+    { key = '<C-s>',       cb = tree_cb('split') },
+    { key = '<C-t>',       cb = tree_cb('tabnew') },
+    { key = '<Tab>',       cb = tree_cb('preview') },
+    { key = 'R',           cb = tree_cb('refresh') },
+    { key = 'c',           cb = tree_cb('create') },
+    { key = 'd',           cb = tree_cb('remove') },
+    { key = 'r',           cb = tree_cb('rename') },
+    { key = 'x',           cb = tree_cb('cut') },
+    { key = 'c',           cb = tree_cb('copy') },
+    { key = 'p',           cb = tree_cb('paste') },
+    { key = 'q',           cb = tree_cb('close') },
+    { key = '?',           cb = tree_cb('toggle_help') }
 }
+
+
 vim.g.nvim_tree_icons = {
     default = '',
     symlink = '',
@@ -26,7 +28,7 @@ vim.g.nvim_tree_icons = {
         staged = '✓',
         unmerged = '',
         renamed = '➜',
-        untracked = ''
+        untracked = '',
     },
     folder = {
         default = '',
@@ -34,3 +36,6 @@ vim.g.nvim_tree_icons = {
         symlink = '',
     }
 }
+
+-- Keymaps
+vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })

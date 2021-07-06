@@ -1,4 +1,4 @@
--- lspkind symbols
+-- Lspkind symbols
 require('lspkind').init({
     with_text = false,
     symbol_map = {
@@ -21,6 +21,6 @@ require('lspkind').init({
         Folder = '',
         EnumMember = '',
         Constant = '',
-        Struct = ''
+        Struct = '',
     }
 })

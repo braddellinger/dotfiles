@@ -1,4 +1,4 @@
--- set highlights based on mode
+-- Set highlights based on mode
 function set_tabline_colors()
     vim.api.nvim_command('hi TabLineInactiveBackground guibg=none guifg=#5C6370')
     vim.api.nvim_command('hi TabLineInactiveForeground guibg=#5C6370 guifg=black')
@@ -21,7 +21,7 @@ function set_tabline_colors()
     return ''
 end
 
--- construct tabline
+-- Construct tabline
 function tabline()
     local tl = { '%{v:lua.set_tabline_colors()}', '%#StatusLineNC#  ' } 
     local tabcount = vim.fn.tabpagenr('$')
@@ -53,5 +53,5 @@ function tabline()
     return table.concat(tl)
 end
 
--- set tabline
+-- Set tabline
 vim.o.tabline = [[%!v:lua.tabline()]]

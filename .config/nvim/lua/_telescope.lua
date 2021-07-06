@@ -1,4 +1,5 @@
--- telescope setup
+-- Telescope setup
+local trouble = require('trouble.providers.telescope')
 local actions = require('telescope.actions')
 require('telescope').setup {
     defaults = {
@@ -14,18 +15,18 @@ require('telescope').setup {
         sorting_strategy = 'descending',
         layout_strategy = 'horizontal',
         selection_strategy = 'reset',
-        prompt_position = 'bottom',
+        -- prompt_position = 'bottom',
         initial_mode = 'insert',
         color_devicons = true,
         prompt_prefix = '  ',
-        layout_defaults = {},
-        preview_cutoff = 120,
-        results_width = 0.8,
+        -- layout_defaults = {},
+        -- preview_cutoff = 120,
+        -- results_width = 0.8,
         shorten_path = true,
-        results_height = 1,
+        -- results_height = 1,
         use_less = true,
         winblend = 0,
-        width = 0.75,
+        -- width = 0.75,
         border = {},
         vimgrep_arguments = {
             'rg',
@@ -36,26 +37,32 @@ require('telescope').setup {
             '--column',
             '--smart-case'
         },
+        layout_config = {
+            horizontal = { mirror = false },
+            vertical = { mirror = false }
+        },
         mappings = {
             i = {
                 ['<Esc>'] = actions.close,      
                 ['<C-v>'] = actions.select_vertical,
                 ['<C-s>'] = actions.select_horizontal,
                 ['<C-t>'] = actions.select_tab,
-                ['<CR>'] = actions.select_default + actions.center
+                ['<CR>'] = actions.select_default + actions.center,
+                ['<A-t>'] = trouble.open_with_trouble
             },
             n = {
                 ['<Esc>'] = actions.close,      
                 ['<C-v>'] = actions.select_vertical,
                 ['<C-s>'] = actions.select_horizontal,
                 ['<C-t>'] = actions.select_tab,
-                ['<CR>'] = actions.select_default + actions.center
+                ['<CR>'] = actions.select_default + actions.center,
+                ['<A-t>'] = trouble.open_with_trouble
             }
         }
     }
 }
 
--- keymaps
+-- Keymaps
 vim.api.nvim_set_keymap('n', '<leader>c', ':Telescope git_commits<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>f', ':Telescope find_files<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>t', ':Telescope treesitter<CR>', { noremap = true, silent = true })

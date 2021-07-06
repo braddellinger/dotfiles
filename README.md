@@ -61,7 +61,7 @@ A summary of important keybindings.
 | <kbd>control a</kbd> + <kbd>n</kbd> | Navigate to the next window  |
 | <kbd>control a</kbd> + <kbd>p</kbd> | Navigate to the previous window  |
 | <kbd>control a</kbd> + <kbd>number</kbd> | Navigate to the window corresponding to the number |
-| <kbd>control a</kbd> + <kbd>\\</kbd> | Create a new vertical pane |
+| <kbd>control a</kbd> + <kbd>v</kbd> | Create a new vertical pane |
 | <kbd>control a</kbd> + <kbd>_</kbd> | Create a new horizontal pane |
 | <kbd>control a</kbd> + <kbd>v</kbd> | Arrange panes vertically and evenly |
 | <kbd>control a</kbd> + <kbd>h</kbd> | Navgiate to the pane left of current pane |
@@ -79,8 +79,10 @@ A summary of important keybindings.
 | <kbd>space c</kbd> | Display git commit fuzzy finder |
 | <kbd>space q</kbd> | Display quickfix fuzzy finder |
 | <kbd>space r</kbd> | Display register fuzzy finder |
+| <kbd>alt t</kbd> | Send fuzzy finder results to quickfix |
 | <kbd>space e</kbd> | Toggle file tree |
 | <kbd>space j</kbd> | Format JSON object |
+| <kbd>space z</kbd> | Toggle zen mode |
 | <kbd>gd</kbd> | LSP go to definition |
 | <kbd>gD</kbd> | LSP go to declaration |
 | <kbd>gh</kbd> | LSP trigger hover |
@@ -89,4 +91,5 @@ A summary of important keybindings.
 | <kbd>gr</kbd> | LSP rename all references |
 | <kbd>[d</kbd> | LSP go to previous diagnostic |
 | <kbd>]d</kbd> | LSP go to next diagnostic |
+
 

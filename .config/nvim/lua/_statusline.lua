@@ -1,6 +1,6 @@
 vim.o.laststatus = 2
 
--- set highlights based on mode
+-- Set highlights based on mode
 function set_statusline_colors()
     vim.api.nvim_command('hi StatusLine guibg=none guifg=none')
     vim.api.nvim_command('hi StatusLineNC guibg=none guifg=none')
@@ -25,18 +25,18 @@ function set_statusline_colors()
     return ''
 end
 
--- get modified status
+-- Get modified status
 function modified()
     if vim.bo.modified then return ' ' else return '' end
 end
 
--- get file icon
+-- Get file icon
 function icon()
     local icon = require'nvim-web-devicons'.get_icon(vim.fn.expand("%:t"), vim.bo.filetype)
     if icon then return ' '..icon..' ' else return ' ' end
 end
 
--- get lsp diagnostics
+-- Get lsp diagnostics
 function diagnostics()
     local display = ' '
     if vim.lsp.diagnostic.get_count(0, 'Error') > 0 then display = display .. '  ' end
@@ -46,7 +46,7 @@ function diagnostics()
     return display
 end
 
--- construct statusline
+-- Construct statusline
 function statusline(status)
     local sl = {}
     if status == 'active' then

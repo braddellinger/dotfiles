@@ -1,9 +1,9 @@
--- these general settings must come first
+-- These general settings must come first
 require 'plugins'
 require '_keymaps'
 require '_settings'
 
--- functional settings
+-- Functional settings
 require '_treesitter'
 require '_scrollview'
 require '_statusline'
@@ -13,8 +13,10 @@ require '_telescope'
 require '_gitsigns'
 require '_startify'
 require '_tabline'
+require '_trouble'
 require '_lspkind'
 require '_compe'
 require '_saga'
 require '_tree'
+require '_zen'
 require '_lsp'

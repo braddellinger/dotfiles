@@ -1,19 +1,19 @@
--- colors
+-- Colors
 vim.cmd('colorscheme tokyonight')
-vim.g.tokyonight_style = 'storm'
+vim.g.tokyonight_style = 'storm' -- storm/night
 vim.o.termguicolors = true
 vim.o.background = 'dark'
 vim.o.syntax = 'on'
 
--- backup & swap
+-- Backup & swap
 vim.o.backupdir = os.getenv("HOME") .. '/.config/nvim/backup//'
 vim.o.directory = os.getenv("HOME") .. '/.config/nvim/swp//'
 
--- lines numbers
+-- Lines numbers
 vim.wo.relativenumber = true 
 vim.wo.number = true
 
--- other settings
+-- Other settings
 vim.o.clipboard = 'unnamedplus'
 vim.o.writebackup = false
 vim.wo.signcolumn = 'yes'
@@ -29,7 +29,7 @@ vim.o.wrap = false
 vim.o.fcs = 'eob: '
 vim.o.mouse = 'a'
 
--- indentation
+-- Indentation
 vim.bo.autoindent = true
 vim.o.autoindent = true
 vim.bo.expandtab = true
@@ -39,11 +39,11 @@ vim.o.shiftwidth = 4
 vim.bo.tabstop = 4
 vim.o.tabstop = 4
 
--- search
+-- Search
 vim.o.inccommand = 'nosplit'
 vim.o.ignorecase = true
 vim.o.incsearch = true
 vim.o.hlsearch = true
 
--- set cursor shape on leave
+-- Set cursor shape on leave
 vim.cmd('autocmd VimLeave * set guicursor=a:hor100')

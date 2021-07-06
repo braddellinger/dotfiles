@@ -19,6 +19,7 @@ POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 # POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX=''
 # POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='  '  # 勞
 
+
 # aliases
 ########################################
 alias dots='git --git-dir=$HOME/github/dotfiles --work-tree=$HOME'
@@ -34,10 +35,13 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias g='git'
 
+
 # exports
 ########################################
-export PATH=$HOME:$PATH
+export GOPATH=$HOME/go
+export PATH=$HOME:$GOPATH/bin:$PATH
 export EDITOR=nvim
+
 
 # start tmux automatically but only
 # if a graphical environment is running
@@ -47,12 +51,14 @@ if [[ $DISPLAY ]]; then
     [ -z $TMUX ] && tmux new-session -As 0
 fi
 
+
 # source
 ########################################
 source ~/.oh-my-zsh/oh-my-zsh.sh
 source ~/github/powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 
 # set cursor by referencing number (below).
 # necessary because neovim changes cursor

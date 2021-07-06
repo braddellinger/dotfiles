@@ -1,8 +1,8 @@
--- treesitter settings
-vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+-- Treesitter settings
 vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 
--- treesitter setup
+-- Treesitter setup
 require'nvim-treesitter.configs'.setup {
     ensure_installed = "maintained",
     highlight = { enable = true },
@@ -10,10 +10,10 @@ require'nvim-treesitter.configs'.setup {
     incremental_selection = {
         enable = true,
         keymaps = {
-            init_selection = "gnn",
-            node_incremental = "grn",
             scope_incremental = "grc",
-            node_decremental = "grm"
+            node_incremental = "grn",
+            node_decremental = "grm",
+            init_selection = "gnn"
         }
     }
 }
