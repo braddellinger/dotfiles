@@ -5,16 +5,15 @@
 </p>
 
 ## Details
-The core components which comprise the desktop environment.
+The core components which comprise my current desktop environment. This repository contains dotfiles for many other applications not listed here.
 
 * **OS:** [Arch](https://www.archlinux.org/)
-* **Window manager:** [i3](https://github.com/i3/i3)
-* **Compositor:** [picom](https://github.com/ibhagwan/picom)
-* **Bar:** [polybar](https://github.com/polybar/polybar)
-* **App launcher:** [rofi](https://github.com/davatorium/rofi)
-* **Terminal:** [kitty](https://github.com/kovidgoyal/kitty) with [Challenger Deep](https://challenger-deep-theme.github.io) colors
-* **Editor:** [neovim](https://github.com/neovim/neovim) with [Challenger Deep](https://challenger-deep-theme.github.io) colors & custom statusline
-* **Notifications:** [dunst](https://github.com/dunst-project/dunst)
+* **Window manager:** [Awesome](https://awesomewm.org/)
+* **Compositor:** [Picom](https://github.com/ibhagwan/picom)
+* **App launcher:** [Rofi](https://github.com/davatorium/rofi)
+* **Terminal:** [Kitty](https://github.com/kovidgoyal/kitty) with [Challenger Deep](https://challenger-deep-theme.github.io) colors
+* **Editor:** [Neovim](https://github.com/neovim/neovim) with [Challenger Deep](https://challenger-deep-theme.github.io) colors & custom statusline
+* **Notifications:** [Dunst](https://github.com/dunst-project/dunst)
 * **Wallpaper:** [Mountains](https://unsplash.com/photos/k6Z_CKxk1wQ)
 
 
@@ -32,64 +31,11 @@ The Makefile is theoretical and hasn't been tested yet, so use at your own risk.
     * **~/.config/polybar/modules/network.ini** - _interface_ - based on output of `iwctl device list`
 3. Restart to ensure all changes take effect.
 
+
 ## Keybindings
 A summary of important keybindings.
 
-### i3
-| Keybinding | Description |
-| ---------- | ----------- |
-| <kbd>super shift c</kbd> | Restart i3 |
-| <kbd>super shift e</kbd> | Exit i3 |
-| <kbd>super shift q</kbd> | Kill current window |
-| <kbd>super number</kbd> | Navigate to the numbered workspace |
-| <kbd>super shift number</kbd> | Move current window to the numbered workspace |
-| <kbd>super space</kbd> | Display app launcher |
-| <kbd>super shift space</kbd> | Display power menu |
-| <kbd>super enter</kbd> | Launch terminal |
-| <kbd>super r</kbd> + <kbd>arrow</kbd> | Resize floating window |
-| <kbd>super shift arrow</kbd> | Move floating window |
-| <kbd>super f</kbd> | Toggle full screen |
-| <kbd>super shift l</kbd> | Lock screen |
-| <kbd>super -</kbd> | Minimize window to scratchpad |
-| <kbd>super +</kbd> | Maximixe window from scratchpad |
-
-### tmux
-| Keybinding | Description |
-| ---------- | ----------- |
-| <kbd>control a</kbd> | The tmux prefix, which must be pressed & released to initiate a tmux command  |
-| <kbd>control a</kbd> + <kbd>c</kbd> | Create a new window  |
-| <kbd>control a</kbd> + <kbd>n</kbd> | Navigate to the next window  |
-| <kbd>control a</kbd> + <kbd>p</kbd> | Navigate to the previous window  |
-| <kbd>control a</kbd> + <kbd>number</kbd> | Navigate to the window corresponding to the number |
-| <kbd>control a</kbd> + <kbd>v</kbd> | Create a new vertical pane |
-| <kbd>control a</kbd> + <kbd>_</kbd> | Create a new horizontal pane |
-| <kbd>control a</kbd> + <kbd>v</kbd> | Arrange panes vertically and evenly |
-| <kbd>control a</kbd> + <kbd>h</kbd> | Navgiate to the pane left of current pane |
-| <kbd>control a</kbd> + <kbd>j</kbd> | Navgiate to the pane below current pane |
-| <kbd>control a</kbd> + <kbd>k</kbd> | Navgiate to the pane above current pane |
-| <kbd>control a</kbd> + <kbd>l</kbd> | Navgiate to the pane right of current pane |
-
-### neovim
-| Keybinding | Description |
-| ---------- | ----------- |
-| <kbd>space</kbd> | The Leader, used to initiate various actions |
-| <kbd>space f</kbd> | Display file fuzzy finder |
-| <kbd>space b</kbd> | Display buffer fuzzy finder |
-| <kbd>space g</kbd> | Display grep fuzzy finder |
-| <kbd>space c</kbd> | Display git commit fuzzy finder |
-| <kbd>space q</kbd> | Display quickfix fuzzy finder |
-| <kbd>space r</kbd> | Display register fuzzy finder |
-| <kbd>alt t</kbd> | Send fuzzy finder results to quickfix |
-| <kbd>space e</kbd> | Toggle file tree |
-| <kbd>space j</kbd> | Format JSON object |
-| <kbd>space z</kbd> | Toggle zen mode |
-| <kbd>gd</kbd> | LSP go to definition |
-| <kbd>gD</kbd> | LSP go to declaration |
-| <kbd>gh</kbd> | LSP trigger hover |
-| <kbd>gf</kbd> | LSP format buffer |
-| <kbd>gr</kbd> | LSP list references |
-| <kbd>gr</kbd> | LSP rename all references |
-| <kbd>[d</kbd> | LSP go to previous diagnostic |
-| <kbd>]d</kbd> | LSP go to next diagnostic |
-
-
+* [Awesome keybindings](.config/awesome/README.md)
+* [I3 Keybindings](.config/i3/README.md)
+* [Neovim Keybindings](.config/neovim/README.md)
+* [Tmux](TMUX_README.md)
