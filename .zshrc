@@ -1,4 +1,4 @@
-# powerlevel10k
+# Powerlevel10k
 ########################################
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(background_jobs virtualenv dir vcs)
@@ -20,10 +20,9 @@ POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 # POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='  '  # 勞
 
 
-# aliases
+# Aliases
 ########################################
 alias dots='git --git-dir=$HOME/github/dotfiles --work-tree=$HOME'
-alias nvimold='~/nvim.appimage -u ~/.config/nvim/init.vim'
 alias nvim='~/nvim.appimage -u ~/.config/nvim/init.lua'
 alias sandbox='source ~/sandbox/bin/activate'
 alias startgnome='startx ~/.xinitrc gnome'
@@ -36,14 +35,14 @@ alias cp='cp -i'
 alias g='git'
 
 
-# exports
+# Exports
 ########################################
 export GOPATH=$HOME/go
 export PATH=$HOME:$GOPATH/bin:$PATH
 export EDITOR=nvim
 
 
-# start tmux automatically but only
+# Start tmux automatically but only
 # if a graphical environment is running
 ########################################
 if [[ $DISPLAY ]]; then
@@ -52,7 +51,7 @@ if [[ $DISPLAY ]]; then
 fi
 
 
-# source
+# Source
 ########################################
 source ~/.oh-my-zsh/oh-my-zsh.sh
 source ~/github/powerlevel10k/powerlevel10k.zsh-theme
@@ -60,8 +59,8 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
-# set cursor by referencing number (below).
-# necessary because neovim changes cursor
+# Set cursor by referencing number (below).
+# Necessary because neovim changes cursor.
 # 0 - blinking block
 # 1 - blinking block
 # 2 - steady block

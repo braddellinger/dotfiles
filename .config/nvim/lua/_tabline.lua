@@ -37,13 +37,13 @@ function tabline()
 
         if t == vim.fn.tabpagenr() then
             table.insert(tl, '%#TabLineBackground#')
-            table.insert(tl, '%#TabLineForeground# '..bufname..' ')
-            table.insert(tl, '%#TabLineForeground#'..bufmodified)
+            table.insert(tl, '%#TabLineForeground# ' .. bufname .. ' ')
+            table.insert(tl, '%#TabLineForeground#' .. bufmodified)
             table.insert(tl, '%#TabLineBackground#')
         else
             table.insert(tl, '%#TabLineInactiveBackground#')
-            table.insert(tl, '%#TabLineInactiveForeground# '..bufname..' ')
-            table.insert(tl, '%#TabLineInactiveForeground#'..bufmodified)
+            table.insert(tl, '%#TabLineInactiveForeground# ' .. bufname .. ' ')
+            table.insert(tl, '%#TabLineInactiveForeground#' .. bufmodified)
             table.insert(tl, '%#TabLineInactiveBackground#')
         end
 
