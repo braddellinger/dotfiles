@@ -22,7 +22,7 @@ require('telescope').setup {
         -- layout_defaults = {},
         -- preview_cutoff = 120,
         -- results_width = 0.8,
-        shorten_path = true,
+        -- shorten_path = true,
         -- results_height = 1,
         use_less = true,
         winblend = 0,

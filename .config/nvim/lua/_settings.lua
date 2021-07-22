@@ -47,3 +47,4 @@ vim.o.hlsearch = true
 
 -- Set cursor shape on leave
 vim.cmd('autocmd VimLeave * set guicursor=a:hor100')
+

@@ -59,6 +59,8 @@ x11:
 	sudo cp ~/95-dpms.conf /etc/X11/xorg.conf.d/95-dpms.conf
 	[ -f "/etc/udev/rules.d/90-backlight.rules" ] && sudo mv /etc/udev/rules.d/90-backlight.rules /etc/udev/rules.d/90-backlight.rules_%Y-%m-%dT%H:%M:%S
 	sudo cp ~/90-backlight.rules /etc/udev/rules.d/90-backlight.rules
+	[ -f "/etc/X11/xorg.conf.d/00-keyboard.conf" ] && sudo mv /etc/X11/xorg.conf.d/00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf_%Y-%m-%dT%H:%M:%S
+	sudo cp ~/00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
 	sudo gpasswd -a $USER video
 	sudo gpasswd -a $USER input
 	reboot

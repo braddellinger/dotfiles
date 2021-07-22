@@ -9,14 +9,14 @@ function set_statusline_colors()
 
     local m = vim.fn.mode()
     if m == 'n' or m == 'c' then
-        vim.api.nvim_command('hi StatusLineBackground guibg=none guifg=#98C379')
-        vim.api.nvim_command('hi StatusLineForeground guibg=#98C379 guifg=black')
+        vim.api.nvim_command('hi StatusLineBackground guibg=none guifg=#62d196')
+        vim.api.nvim_command('hi StatusLineForeground guibg=#62d196 guifg=black')
     elseif m == 'v' or m == 'V' or m == '^V' then
-        vim.api.nvim_command('hi StatusLineBackground guibg=none guifg=#61AFEF')
-        vim.api.nvim_command('hi StatusLineForeground guibg=#61AFEF guifg=black')
+        vim.api.nvim_command('hi StatusLineBackground guibg=none guifg=#65b2ff')
+        vim.api.nvim_command('hi StatusLineForeground guibg=#65b2ff guifg=black')
     elseif m == 'i' then
-        vim.api.nvim_command('hi StatusLineBackground guibg=none guifg=#E06C75')
-        vim.api.nvim_command('hi StatusLineForeground guibg=#E06C75 guifg=black')
+        vim.api.nvim_command('hi StatusLineBackground guibg=none guifg=#ff8080')
+        vim.api.nvim_command('hi StatusLineForeground guibg=#ff8080 guifg=black')
     elseif m == 'R' or m == 'Rv' then
         vim.api.nvim_command('hi StatusLineBackground guibg=none guifg=#E5C07B')
         vim.api.nvim_command('hi StatusLineForeground guibg=#E5C07B guifg=black')
@@ -82,7 +82,51 @@ function statusline(status)
     vim.wo.statusline = table.concat(sl)
 end
 
--- update statusline
-statusline('active')
-vim.cmd('autocmd WinEnter,BufEnter * call v:lua.statusline("active")')
-vim.cmd('autocmd WinLeave,BufLeave * call v:lua.statusline("inactive")')
+-- Construct centered statusline
+function statusline_centered(status)
+    local sl = {}
+    if status == 'active' then
+        sl = {
+            '%=',
+            '%{v:lua.set_statusline_colors()}',
+            '%#StatusLine#  ',
+            '%#StatusLineBackground#',
+            '%#StatusLineForeground#',
+            '%{v:lua.icon()}',
+            '%#StatusLineForeground#%t ',
+            '%{v:lua.modified()}',
+            '%#StatusLineBackground#',
+            '%{v:lua.diagnostics()}',
+            '%='
+        }
+    else
+        sl = {
+            '%=',
+            '%#StatusLine#  ',
+            '%#StatusLineInactiveBackground#',
+            '%#StatusLineInactiveForeground#',
+            '%{v:lua.icon()}',
+            '%#StatusLineInactiveForeground#%t ',
+            '%{v:lua.modified()}',
+            '%#StatusLineInactiveBackground#',
+            '%{v:lua.diagnostics()}',
+            '%='
+        }
+    end
+
+    vim.wo.statusline = table.concat(sl)
+end
+
+
+-- Set and update statusline.
+-- Use statusline_centered to control which statusline is displayed.
+local statusline_type = 'centered'
+if statusline_type == 'centered' then
+    statusline_centered('active')
+    vim.cmd('autocmd WinEnter,BufEnter * call v:lua.statusline_centered("active")')
+    vim.cmd('autocmd WinLeave,BufLeave * call v:lua.statusline_centered("inactive")')
+else
+    statusline('active')
+    vim.cmd('autocmd WinEnter,BufEnter * call v:lua.statusline("active")')
+    vim.cmd('autocmd WinLeave,BufLeave * call v:lua.statusline("inactive")')
+end

@@ -9,28 +9,24 @@
 
 
 -- Run :PackerCompile whenever plugins.lua is updated
-vim.cmd('autocmd BufWritePost plugins.lua PackerCompile')
-
--- Required if packer is installed in `opt` pack
-vim.cmd('packadd packer.nvim')
+vim.cmd('autocmd BufWritePost plugins.lua source <afile> | PackerCompile')
 
 -- Use plugins
 return require('packer').startup(function()
 
     -- Functional
-    use { 'lukas-reineke/indent-blankline.nvim', branch = 'lua' }
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use { 'dstein64/nvim-scrollview', branch = 'main' }
-    use { 'wbthomason/packer.nvim', opt = true }
+    use { 'lukas-reineke/indent-blankline.nvim' }
     use { 'christoomey/vim-tmux-navigator' }
     use { 'nvim-telescope/telescope.nvim' }
     use { 'kyazdani42/nvim-web-devicons' }
     use { 'kyazdani42/nvim-tree.lua' }
     use { 'lewis6991/gitsigns.nvim' }
+    use { 'wbthomason/packer.nvim' }
     use { 'nvim-lua/plenary.nvim' }
     use { 'neovim/nvim-lspconfig' }
     use { 'onsails/lspkind-nvim' }
-    use { 'glepnir/lspsaga.nvim' }
     use { 'nvim-lua/popup.nvim' }
     use { 'b3nj5m1n/kommentary' }
     use { 'folke/zen-mode.nvim' }
@@ -41,9 +37,11 @@ return require('packer').startup(function()
 
     -- Colorschemes
     use { 'challenger-deep-theme/vim', as = 'challenger-deep' }
+    use { 'joshdick/onedark.vim', branch = 'main' }
     use { 'drewtempelmeyer/palenight.vim' }
     use { 'bluz71/vim-nightfly-guicolors' }
     use { 'eddyekofo94/gruvbox-flat.nvim' }
+    use { 'projekt0n/github-nvim-theme' }
     use { 'NLKNguyen/papercolor-theme' }
     use { 'gruvbox-community/gruvbox' }
     use { 'mhartington/oceanic-next' }
@@ -51,7 +49,6 @@ return require('packer').startup(function()
     use { 'tomasiser/vim-code-dark' }
     use { 'tiagovla/tokyodark.nvim' }
     use { 'folke/tokyonight.nvim' }
-    use { 'joshdick/onedark.vim' }
     use { 'sainnhe/forest-night' }
     use { 'ntk148v/vim-horizon' }
     use { 'ayu-theme/ayu-vim' }

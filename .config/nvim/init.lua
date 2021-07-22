@@ -1,4 +1,4 @@
--- These general settings must come first
+-- General settings must come first
 require 'plugins'
 require '_keymaps'
 require '_settings'
@@ -16,7 +16,6 @@ require '_tabline'
 require '_trouble'
 require '_lspkind'
 require '_compe'
-require '_saga'
 require '_tree'
 require '_zen'
 require '_lsp'

@@ -22,7 +22,7 @@ The Makefile is theoretical and hasn't been tested yet, so use at your own risk.
 
 1. Install everything at once with `make all` or individual components with `make <xxxxxx>`. Refer to [Makefile](Makefile) for options.
 2. Some settings are system specific and may require updating:
-    * **~/.Xresources`** - _dpi_ - display scaling
+    * **~/.Xresources** - _dpi_ - display scaling
     * **~/.config/i3/config** - _gaps_ - gaps size between tiled windows
     * **~/.config/i3/config** - _exec --no-startup-id feh_ - points to your wallpaper
     * **~/scripts/lock.sh** _i3lock_ - points to your lock screen wallpaper

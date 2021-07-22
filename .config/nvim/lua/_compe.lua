@@ -26,7 +26,16 @@ require('compe').setup {
     },
     documentation = {
         winhighlight = 'NormalFloat:CompeDocumentation,FloatBorder:LspSagaHoverBorder',
-        border = 'single'
+        border = {
+          { '🭽', 'FloatBorder' },
+          { '▔', 'FloatBorder' },
+          { '🭾', 'FloatBorder' },
+          { '▕', 'FloatBorder' },
+          { '🭿', 'FloatBorder' },
+          { '▁', 'FloatBorder' },
+          { '🭼', 'FloatBorder' },
+          { '▏', 'FloatBorder' }
+        }
     }
 }
 
