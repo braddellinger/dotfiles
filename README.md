@@ -1,7 +1,7 @@
 <p align="center" float="left" >
-    <img width="40%" src="./assets/neovim.png" />
-    <img width="40%" src="./assets/rofi_powermenu.png" />
-    <img width="40%" src="./assets/rofi_apps.png" />
+    <img width="40%" src="./assets/editor.png" />
+    <img width="40%" src="./assets/powermenu.png" />
+    <img width="40%" src="./assets/rofi.png" />
 </p>
 
 ## Details
@@ -14,7 +14,7 @@ The core components which comprise my current desktop environment. This reposito
 * **Terminal:** [Kitty](https://github.com/kovidgoyal/kitty) with [Challenger Deep](https://challenger-deep-theme.github.io) colors
 * **Editor:** [Neovim](https://github.com/neovim/neovim) with [Challenger Deep](https://challenger-deep-theme.github.io) colors & custom statusline
 * **Notifications:** [Dunst](https://github.com/dunst-project/dunst)
-* **Wallpaper:** [Mountains](https://unsplash.com/photos/k6Z_CKxk1wQ)
+* **Wallpaper:** [Lake](https://unsplash.com/photos/T_Qe4QlMIvQ)
 
 
 ## Installation
