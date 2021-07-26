@@ -12,7 +12,7 @@ The core components which comprise my current desktop environment. This reposito
 * **Compositor:** [Picom](https://github.com/ibhagwan/picom)
 * **App launcher:** [Rofi](https://github.com/davatorium/rofi)
 * **Terminal:** [Kitty](https://github.com/kovidgoyal/kitty) with [Challenger Deep](https://challenger-deep-theme.github.io) colors
-* **Editor:** [Neovim](https://github.com/neovim/neovim) with [Challenger Deep](https://challenger-deep-theme.github.io) colors & custom statusline
+* **Editor:** [Neovim](https://github.com/neovim/neovim) with [Tokyo Night](https://github.com/folke/tokyonight.nvim) colors & custom statusline
 * **Notifications:** [Dunst](https://github.com/dunst-project/dunst)
 * **Wallpaper:** [Lake](https://unsplash.com/photos/T_Qe4QlMIvQ)
 
