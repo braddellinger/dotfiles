@@ -1,21 +1,9 @@
--- General settings must come first
-require 'plugins'
-require '_keymaps'
-require '_settings'
+require('_settings')
+require('_keymaps')
+require('plugins')
 
--- Functional settings
-require '_treesitter'
-require '_scrollview'
-require '_statusline'
-require '_kommentary'
-require '_indentline'
-require '_telescope'
-require '_gitsigns'
-require '_startify'
-require '_tabline'
-require '_trouble'
-require '_lspkind'
-require '_compe'
-require '_tree'
-require '_zen'
-require '_lsp'
+-- Statusline & tabline
+local line = 'rounded'
+require('/statuslines/' .. line)
+require('/tablines/rounded')
+

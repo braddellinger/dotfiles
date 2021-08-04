@@ -13,7 +13,7 @@ vim.g.nvim_tree_bindings = {
     { key = 'd',           cb = tree_cb('remove') },
     { key = 'r',           cb = tree_cb('rename') },
     { key = 'x',           cb = tree_cb('cut') },
-    { key = 'c',           cb = tree_cb('copy') },
+    -- { key = 'c',           cb = tree_cb('copy') },
     { key = 'p',           cb = tree_cb('paste') },
     { key = 'q',           cb = tree_cb('close') },
     { key = '?',           cb = tree_cb('toggle_help') }

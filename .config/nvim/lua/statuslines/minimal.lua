@@ -33,7 +33,7 @@ end
 -- Get file icon
 function icon()
     local icon = require'nvim-web-devicons'.get_icon(vim.fn.expand("%:t"), vim.bo.filetype)
-    if icon then return ' '..icon..' ' else return ' ' end
+    if icon then return ' ' .. icon .. ' ' else return ' ' end
 end
 
 -- Get lsp diagnostics
@@ -44,42 +44,6 @@ function diagnostics()
     if vim.lsp.diagnostic.get_count(0, 'Information') > 0 then display = display .. '  ' end
     if vim.lsp.diagnostic.get_count(0, 'Hint') > 0 then display = display .. '  ' end
     return display
-end
-
--- Construct statusline
-function statusline(status)
-    local sl = {}
-    if status == 'active' then
-        sl = {
-            '%{v:lua.set_statusline_colors()}',
-            '%#StatusLine#  ',
-            '%#StatusLineBackground#',
-            '%#StatusLineForeground#',
-            '%{v:lua.icon()}',
-            '%#StatusLineForeground#%t ',
-            '%{v:lua.modified()}',
-            '%#StatusLineBackground#',
-            '%{v:lua.diagnostics()}',
-            '%=',
-            '%#StatusLineBackground#',
-            '%#StatusLineForeground# %l:%c ',
-            '%#StatusLineBackground#',
-            '%#StatusLine#  '
-        }
-    else
-        sl = {
-            '%#StatusLine#  ',
-            '%#StatusLineInactiveBackground#',
-            '%#StatusLineInactiveForeground#',
-            '%{v:lua.icon()}',
-            '%#StatusLineInactiveForeground#%t ',
-            '%{v:lua.modified()}',
-            '%#StatusLineInactiveBackground#',
-            '%{v:lua.diagnostics()}'
-        }
-    end
-
-    vim.wo.statusline = table.concat(sl)
 end
 
 -- Construct centered statusline
@@ -119,14 +83,6 @@ end
 
 
 -- Set and update statusline.
--- Use statusline_centered to control which statusline is displayed.
-local statusline_type = 'centered'
-if statusline_type == 'centered' then
-    statusline_centered('active')
-    vim.cmd('autocmd WinEnter,BufEnter * call v:lua.statusline_centered("active")')
-    vim.cmd('autocmd WinLeave,BufLeave * call v:lua.statusline_centered("inactive")')
-else
-    statusline('active')
-    vim.cmd('autocmd WinEnter,BufEnter * call v:lua.statusline("active")')
-    vim.cmd('autocmd WinLeave,BufLeave * call v:lua.statusline("inactive")')
-end
+statusline_centered('active')
+vim.cmd('autocmd WinEnter,BufEnter * call v:lua.statusline_centered("active")')
+vim.cmd('autocmd WinLeave,BufLeave * call v:lua.statusline_centered("inactive")')

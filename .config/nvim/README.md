@@ -2,9 +2,7 @@
 
 
 ## Statusline & Tabline settings
-Toggle between traditional and centered lines.
-    * **./lua/_statusline.lua** - Set `statusline_type` to one of ['centered', 'left']
-    * **./lua/_tabline.lua** - Set `tabline_type` to one of ['centered', 'left']
+To change line styles, update the `line` variable in init.lua
 
 
 ## Keybindings

@@ -9,7 +9,7 @@ require('zen-mode').setup {
         height = 1,
         options = {
             relativenumber = false,
-            signcolumn = "no",
+            signcolumn = 'no',
             number = false
         }
     },
@@ -24,7 +24,7 @@ require('zen-mode').setup {
         tmux = { enabled = false },
         kitty = {
             enabled = false,
-            font = "+4",
+            font = '+4',
         }
     },
     on_open = function(win) vim.cmd('ScrollViewDisable') end,

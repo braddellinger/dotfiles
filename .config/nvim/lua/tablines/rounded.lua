@@ -22,7 +22,6 @@ function set_tabline_colors()
 end
 
 -- Construct tabline
-local tabline_type = 'centered'
 function tabline()
     local tl = { '%{v:lua.set_tabline_colors()}', '%#StatusLineNC#  ' } 
     local tabcount = vim.fn.tabpagenr('$')
@@ -37,19 +36,15 @@ function tabline()
         if bufname == '' then bufname = '[No Name]' end
 
         if t == vim.fn.tabpagenr() then
-            if tabline_type == 'centered' then table.insert(tl, '%=') end
             table.insert(tl, '%#TabLineBackground#')
             table.insert(tl, '%#TabLineForeground# ' .. bufname .. ' ')
             table.insert(tl, '%#TabLineForeground#' .. bufmodified)
             table.insert(tl, '%#TabLineBackground#')
-            if tabline_type == 'centered' then table.insert(tl, '%=') end
         else
-            if tabline_type == 'centered' then table.insert(tl, '%=') end
             table.insert(tl, '%#TabLineInactiveBackground#')
             table.insert(tl, '%#TabLineInactiveForeground# ' .. bufname .. ' ')
             table.insert(tl, '%#TabLineInactiveForeground#' .. bufmodified)
             table.insert(tl, '%#TabLineInactiveBackground#')
-            if tabline_type == 'centered' then table.insert(tl, '%=') end
         end
 
         if t ~= tabcount then table.insert(tl, '  ') end

@@ -12,3 +12,7 @@ vim.g.indent_blankline_show_current_context = true
 vim.g.indent_blankline_use_treesitter = true
 vim.g.indent_blankline_enabled = false
 vim.g.indent_blankline_char = '│'
+
+-- vim.api.nvim_command('hi IndentBlanklineChar guifg=none gui=nocombine')
+-- vim.api.nvim_command('hi IndentBlanklineSpaceChar guifg=none gui=nocombine')
+-- vim.api.nvim_command('hi IndentBlanklineSpaceCharBlankline guifg=none gui=nocombine')

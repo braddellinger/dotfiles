@@ -26,16 +26,7 @@ require('compe').setup {
     },
     documentation = {
         winhighlight = 'NormalFloat:CompeDocumentation,FloatBorder:LspSagaHoverBorder',
-        border = {
-          { '🭽', 'FloatBorder' },
-          { '▔', 'FloatBorder' },
-          { '🭾', 'FloatBorder' },
-          { '▕', 'FloatBorder' },
-          { '🭿', 'FloatBorder' },
-          { '▁', 'FloatBorder' },
-          { '🭼', 'FloatBorder' },
-          { '▏', 'FloatBorder' }
-        }
+        border = vim.g.border
     }
 }
 

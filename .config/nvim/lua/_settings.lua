@@ -1,6 +1,4 @@
 -- Colors
-vim.cmd('colorscheme tokyonight')
-vim.g.tokyonight_style = 'storm' -- storm/night
 vim.o.termguicolors = true
 vim.o.background = 'dark'
 vim.o.syntax = 'on'
@@ -23,6 +21,7 @@ vim.o.showmode = true
 vim.o.wildmenu = true
 vim.o.showcmd = true
 vim.o.foldlevel = 99
+vim.g.mapleader = ' '
 vim.o.laststatus = 2
 vim.o.scrolloff = 3
 vim.o.wrap = false
@@ -44,6 +43,20 @@ vim.o.inccommand = 'nosplit'
 vim.o.ignorecase = true
 vim.o.incsearch = true
 vim.o.hlsearch = true
+
+-- Reusable border object
+vim.cmd('autocmd ColorScheme * highlight NormalFloat guibg=#172028')
+vim.cmd('autocmd ColorScheme * highlight FloatBorder guifg=#95ffa4 guibg=#172028')
+vim.g.border = {
+    { '🭽', 'FloatBorder' },
+    { '▔', 'FloatBorder' },
+    { '🭾', 'FloatBorder' },
+    { '▕', 'FloatBorder' },
+    { '🭿', 'FloatBorder' },
+    { '▁', 'FloatBorder' },
+    { '🭼', 'FloatBorder' },
+    { '▏', 'FloatBorder' }
+}
 
 -- Set cursor shape on leave
 vim.cmd('autocmd VimLeave * set guicursor=a:hor100')

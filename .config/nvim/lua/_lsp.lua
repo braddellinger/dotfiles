@@ -4,19 +4,15 @@ vim.fn.sign_define('LspDiagnosticsSignWarning', { text = '', texthl = 'LspDia
 vim.fn.sign_define('LspDiagnosticsSignInformation', { text = '', texthl = 'LspDiagnosticsSignInformation', linehl = '', numhl = '' })
 vim.fn.sign_define('LspDiagnosticsSignHint', { text = '', texthl = 'LspDiagnosticsSignHint', linehl = '', numhl = '' })
 
--- Floating window border colors
-vim.cmd('autocmd ColorScheme * highlight NormalFloat guibg=#172028')
-vim.cmd('autocmd ColorScheme * highlight FloatBorder guifg=#95ffa4 guibg=#172028')
-
 -- Lsp setup
-require'lspconfig'.tsserver.setup{ }
-require'lspconfig'.pyright.setup{ }
-require'lspconfig'.jsonls.setup{ }
-require'lspconfig'.yamlls.setup{ }
-require'lspconfig'.vimls.setup{ }
-require'lspconfig'.cssls.setup{ }
-require'lspconfig'.html.setup{ }
-require'lspconfig'.gopls.setup{
+require('lspconfig').tsserver.setup { }
+require('lspconfig').pyright.setup { }
+require('lspconfig').jsonls.setup { }
+require('lspconfig').yamlls.setup { }
+require('lspconfig').vimls.setup { }
+require('lspconfig').cssls.setup { }
+require('lspconfig').html.setup { }
+require('lspconfig').gopls.setup {
     cmd = { 'gopls', 'serve' },
     settings = {
         gopls = {
@@ -29,22 +25,10 @@ require'lspconfig'.gopls.setup{
 -- Custom on_attach function
 local on_attach = function(client, bufnr)
 
-    -- Border styles
-    local border = {
-          { '🭽', 'FloatBorder' },
-          { '▔', 'FloatBorder' },
-          { '🭾', 'FloatBorder' },
-          { '▕', 'FloatBorder' },
-          { '🭿', 'FloatBorder' },
-          { '▁', 'FloatBorder' },
-          { '🭼', 'FloatBorder' },
-          { '▏', 'FloatBorder' }
-    }
-
     -- Apply borders to hover and signature
-    vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
-    vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
-    vim.lsp.handlers['textDocument/completion'] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
+    vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = vim.g.border, focusable = false })
+    vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.hover, { border = vim.g.border, focusable = false })
+    vim.lsp.handlers['textDocument/completion'] = vim.lsp.with(vim.lsp.handlers.hover, { border = vim.g.border })
 
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -135,7 +119,5 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 )
 
 -- Display line diagnostics on cursor hold
-vim.o.updatetime = 250
-vim.cmd('autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()')
 vim.cmd('autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()')
-
+vim.cmd('autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({ border = ' .. vim.inspect(vim.g.border) .. ', focusable = false })')

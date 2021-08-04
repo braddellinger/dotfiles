@@ -2,7 +2,6 @@
 vim.api.nvim_set_keymap('n', '<Esc>', ':noh<CR>', { noremap = true, silent = true }) -- unhighlight search results
 vim.api.nvim_set_keymap('n', '<leader>j', ':%!python -m json.tool<CR>', { noremap = true }) -- format json
 vim.api.nvim_set_keymap('i', 'jj', '<Esc>', { noremap = true }) -- exit insert mode
-vim.g.mapleader = ' ' -- leader
 
 -- Move line down
 vim.api.nvim_set_keymap('i', '<A-j>', '<Esc>:m .+1<CR>==gi', { noremap = true, silent = true })

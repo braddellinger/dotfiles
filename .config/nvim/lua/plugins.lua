@@ -12,45 +12,114 @@
 vim.cmd('autocmd BufWritePost plugins.lua source <afile> | PackerCompile')
 
 -- Use plugins
-return require('packer').startup(function()
+return require('packer').startup({function()
 
-    -- Functional
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-    use { 'dstein64/nvim-scrollview', branch = 'main' }
-    use { 'lukas-reineke/indent-blankline.nvim' }
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        config = function() require('_treesitter') end,
+        event = 'BufRead',
+        run = ':TSUpdate',
+        opt = true
+    }
+    use {
+        'dstein64/nvim-scrollview',
+        config = function() require('_scrollview') end,
+    }
+    use {
+        'nvim-telescope/telescope.nvim',
+        requires = { 'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim', 'trouble.nvim' },
+        wants = { 'plenary.nvim', 'popup.nvim' },
+        config = function() require('_telescope') end
+    }
+    use {
+        'kyazdani42/nvim-tree.lua',
+        config = function() require('_tree') end
+    }
+    use {
+        'lewis6991/gitsigns.nvim',
+        config = function() require('_gitsigns') end,
+        requires = { 'nvim-lua/plenary.nvim' },
+        wants = 'plenary.nvim',
+        event = 'BufReadPre',
+    }
+    use {
+        'neovim/nvim-lspconfig',
+        config = function() require('_lsp') end,
+        event = 'BufReadPre',
+        opt = true
+    }
+    use {
+        'b3nj5m1n/kommentary',
+        config = function() require('_kommentary') end,
+        keys = { 'gc' },
+        opt = true
+    }
+    use {
+        'folke/zen-mode.nvim',
+        config = function() require('_zen') end,
+    }
+    use {
+        'folke/trouble.nvim',
+        config = function() require('_trouble') end,
+        wants = 'nvim-web-devicons',
+    }
+    use {
+        'onsails/lspkind-nvim',
+        config = function() require('_lspkind') end,
+        event = 'BufRead'
+    }
+    use {
+        'hrsh7th/nvim-compe',
+        config = function() require('_compe') end,
+        event = 'InsertEnter'
+    }
     use { 'christoomey/vim-tmux-navigator' }
-    use { 'nvim-telescope/telescope.nvim' }
     use { 'kyazdani42/nvim-web-devicons' }
-    use { 'kyazdani42/nvim-tree.lua' }
-    use { 'lewis6991/gitsigns.nvim' }
     use { 'wbthomason/packer.nvim' }
     use { 'nvim-lua/plenary.nvim' }
-    use { 'neovim/nvim-lspconfig' }
-    use { 'onsails/lspkind-nvim' }
     use { 'nvim-lua/popup.nvim' }
-    use { 'b3nj5m1n/kommentary' }
-    use { 'folke/zen-mode.nvim' }
-    use { 'hrsh7th/nvim-compe' }
-    use { 'tpope/vim-fugitive' }
-    use { 'mhinz/vim-startify' }
-    use { 'folke/trouble.nvim' }
 
     -- Colorschemes
-    use { 'challenger-deep-theme/vim', as = 'challenger-deep' }
-    use { 'joshdick/onedark.vim', branch = 'main' }
-    use { 'drewtempelmeyer/palenight.vim' }
-    use { 'bluz71/vim-nightfly-guicolors' }
-    use { 'eddyekofo94/gruvbox-flat.nvim' }
-    use { 'projekt0n/github-nvim-theme' }
-    use { 'NLKNguyen/papercolor-theme' }
-    use { 'gruvbox-community/gruvbox' }
-    use { 'mhartington/oceanic-next' }
-    use { 'arcticicestudio/nord-vim' }
-    use { 'tomasiser/vim-code-dark' }
-    use { 'tiagovla/tokyodark.nvim' }
-    use { 'folke/tokyonight.nvim' }
-    use { 'sainnhe/forest-night' }
-    use { 'ntk148v/vim-horizon' }
-    use { 'ayu-theme/ayu-vim' }
+    --------------------------------
+    -- use { 'eddyekofo94/gruvbox-flat.nvim', config = function() vim.cmd('colorscheme gruvbox-flat') end }
+    -- use { 'bluz71/vim-nightfly-guicolors', config = function() vim.cmd('colorscheme nightfly') end }
+    -- use { 'projekt0n/github-nvim-theme', config = function() require('github-theme').setup() end }
+    -- use { 'tiagovla/tokyodark.nvim', config = function() vim.cmd('colorscheme tokyodark') end }
+    -- use { 'bluz71/vim-moonfly-colors', config = function() vim.cmd('colorscheme moonfly') end }
+    -- use { 'tomasiser/vim-code-dark', config = function() vim.cmd('colorscheme code-dark') end }
+    -- use { 'folke/tokyonight.nvim', config = function() vim.cmd('colorscheme tokyonight') end }
+    -- use { 'arcticicestudio/nord-vim', config = function() vim.cmd('colorscheme nord') end }
+    -- use { 'sainnhe/everforest', config = function() vim.cmd('colorscheme everforest') end }
+    -- use { 'ntk148v/vim-horizon', config = function() vim.cmd('colorscheme horizon') end }
+    -- use { 'navarasu/onedark.nvim', config = function() require('onedark').setup() end }
+    -- use { 'ayu-theme/ayu-vim', config = function() vim.cmd('colorscheme ayu') end }
+    use {
+        'marko-cerovac/material.nvim',
+        config = function()
+            require('material').set()
+            vim.g.material_style = 'deep ocean' -- darker, lighter, oceanic, palenight, deep ocean
+            vim.g.material_italic_comments = true
+            vim.g.material_borders = true
+        end
+    }
+    -- use {
+    --     'shaunsingh/moonlight.nvim',
+    --     config = function()
+    --         require('moonlight').set()
+    --         vim.g.moonlight_italic_comments = true
+    --         vim.g.moonlight_borders = true
+    --     end
+    -- }
+    -- use {
+    --     'challenger-deep-theme/vim',
+    --     config = function() vim.cmd('colorscheme challenger-deep') end,
+    --     as = 'challenger-deep'
+    -- }
 
-end)
+end,
+config = {
+    display = {
+        open_fn = function() return require('packer.util').float({ border = vim.g.border }) end
+    }
+}})
+

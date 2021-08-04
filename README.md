@@ -44,3 +44,4 @@ A summary of important keybindings.
     | ---------- | ----------- |
     | <kbd>capslock</kbd> | Remapped to <kbd>control</kbd> |
     | <kbd>left-shift right-shift</kbd> | Both shift keys at the same time enable capslock. One shift key disables capslock. |
+
