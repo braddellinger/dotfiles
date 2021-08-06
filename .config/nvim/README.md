@@ -1,10 +1,6 @@
 # Neovim
 
 
-## Statusline & Tabline settings
-To change line styles, update the `line` variable in init.lua
-
-
 ## Keybindings
 | Keybinding | Description |
 | ---------- | ----------- |

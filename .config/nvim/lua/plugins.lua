@@ -73,8 +73,11 @@ return require('packer').startup({function()
         config = function() require('_compe') end,
         event = 'InsertEnter'
     }
+    use {
+        'kyazdani42/nvim-web-devicons',
+        config = function() require('nvim-web-devicons').setup{ default = true } end
+    }
     use { 'christoomey/vim-tmux-navigator' }
-    use { 'kyazdani42/nvim-web-devicons' }
     use { 'wbthomason/packer.nvim' }
     use { 'nvim-lua/plenary.nvim' }
     use { 'nvim-lua/popup.nvim' }
