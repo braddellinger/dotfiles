@@ -70,16 +70,19 @@ end
 -- Construct active statusline
 local function active()
     local lsp_diagnostics = colors.background .. lsp_diagnostics()
+    local starting_separator = colors.background .. ' '
+    local ending_separator = colors.background .. ' '
     local right_separator = colors.background .. ''
     local left_separator = colors.background .. ' '
     local modified = colors.foreground .. modified()
-    local position = colors.foreground .. ' %c:%c '
+    local position = colors.foreground .. ' %l:%c '
     local filename = colors.foreground .. '%t '
     local icon = colors.foreground .. icon()
     local no_content = colors.no_content
     local spacer = '%='
 
     return table.concat({
+        starting_separator,
         icon,
         filename,
         right_separator,
@@ -89,18 +92,21 @@ local function active()
         lsp_diagnostics,
         left_separator,
         position,
-        no_content
+        no_content,
+        ending_separator
     })
 end
 
 -- Construct inactive statusline
 local function inactive()
+    local starting_separator = colors.inactive_background .. ' '
     local right_separator = colors.inactive_background .. ' '
     local left_separator = colors.inactive_background .. ' '
     local filename = colors.inactive_foreground .. '%t '
     local icon = colors.inactive_foreground .. icon()
 
     return table.concat({
+        starting_separator,
         icon,
         filename,
         right_separator

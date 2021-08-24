@@ -45,8 +45,6 @@ vim.o.incsearch = true
 vim.o.hlsearch = true
 
 -- Reusable border object
-vim.cmd('autocmd ColorScheme * highlight NormalFloat guibg=#172028')
-vim.cmd('autocmd ColorScheme * highlight FloatBorder guifg=#95ffa4 guibg=#172028')
 vim.g.border = {
     { '🭽', 'FloatBorder' },
     { '▔', 'FloatBorder' },

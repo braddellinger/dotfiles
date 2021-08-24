@@ -39,7 +39,6 @@ return require('packer').startup({function()
         'lewis6991/gitsigns.nvim',
         config = function() require('_gitsigns') end,
         requires = { 'nvim-lua/plenary.nvim' },
-        wants = 'plenary.nvim',
         event = 'BufReadPre',
     }
     use {
@@ -75,7 +74,7 @@ return require('packer').startup({function()
     }
     use {
         'kyazdani42/nvim-web-devicons',
-        config = function() require('nvim-web-devicons').setup{ default = true } end
+        config = function() require('nvim-web-devicons').setup { default = true } end
     }
     use { 'christoomey/vim-tmux-navigator' }
     use { 'wbthomason/packer.nvim' }
@@ -91,26 +90,34 @@ return require('packer').startup({function()
     -- use { 'bluz71/vim-moonfly-colors', config = function() vim.cmd('colorscheme moonfly') end }
     -- use { 'tomasiser/vim-code-dark', config = function() vim.cmd('colorscheme code-dark') end }
     -- use { 'folke/tokyonight.nvim', config = function() vim.cmd('colorscheme tokyonight') end }
-    -- use { 'arcticicestudio/nord-vim', config = function() vim.cmd('colorscheme nord') end }
     -- use { 'sainnhe/everforest', config = function() vim.cmd('colorscheme everforest') end }
     -- use { 'ntk148v/vim-horizon', config = function() vim.cmd('colorscheme horizon') end }
     -- use { 'navarasu/onedark.nvim', config = function() require('onedark').setup() end }
-    -- use { 'ayu-theme/ayu-vim', config = function() vim.cmd('colorscheme ayu') end }
     use {
-        'marko-cerovac/material.nvim',
+        'EdenEast/nightfox.nvim',
         config = function()
-            require('material').set()
-            vim.g.material_style = 'deep ocean' -- darker, lighter, oceanic, palenight, deep ocean
-            vim.g.material_italic_comments = true
-            vim.g.material_borders = true
+            require('nightfox').setup {
+              fox = 'nordfox', -- nightfox, nordfox, palefox
+              styles = { comments = 'italic' },
+            }
+            require('nightfox').load()
         end
     }
     -- use {
+    --     'marko-cerovac/material.nvim',
+    --     config = function()
+    --         vim.g.material_style = 'deep ocean' -- darker, lighter, oceanic, palenight, deep ocean
+    --         vim.g.material_italic_comments = true
+    --         vim.g.material_borders = true
+    --         require('material').set()
+    --     end
+    -- }
+    -- use {
     --     'shaunsingh/moonlight.nvim',
     --     config = function()
-    --         require('moonlight').set()
     --         vim.g.moonlight_italic_comments = true
     --         vim.g.moonlight_borders = true
+    --         require('moonlight').set()
     --     end
     -- }
     -- use {
