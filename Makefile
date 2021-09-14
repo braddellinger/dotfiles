@@ -13,7 +13,7 @@ pacman:
 	sudo pacman -S i3-gaps feh redshift rofi dunst flameshot papirus-icon-theme light --needed # i3
 	sudo pacman -S light rofi --needed # awesome
 	sudo pacman -S nodejs npm python --needed # dev
-	sudo pacman -S brave code --needed # apps
+	sudo pacman -S brave code ranger --needed # apps
 
 yay:
 	git clone https://aur.archlinux.org/yay.git ~/github/yay

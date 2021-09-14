@@ -24,8 +24,3 @@
 | <kbd>[d</kbd> | LSP go to previous diagnostic |
 | <kbd>]d</kbd> | LSP go to next diagnostic |
 | <kbd>gc</kbd> | Toggle code comment |
-
-
-## TODO
-- theming
-- lazy load plugins

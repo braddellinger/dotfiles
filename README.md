@@ -40,8 +40,9 @@ A summary of important keybindings.
 * [Neovim](.config/nvim/README.md)
 * [Tmux](TMUX_README.md)
 * Other
+
     | Keybinding | Description |
     | ---------- | ----------- |
     | <kbd>capslock</kbd> | Remapped to <kbd>control</kbd> |
-    | <kbd>left-shift right-shift</kbd> | Both shift keys at the same time enable capslock. One shift key disables capslock. |
+    | <kbd>left-shift right-shift</kbd> | Both <kbd>shift</kbd> at the same time enables capslock. One <kbd>shift</kbd> disables capslock. |
 

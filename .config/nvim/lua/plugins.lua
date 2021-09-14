@@ -11,7 +11,6 @@
 -- Run :PackerCompile whenever plugins.lua is updated
 vim.cmd('autocmd BufWritePost plugins.lua source <afile> | PackerCompile')
 
--- Use plugins
 return require('packer').startup({function()
 
     use {
@@ -63,18 +62,22 @@ return require('packer').startup({function()
         wants = 'nvim-web-devicons',
     }
     use {
-        'onsails/lspkind-nvim',
-        config = function() require('_lspkind') end,
-        event = 'BufRead'
-    }
-    use {
-        'hrsh7th/nvim-compe',
-        config = function() require('_compe') end,
-        event = 'InsertEnter'
-    }
-    use {
         'kyazdani42/nvim-web-devicons',
         config = function() require('nvim-web-devicons').setup { default = true } end
+    }
+    use {
+        'hrsh7th/nvim-cmp',
+        config = function() require('_cmp') end,
+        requires = {
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-calc',
+            {
+                'onsails/lspkind-nvim',
+                config = function() require('nvim-web-devicons').setup { default = true } end,
+                event = 'BufRead'
+            }
+        }
     }
     use { 'christoomey/vim-tmux-navigator' }
     use { 'wbthomason/packer.nvim' }
@@ -95,7 +98,7 @@ return require('packer').startup({function()
     -- use { 'navarasu/onedark.nvim', config = function() require('onedark').setup() end }
     use {
         'EdenEast/nightfox.nvim',
-        config = function()
+        config = function()
             require('nightfox').setup {
               fox = 'nordfox', -- nightfox, nordfox, palefox
               styles = { comments = 'italic' },

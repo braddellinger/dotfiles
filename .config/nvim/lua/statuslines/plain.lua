@@ -51,19 +51,7 @@ end
 
 -- Return modified symbol if file has unsaved changes
 local function modified()
-    local right_separator = highlights.secondary_background .. ' '
-    local left_separator = highlights.secondary_background .. ''
-    local modified = highlights.secondary_foreground .. '  ' 
-
-    if vim.bo.modified then
-        return table.concat({
-            left_separator,
-            modified,
-            right_separator
-        })
-    else
-        return ''
-    end
+    if vim.bo.modified then return '  ' else return '' end
 end
 
 -- Return lsp diagnostics
@@ -78,47 +66,31 @@ end
 
 -- Construct active statusline
 local function active()
-    local lsp_diagnostics = highlights.secondary_background .. lsp_diagnostics()
-    local starting_separator = highlights.primary_background .. ' '
-    local ending_separator = highlights.primary_background .. ' '
-    local right_separator = highlights.primary_background .. ''
-    local left_separator = highlights.primary_background .. ' '
-    local modified = highlights.primary_foreground .. modified()
-    local position = highlights.primary_foreground .. ' %l:%c '
-    local filename = highlights.primary_foreground .. '%t '
-    local icon = highlights.primary_foreground .. icon()
-    local no_content = highlights.no_content
+    local lsp_diagnostics = highlights.primary_background .. lsp_diagnostics()
+    local modified = highlights.primary_background .. modified()
+    local position = highlights.primary_background .. ' %l:%c '
+    local filename = highlights.primary_background .. '%t '
+    local icon = highlights.primary_background .. icon()
     local spacer = '%='
 
     return table.concat({
-        starting_separator,
         icon,
         filename,
-        right_separator,
         modified,
-        lsp_diagnostics,
-        no_content,
         spacer,
-        left_separator,
-        position,
-        no_content,
-        ending_separator
+        lsp_diagnostics,
+        position
     })
 end
 
 -- Construct inactive statusline
 local function inactive()
-    local starting_separator = highlights.inactive_background .. ' '
-    local right_separator = highlights.inactive_background .. ' '
-    local left_separator = highlights.inactive_background .. ' '
-    local filename = highlights.inactive_foreground .. '%t '
-    local icon = highlights.inactive_foreground .. icon()
+    local filename = highlights.inactive_background .. '%t '
+    local icon = highlights.inactive_background .. icon()
 
     return table.concat({
-        starting_separator,
         icon,
-        filename,
-        right_separator
+        filename
     })
 end
 

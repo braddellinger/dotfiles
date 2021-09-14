@@ -1,6 +1,6 @@
 local statusline_style = 'plain'
 local tabline_style = 'plain'
-local theme = 'neon'
+local theme = 'nord'
 
 require('_options')
 require('_keymaps')
