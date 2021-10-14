@@ -1,4 +1,3 @@
--- Trouble settings
 -- For telescope integration, reference _telescope.lua
 require('trouble').setup {
     position = 'right', -- position of the list can be: bottom, top, left, right
@@ -40,7 +39,6 @@ require('trouble').setup {
     use_lsp_diagnostic_signs = true -- enabling this will use the signs defined in your lsp client
 }
 
--- Keymaps
 vim.api.nvim_set_keymap('n', '<leader>xx', ':Trouble<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>xw', ':Trouble lsp_workspace_diagnostics<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>xd', ':Trouble lsp_document_diagnostics<CR>', { noremap = true, silent = true })

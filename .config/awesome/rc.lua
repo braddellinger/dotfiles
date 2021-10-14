@@ -1,5 +1,5 @@
 local beautiful = require('beautiful')
-local naughty = require('naughty')
+-- local naughty = require('naughty')
 local gears = require('gears')
 local wibox = require('wibox')
 local awful = require('awful')
@@ -11,29 +11,29 @@ require('awful.autofocus')
 -- Error handling
 ----------------------------------------
 
-if awesome.startup_errors then
-    naughty.notify({
-        preset = naughty.config.presets.critical,
-        title = 'Oops, there were errors during startup!',
-        text = awesome.startup_errors,
-    })
-end
+-- if awesome.startup_errors then
+--     naughty.notify({
+--         preset = naughty.config.presets.critical,
+--         title = 'Oops, there were errors during startup!',
+--         text = awesome.startup_errors,
+--     })
+-- end
 
-do
-    local in_error = false
-    awesome.connect_signal('debug::error', function(err)
-        if in_error then return end
-        in_error = true
+-- do
+--     local in_error = false
+--     awesome.connect_signal('debug::error', function(err)
+--         if in_error then return end
+--         in_error = true
 
-        naughty.notify({
-            preset = naughty.config.presets.critical,
-            title = 'Oops, an error happened!',
-            text = tostring(err)
-        })
+--         naughty.notify({
+--             preset = naughty.config.presets.critical,
+--             title = 'Oops, an error happened!',
+--             text = tostring(err)
+--         })
 
-        in_error = false
-    end)
-end
+--         in_error = false
+--     end)
+-- end
 
 
 ----------------------------------------
@@ -163,3 +163,13 @@ end)
 client.connect_signal('manage', function(c) c.shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, 10) end end)
 client.connect_signal('unfocus', function(c) c.border_color = beautiful.border_normal end)
 client.connect_signal('focus', function(c) c.border_color = beautiful.border_focus end)
+
+
+----------------------------------------
+-- Daemons
+----------------------------------------
+
+awful.spawn.with_shell('~/github/eww/target/release/eww open-many apps tray date')
+awful.spawn.with_shell('xss-lock ~/scripts/lock.sh &')
+awful.spawn.with_shell('dunst &')
+awful.spawn.with_shell('~/scripts/greeting.sh')

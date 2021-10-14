@@ -1,7 +1,5 @@
--- Keymaps
 vim.api.nvim_set_keymap('n', '<leader>z', ':ZenMode<CR>', { noremap = true, silent = true })
 
--- Settings
 require('zen-mode').setup {
     window = {
         backdrop = 0.95,

@@ -1,3 +1,5 @@
+-- colors sourced from https://github.com/EdenEast/nightfox.nvim
+
 vim.g.line_colors = {
     inactive_tab_background = '#232831',
     active_tab_background = '#2e3440',

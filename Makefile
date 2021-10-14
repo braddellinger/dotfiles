@@ -1,8 +1,8 @@
-all: dirs pacman yay fonts shell dotfiles scripts neovim x11
+all: dirs pacman yay fonts shell dotfiles scripts neovim x11 eww cron
 
 dirs:
-	mkdir ~/Documents
-	mkdir ~/Downloads
+	mkdir ~/documents
+	mkdir ~/downloads
 	mkdir ~/screenshots
 	mkdir ~/wallpapers
 	mkdir ~/github
@@ -10,15 +10,15 @@ dirs:
 pacman:
 	sudo pacman -S git kitty tmux zsh zsh-syntax-highlighting ripgrep exa htop --needed # terminal
 	sudo pacman -S xorg-server xorg-xinit xorg-xbacklight xorg-xrandr xbindkeys xclip --needed # x11
-	sudo pacman -S i3-gaps feh redshift rofi dunst flameshot papirus-icon-theme light --needed # i3
-	sudo pacman -S light rofi --needed # awesome
+	sudo pacman -S i3-gaps i3lock xss-lock feh redshift rofi dunst flameshot papirus-icon-theme light --needed # i3
+	sudo pacman -S light rofi dunst flameshot xss-lock --needed # awesome
 	sudo pacman -S nodejs npm python --needed # dev
-	sudo pacman -S brave code ranger --needed # apps
+	sudo pacman -S brave code ranger neofetch --needed # apps
 
 yay:
 	git clone https://aur.archlinux.org/yay.git ~/github/yay
 	cd ~/github/yay && makepkg -si && cd ~
-	yay -S picom-ibhagwan-git polybar git-delta awesome-git libinput-gestures
+	yay -S picom-ibhagwan-git polybar git-delta awesome-git libinput-gestures i3lock-color
 
 fonts:
 	git clone https://github.com/ryanoasis/nerd-fonts.git ~/github/nerd-fonts
@@ -43,9 +43,7 @@ shell:
 	chsh -s /bin/zsh
 
 scripts:
-	chmod +x ~/scripts/lock.sh
-	chmod +x ~/scripts/powermenu.sh
-	chmod +x ~/scripts/polybar.sh
+	chmod +x ~/scripts/*.sh
 
 neovim:
 	git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
@@ -64,3 +62,14 @@ x11:
 	sudo gpasswd -a $USER video
 	sudo gpasswd -a $USER input
 	reboot
+
+eww:
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+	git clone https://github.com/elkowar/eww ~/github/eww
+	cd ~/github/eww
+	cargo build --release
+	cd ~/github/eww/target/release
+	chmod +x ./eww
+
+cron:
+	echo "Set up cron jobs by entering 'crontab -e' and populating the file with '# 0 * * * * /home/{user}/scripts/health.sh'"

@@ -1,70 +1,66 @@
 configuration {
-    modi:                   "drun,window,combi";
-    combi-modi:             "window,drun";
-    sidebar-mode:           true;
-    width:                  30;
-    lines:                  10;
-    columns:                1;
-    font:                   "FiraMono Nerd Font 24";
-    drun-display-format:    "{icon} {name}";
-    bw:                     0;
-    location:               0;
-    padding:                0;
-    fixed-num-lines:        true;
-    show-icons:             true;
-    icon-theme:             "Papirus";
-    case-sensitive:         false;
-    show-match:             false;
-    matching:               "normal";
-    separator-style:        "none";
-    hide-scrollbar:         true;
-    click-to-exit:          true; 
-    display-window:         "";
-    display-drun:           "";
-    display-combi:          "";
+    modi: "drun,window,combi";
+    font: "Nunito 28";
+    drun-display-format: "{icon} {name}";
+    show-icons: true;
+    icon-theme: "Papirus";
+    case-sensitive: false;
+    show-match: false;
+    matching: "normal";
+    hide-scrollbar: true;
+    click-to-exit: true; 
+    display-drun: "";
     combi-hide-mode-prefix: true;
-    fullscreen:             false;
-}
-
-element-icon {
-    size: 2ch;
+    fullscreen: false;
 }
 
 * {
-    background-color: #172028;
-    text-color: #EFEFEF;
+    background-color: #232a30;
+    text-color: #efefef;
 }
 
 window {
-    border:        5px;
     border-radius: 10px;
-    border-color: #61AFEF;
+    loccation: center;
+    width: 1250px;
+    height: 800px;
+}
+
+inputbar {
+    children: [prompt, entry];
+    padding: 0px 20px 20px 0px;
 }
 
 prompt {
-    enabled: false;
+    font: "FiraMono Nerd Font Mono 50";
+    padding: 0px 20px 20px 40px;
+    text-color: #98c0e0;
 }
 
 entry {
-    margin:       0px 0px 40px 0px;
-    padding:      0px 0px 10px 40px;
-    border:       0px 0px 3px 0px;
-    border-color: #EFEFEF;
-    text-color:   #EFEFEF;
+    padding: 20px;
 }
 
 mainbox {
-    background-color: #172028;
-    padding: 40px 40px 40px 40px;
+    background-color: #232a30;
+    padding: 40px 40px 0px 40px;
 }
 
 element {
-    margin:  0px 40px 0px 40px;
-    padding: 10px 20px 10px 20px;
+    padding: 20px 20px 20px 20px;
     border-radius: 10px;
+    margin: 0px 20px 0px 20px;
 }
 
 element selected {
-    background-color: #61AFEF;
-    text-color:       #EFEFEF;
+    background-color: #98c0e0;
+    text-color: #efefef;
+}
+
+element-icon {
+    size: 50px;
+}
+
+listview {
+    columns: 2;
 }

@@ -43,6 +43,7 @@ keys.globalkeys = gears.table.join(
 
     -- Awesome
     awful.key({ superkey }, 'Escape', function() show_exit_screen() end, { description = 'show exit screen', group = 'awesome' }),
+    awful.key({ superkey }, 'l', function() awful.spawn.with_shell('~/scripts/lock.sh') end, { description = 'lock screen', group = 'awesome' }),
     awful.key({ superkey, shiftkey }, 'r', awesome.restart, { description = 'reload awesome', group = 'awesome' }),
     awful.key({ superkey, shiftkey }, 'q', awesome.quit, { description = 'quit awesome', group = 'awesome' }),
 

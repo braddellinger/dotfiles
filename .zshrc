@@ -25,6 +25,7 @@ POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 alias dots='git --git-dir=$HOME/github/dotfiles --work-tree=$HOME'
 alias nvim='~/nvim.appimage -u ~/.config/nvim/init.lua'
 alias sandbox='source ~/sandbox/bin/activate'
+alias eww='~/github/eww/target/release/eww'
 alias startgnome='startx ~/.xinitrc gnome'
 alias starti3='startx ~/.xinitrc i3'
 alias e='exa -las modified --icons'
@@ -38,7 +39,7 @@ alias g='git'
 # Exports
 ########################################
 export GOPATH=$HOME/go
-export PATH=$HOME:$GOPATH/bin:$PATH
+export PATH=$HOME:$GOPATH/bin:$HOME/.cargo/bin:$PATH
 export EDITOR=nvim
 
 

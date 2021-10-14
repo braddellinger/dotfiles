@@ -41,7 +41,8 @@ awful.screen.connect_for_each_screen(function(s)
     s.taglist_bar = awful.wibar({
         bg = '#00000000',
         position = 'top',
-        height = dpi(20),
+        height = dpi(1),
+        width = '89%',
         visible = true,
         ontop = false,
         type = 'dock',

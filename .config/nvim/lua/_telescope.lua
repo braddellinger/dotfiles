@@ -1,4 +1,3 @@
--- Telescope setup
 local trouble = require('trouble.providers.telescope')
 local actions = require('telescope.actions')
 require('telescope').setup {

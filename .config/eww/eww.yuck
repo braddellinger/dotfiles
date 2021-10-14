@@ -1,0 +1,149 @@
+; windows
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defwindow apps
+    :monitor 0
+    :geometry (geometry :x '20px'
+                        :y '20px'
+                        :width '200px'
+                        :height '50px'
+                        :anchor 'top left')
+    :stacking 'fg'
+    :reserve (struts :distance '40px' :side 'top')
+    :windowtype 'dock'
+    :wm-ignore false
+    (apps))
+
+(defwindow tray
+    :monitor 0
+    :geometry (geometry :x '-340px'
+                        :y '20px'
+                        :width '175px'
+                        :height '50px'
+                        :anchor 'top right')
+    :stacking 'fg'
+    :reserve (struts :distance '70px' :side 'top')
+    :windowtype 'dock'
+    :wm-ignore false
+    (tray))
+
+(defwindow date
+    :monitor 0
+    :geometry (geometry :x '-20px'
+                        :y '20px'
+                        :width '300px'
+                        :height '50px'
+                        :anchor 'top right')
+    :stacking 'fg'
+    :reserve (struts :distance '40px' :side 'top')
+    :windowtype 'dock'
+    :wm-ignore false
+    (date))
+
+
+; widgets
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defwidget apps []
+    (box
+        :orientation 'horizontal'
+        :space-evenly true
+        :halign 'center'
+        :spacing 30
+        (eventbox
+            :cursor 'pointer'
+            (button
+                :onclick 'brave'
+                :onrightclick 'brave --incognito'
+                ''))
+        (eventbox
+            :cursor 'pointer'
+            (button
+                :onclick 'kitty'
+                ''))
+        (eventbox
+            :cursor 'pointer'
+            (button
+                :onclick 'flameshot gui'
+                ''))))
+
+(defwidget tray []
+    (box
+        :orientation 'horizontal'
+        :space-evenly true
+        :spacing 50
+        :halign 'center'
+        (box
+            :class 'volume'
+            ;(eventbox
+            ;    :onhoverlost '~/github/eww/target/release/eww update volume-visible=false'
+            ;    :onhover 'sleep 5 && ~/github/eww/target/release/eww update volume-visible=true'
+            ;    :visible volume-visible
+            ;    :cursor 'pointer'
+            ;    (scale
+            ;        :onchange 'notify-send hi'
+            ;        :visible volume-visible
+            ;        :width 200
+            ;        :flipped true
+            ;        :active true
+            ;        :value 50
+            ;        :max 100
+            ;        :min 0))
+            (eventbox
+                :onhoverlost '~/github/eww/target/release/eww update volume-visible=false'
+                :onhover '~/github/eww/target/release/eww update volume-visible=true'
+                :cursor 'pointer'
+                ''))
+        (box
+            :class 'wifi'
+            {wifi == 'Not connected.' ? '睊' : '直'})
+        (box
+            :class 'battery'
+            {EWW_BATTERY.BAT0.status == 'Charging'
+                ? ''
+                : EWW_BATTERY.BAT0.capacity == 100
+                ? ''
+                : EWW_BATTERY.BAT0.capacity > 89
+                ? ''
+                : EWW_BATTERY.BAT0.capacity > 79
+                ? ''
+                : EWW_BATTERY.BAT0.capacity > 69
+                ? ''
+                : EWW_BATTERY.BAT0.capacity > 59
+                ? ''
+                : EWW_BATTERY.BAT0.capacity > 49
+                ? ''
+                : EWW_BATTERY.BAT0.capacity > 39
+                ? ''
+                : EWW_BATTERY.BAT0.capacity > 29
+                ? ''
+                : EWW_BATTERY.BAT0.capacity > 19
+                ? ''
+                : EWW_BATTERY.BAT0.capacity > 9
+                ? ''
+                : ''})))
+
+(defwidget date []
+    (box
+        :orientation 'horizontal'
+        time))
+
+
+; variables
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defvar volume-visible false)
+
+(defpoll time
+    :interval '1s'
+    :initial 'initial-value'
+    :run-while true
+    `date +'%B %e, %l:%M'`
+)
+
+(defpoll wifi
+    :interval '5s'
+    :initial 'initial-value'
+    :run-while true
+    `iw dev wlp1s0 link`
+)

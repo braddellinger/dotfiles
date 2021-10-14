@@ -85,7 +85,7 @@ return require('packer').startup({function()
     use { 'nvim-lua/popup.nvim' }
 
     -- Colorschemes
-    --------------------------------
+    ----------------------------------------
     -- use { 'eddyekofo94/gruvbox-flat.nvim', config = function() vim.cmd('colorscheme gruvbox-flat') end }
     -- use { 'bluz71/vim-nightfly-guicolors', config = function() vim.cmd('colorscheme nightfly') end }
     -- use { 'projekt0n/github-nvim-theme', config = function() require('github-theme').setup() end }

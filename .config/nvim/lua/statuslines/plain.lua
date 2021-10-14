@@ -57,10 +57,10 @@ end
 -- Return lsp diagnostics
 local function lsp_diagnostics()
     local display = ''
-    if vim.lsp.diagnostic.get_count(0, 'Error') > 0 then display = display .. '%#LspDiagnosticsSignError#  ' end
-    if vim.lsp.diagnostic.get_count(0, 'Warning') > 0 then display = display .. '%#LspDiagnosticsSignWarning#  ' end
-    if vim.lsp.diagnostic.get_count(0, 'Information') > 0 then display = display .. '%#LspDiagnosticsSignInformation#  ' end
-    if vim.lsp.diagnostic.get_count(0, 'Hint') > 0 then display = display .. '%#LspDiagnosticsSignHint#  ' end
+    if vim.lsp.diagnostic.get_count(0, 'Error') > 0 then display = display .. '%#LspDiagnosticsDefaultError#  ' end
+    if vim.lsp.diagnostic.get_count(0, 'Warning') > 0 then display = display .. '%#LspDiagnosticsDefaultWarning#  ' end
+    if vim.lsp.diagnostic.get_count(0, 'Information') > 0 then display = display .. '%#LspDiagnosticsDefaultInformation#  ' end
+    if vim.lsp.diagnostic.get_count(0, 'Hint') > 0 then display = display .. '%#LspDiagnosticsDefaultHint#  ' end
     return display
 end
 

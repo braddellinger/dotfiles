@@ -1,4 +1,3 @@
--- Lspkind symbols
 require('lspkind').init({
     with_text = false,
     symbol_map = {

@@ -1,8 +1,6 @@
--- Treesitter settings
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 
--- Treesitter setup
 require'nvim-treesitter.configs'.setup {
     ensure_installed = 'maintained',
     highlight = { enable = true },

@@ -30,7 +30,7 @@ theme.border_color_normal = colors.background
 theme.border_color_marked = colors.background
 theme.border_color_active = colors.color5
 theme.border_width        = dpi(0)
-theme.useless_gap         = dpi(20)
+theme.useless_gap         = dpi(30)
 
 
 return theme

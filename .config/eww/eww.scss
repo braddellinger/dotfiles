@@ -1,0 +1,39 @@
+window {
+    all: unset;
+    background-color: #232a30;
+    color: #98c0e0;
+    font-family: Nunito;
+    font-size: 28;
+    font-weight: bold
+}
+
+button {
+    all: unset;
+    font-family: Iosevka Nerd Font;
+    background-color: #172028;
+    padding: 0px 5px 0px 5px;
+}
+
+button:hover {
+    all: unset;
+    font-family: Iosevka Nerd Font;
+    background-color: #172028;
+    padding: 0px 5px 0px 5px;
+    color: #98c0e0;
+}
+
+.volume {
+    font-family: Iosevka Nerd Font;
+    color: #98c0e0;
+}
+
+.wifi {
+    font-family: Iosevka Nerd Font;
+    color: #98c0e0;
+}
+
+.battery {
+    font-family: Iosevka Nerd Font;
+    color: #98c0e0;
+}
+

@@ -1,4 +1,3 @@
--- Gitsigns setup
 -- Thick sign:┃
 -- Thin sign: │
 require('gitsigns').setup {

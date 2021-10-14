@@ -58,12 +58,12 @@ function tabline()
         end
 
         if t == vim.fn.tabpagenr() then
-            table.insert(tl, '%#TabLineBackground# ' .. bufs .. '  ')
+            table.insert(tl, ' %#TabLineBackground# ' .. bufs .. '  ')
             table.insert(tl, '%#TabLine# ')
 
         else
-            table.insert(tl, '%#TabLine# '  .. bufs .. '  ')
-            table.insert(tl, '%#TabLine# ')
+            table.insert(tl, '%#TabLine#  ' .. bufs .. '   ')
+            table.insert(tl, '%#TabLine#')
         end
     end
 
