@@ -4,6 +4,7 @@
     <img width="40%" src="./assets/rofi.png" />
 </p>
 
+
 ## Details
 The core components which comprise my current desktop environment. This repository contains dotfiles for many other applications not listed here.
 
@@ -11,24 +12,19 @@ The core components which comprise my current desktop environment. This reposito
 * **Window manager:** [Awesome](https://awesomewm.org/)
 * **Compositor:** [Picom](https://github.com/ibhagwan/picom)
 * **App launcher:** [Rofi](https://github.com/davatorium/rofi)
-* **Terminal:** [Kitty](https://github.com/kovidgoyal/kitty) with [Challenger Deep](https://challenger-deep-theme.github.io) colors
-* **Editor:** [Neovim](https://github.com/neovim/neovim) with [Tokyo Night](https://github.com/folke/tokyonight.nvim) colors & custom statusline
+* **Terminal:** [Kitty](https://github.com/kovidgoyal/kitty)
+* **Editor:** [Neovim](https://github.com/neovim/neovim)
 * **Notifications:** [Dunst](https://github.com/dunst-project/dunst)
 * **Wallpaper:** [Lake](https://unsplash.com/photos/T_Qe4QlMIvQ)
+* **Night mode:** [Redshift](https://github.com/jonls/redshift)
+* **Widgets:** [Eww](https://github.com/elkowar/eww)
 
 
 ## Installation
-The Makefile is theoretical and hasn't been tested yet, so use at your own risk.
+The Makefile is theoretical and hasn't been tested yet. It also assumes your $HOME directory is empty and may perform destructive actions. **Use at your own risk**
 
-1. Install everything at once with `make all` or individual components with `make <xxxxxx>`. Refer to [Makefile](Makefile) for options.
-2. Some settings are system specific and may require updating:
-    * **~/.Xresources** - _dpi_ - display scaling
-    * **~/.config/i3/config** - _gaps_ - gaps size between tiled windows
-    * **~/.config/i3/config** - _exec --no-startup-id feh_ - points to your wallpaper
-    * **~/scripts/lock.sh** _i3lock_ - points to your lock screen wallpaper
-    * **~/.config/polybar/modules/backlight.ini** - _card_ - based on output of `ls -1 /sys/class/backlight/`
-    * **~/.config/polybar/modules/battery.ini** - _battery_ & _adapter_ - based on output of `ls -1 /sys/class/power_supply/`
-    * **~/.config/polybar/modules/network.ini** - _interface_ - based on output of `iwctl device list`
+1. Install everything at once with `make all` or individual components with `make {xxxx}`. Refer to [Makefile](Makefile) for options.
+2. Some configurations may require manual updates. Refer the *manual* section in [Makefile](Makefile) for dehttps://github.com/elkowar/ewwtails.
 3. Restart to ensure all changes take effect.
 
 

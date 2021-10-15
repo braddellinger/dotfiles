@@ -1,4 +1,4 @@
-all: dirs pacman yay fonts shell dotfiles scripts neovim x11 eww cron
+all: dirs pacman yay fonts shell dotfiles scripts neovim x11 eww manual
 
 dirs:
 	mkdir ~/documents
@@ -11,7 +11,7 @@ pacman:
 	sudo pacman -S git kitty tmux zsh zsh-syntax-highlighting ripgrep exa htop --needed # terminal
 	sudo pacman -S xorg-server xorg-xinit xorg-xbacklight xorg-xrandr xbindkeys xclip --needed # x11
 	sudo pacman -S i3-gaps i3lock xss-lock feh redshift rofi dunst flameshot papirus-icon-theme light --needed # i3
-	sudo pacman -S light rofi dunst flameshot xss-lock --needed # awesome
+	sudo pacman -S light rofi dunst redshift feh flameshot xss-lock papirus-icon-theme --needed # awesome
 	sudo pacman -S nodejs npm python --needed # dev
 	sudo pacman -S brave code ranger neofetch --needed # apps
 
@@ -71,5 +71,11 @@ eww:
 	cd ~/github/eww/target/release
 	chmod +x ./eww
 
-cron:
-	echo "Set up cron jobs by entering 'crontab -e' and populating the file with '# 0 * * * * /home/{user}/scripts/health.sh'"
+manual:
+	@echo ""
+	@echo "Perform the following manual tasks as necessary:"
+	@echo ""
+	@echo "* Display scaling - Update 'dpi' in ~/.Xresources"
+	@echo "* Cron jobs - Run 'crontab -e' & populate with '# 0 * * * * /home/{user}/scripts/health.sh', updating {user}"
+	@echo "* Redshift location - Update the longitude and latitude in ~/.config/redhisft/redshift.conf"
+
