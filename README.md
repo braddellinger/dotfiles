@@ -21,10 +21,10 @@ The core components which comprise my current desktop environment. This reposito
 
 
 ## Installation
-The Makefile is theoretical and hasn't been tested yet. It also assumes your $HOME directory is empty and may perform destructive actions. **Use at your own risk**
+The Makefile is theoretical and hasn't been tested yet. It also assumes your $HOME directory is empty and may perform destructive actions. **Use the Makefile at your own risk!**
 
 1. Install everything at once with `make all` or individual components with `make {xxxx}`. Refer to [Makefile](Makefile) for options.
-2. Some configurations may require manual updates. Refer the *manual* section in [Makefile](Makefile) for dehttps://github.com/elkowar/ewwtails.
+2. Some configurations may require manual updates. Refer the *manual* section in [Makefile](Makefile) for details.
 3. Restart to ensure all changes take effect.
 
 
