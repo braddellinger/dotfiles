@@ -1,8 +1,6 @@
-<p align="center" float="left" >
-    <img width="40%" src="./assets/editor.png" />
-    <img width="40%" src="./assets/powermenu.png" />
-    <img width="40%" src="./assets/rofi.png" />
-</p>
+<div align="center">
+    <img width="90%" src="screenshot.png" />
+</div>
 
 
 ## Components
@@ -40,6 +38,7 @@ A summary of important keybindings.
     | ---------- | ----------- |
     | <kbd>capslock</kbd> | Remapped to <kbd>control</kbd> |
     | <kbd>left-shift right-shift</kbd> | Both <kbd>shift</kbd> at the same time enables capslock. One <kbd>shift</kbd> disables capslock. |
+    | <kbd>swipe left/right</kbd> | Change virtual desktop |
 
 
 ## Credits
