@@ -1,7 +1,7 @@
 window {
     all: unset;
     background-color: #232a30;
-    color: #98c0e0;
+    color: #d4eafc;
     font-family: Nunito;
     font-size: 28;
     font-weight: bold
@@ -9,31 +9,59 @@ window {
 
 button {
     all: unset;
-    font-family: Iosevka Nerd Font;
-    background-color: #172028;
+    font-family: FiraMono Nerd Font Mono;
+    font-size: 38;
+    background-color: #232a30;
     padding: 0px 5px 0px 5px;
 }
 
 button:hover {
-    all: unset;
-    font-family: Iosevka Nerd Font;
-    background-color: #172028;
     padding: 0px 5px 0px 5px;
-    color: #98c0e0;
+    color: #aee098;
 }
 
-.volume {
-    font-family: Iosevka Nerd Font;
-    color: #98c0e0;
+.volume-on {
+    font-family: FiraMono Nerd Font Mono;
+    font-size: 38;
 }
 
-.wifi {
-    font-family: Iosevka Nerd Font;
-    color: #98c0e0;
+.volume-off {
+    font-family: FiraMono Nerd Font Mono;
+    font-size: 38;
+    color: #e0989a;
 }
 
-.battery {
-    font-family: Iosevka Nerd Font;
-    color: #98c0e0;
+.wifi-connected {
+    font-family: FiraMono Nerd Font Mono;
+    font-size: 38;
 }
 
+.wifi-disconnected {
+    font-family: FiraMono Nerd Font Mono;
+    font-size: 38;
+    color: #e0989a;
+}
+
+.battery-healthy {
+    font-family: FiraMono Nerd Font Mono;
+    font-size: 26;
+}
+
+.battery-critical {
+    font-family: FiraMono Nerd Font Mono;
+    font-size: 26;
+    color: #e0989a;
+}
+
+.night-on {
+    font-family: FiraMono Nerd Font Mono;
+    font-size: 38;
+}
+
+.night-off {
+    font-family: FiraMono Nerd Font Mono;
+    font-size: 38;
+}
+
+.taglist {
+}

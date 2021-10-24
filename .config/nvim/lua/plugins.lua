@@ -75,7 +75,7 @@ return require('packer').startup({function()
             {
                 'onsails/lspkind-nvim',
                 config = function() require('nvim-web-devicons').setup { default = true } end,
-                event = 'BufRead'
+                -- event = 'BufRead'
             }
         }
     }
@@ -98,10 +98,10 @@ return require('packer').startup({function()
     -- use { 'navarasu/onedark.nvim', config = function() require('onedark').setup() end }
     use {
         'EdenEast/nightfox.nvim',
-        config = function()
+        config = function()
             require('nightfox').setup {
-              fox = 'nordfox', -- nightfox, nordfox, palefox
-              styles = { comments = 'italic' },
+                fox = 'nordfox', -- nightfox, nordfox, palefox
+                styles = { comments = 'italic' },
             }
             require('nightfox').load()
         end

@@ -1,13 +1,13 @@
 # Mute volumes
-"pactl set-sink-mute @DEFAULT_SINK@ toggle"
+"amixer -q sset Master toggle"
    XF86AudioMute
 
 # Increase volume
-"pactl set-sink-volume @DEFAULT_SINK@ +1000"
+"amixer -q sset Master 10%+"
    XF86AudioRaiseVolume
 
 # Decrease volume
-"pactl set-sink-volume @DEFAULT_SINK@ -1000"
+"amixer -q sset Master 10%-"
    XF86AudioLowerVolume
 
 # Increase backlight

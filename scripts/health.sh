@@ -1,3 +1,3 @@
 #!/bin/bash 
 
-notify-send -i ~/icons/heart.svg 'Health' "Take a break "${USER^}""
+notify-send -i ~/glyphs/heart.svg 'Health' "Take a break "${USER^}""

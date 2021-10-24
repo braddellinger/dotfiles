@@ -11,10 +11,12 @@
     separator_height = 2
     padding = 20
     horizontal_padding = 40
-    frame_width = 0
+    # frame_width = 0
     separator_color = frame
     sort = yes
     idle_threshold = 120
+    frame_width = 1
+    frame_color = "#98c0e0;"
 
     # text
     font = Nunito 12
@@ -71,20 +73,19 @@
 
 [urgency_low]
     background = "#232a30"
-    foreground = "#efefef"
+    foreground = "#d4eafc"
     timeout = 10
-    icon = ~/icons/info.svg
+    icon = ~/glyphs/info.svg
 
 [urgency_normal]
     background = "#232a30"
-    foreground = "#efefef"
+    foreground = "#d4eafc"
     timeout = 10
-    icon = ~/icons/info.svg
+    icon = ~/glyphs/info.svg
 
 [urgency_critical]
     background = "#232a30"
-    foreground = "#efefef"
-    frame_color = "#ff0000"
+    foreground = "#d4eafc"
     timeout = 0
-    icon = ~/icons/info.svg
+    icon = ~/glyphs/info.svg
 

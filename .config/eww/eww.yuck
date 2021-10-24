@@ -5,20 +5,33 @@
     :monitor 0
     :geometry (geometry :x '20px'
                         :y '20px'
-                        :width '200px'
+                        :width '260px'
                         :height '50px'
                         :anchor 'top left')
     :stacking 'fg'
-    :reserve (struts :distance '40px' :side 'top')
+    :reserve (struts :distance '70px' :side 'top')
     :windowtype 'dock'
     :wm-ignore false
     (apps))
+
+(defwindow taglist
+    :monitor 0
+    :geometry (geometry :x '0px'
+                        :y '20px'
+                        :width '180px'
+                        :height '50px'
+                        :anchor 'top center')
+    :stacking 'fg'
+    :reserve (struts :distance '70px' :side 'top')
+    :windowtype 'dock'
+    :wm-ignore false
+    (taglist))
 
 (defwindow tray
     :monitor 0
     :geometry (geometry :x '-340px'
                         :y '20px'
-                        :width '175px'
+                        :width '200px'
                         :height '50px'
                         :anchor 'top right')
     :stacking 'fg'
@@ -53,52 +66,54 @@
         (eventbox
             :cursor 'pointer'
             (button
-                :onclick 'brave'
-                :onrightclick 'brave --incognito'
+                :onclick 'rofi -show drun &'
+                ''))
+        (eventbox
+            :cursor 'pointer'
+            (button
+                :onclick 'brave &'
+                :onrightclick 'brave --incognito &'
                 ''))
         (eventbox
             :cursor 'pointer'
             (button
-                :onclick 'kitty'
+                :onclick 'kitty &'
                 ''))
         (eventbox
             :cursor 'pointer'
             (button
-                :onclick 'flameshot gui'
+                :onclick 'flameshot gui &'
                 ''))))
+
+(defwidget taglist []
+    (box
+        :orientation 'horizontal'
+        :space-evenly true
+        :spacing 10
+        :class 'taglist'
+        {tag == '1' ? 'ﱣ' : 'ﱤ'}
+        {tag == '2' ? 'ﱣ' : 'ﱤ'}
+        {tag == '3' ? 'ﱣ' : 'ﱤ'}
+        {tag == '4' ? 'ﱣ' : 'ﱤ'}
+        {tag == '5' ? 'ﱣ' : 'ﱤ'}))
 
 (defwidget tray []
     (box
         :orientation 'horizontal'
         :space-evenly true
-        :spacing 50
+        :spacing 30
         :halign 'center'
+        (eventbox
+            :cursor 'pointer'
+            (button
+                :class {volume == 'on' ? 'volume-on' : 'volume-off'}
+                :onclick 'amixer -q sset Master toggle'
+                {volume == 'on' ? '' : ''}))
         (box
-            :class 'volume'
-            ;(eventbox
-            ;    :onhoverlost '~/github/eww/target/release/eww update volume-visible=false'
-            ;    :onhover 'sleep 5 && ~/github/eww/target/release/eww update volume-visible=true'
-            ;    :visible volume-visible
-            ;    :cursor 'pointer'
-            ;    (scale
-            ;        :onchange 'notify-send hi'
-            ;        :visible volume-visible
-            ;        :width 200
-            ;        :flipped true
-            ;        :active true
-            ;        :value 50
-            ;        :max 100
-            ;        :min 0))
-            (eventbox
-                :onhoverlost '~/github/eww/target/release/eww update volume-visible=false'
-                :onhover '~/github/eww/target/release/eww update volume-visible=true'
-                :cursor 'pointer'
-                ''))
-        (box
-            :class 'wifi'
+            :class {wifi == 'Not connected.' ? 'wifi-disconnected' : 'wifi-connected'}
             {wifi == 'Not connected.' ? '睊' : '直'})
         (box
-            :class 'battery'
+            :class {EWW_BATTERY.BAT0.capacity > 15 ? 'battery-healthy' : 'battery-critical'}
             {EWW_BATTERY.BAT0.status == 'Charging'
                 ? ''
                 : EWW_BATTERY.BAT0.capacity == 100
@@ -132,18 +147,17 @@
 ; variables
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defvar volume-visible false)
-
 (defpoll time
     :interval '1s'
-    :initial 'initial-value'
-    :run-while true
-    `date +'%B %e, %l:%M'`
-)
+    `date +'%B %e, %l:%M'`)
 
 (defpoll wifi
     :interval '5s'
-    :initial 'initial-value'
-    :run-while true
-    `iw dev wlp1s0 link`
-)
+    `iw dev wlp1s0 link`)
+
+(defpoll volume
+    :interval '5s'
+    `awk -F"[][]" '/Left:/ { print $4 }' <(amixer sget Master)`)
+
+(deflisten tag
+    `tail -F /tmp/currenttag`)

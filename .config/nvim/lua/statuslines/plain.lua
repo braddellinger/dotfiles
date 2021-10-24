@@ -13,7 +13,7 @@ local highlights = {
 
 -- Set highlights based on mode
 local function set_highlights()
-    vim.api.nvim_command('hi StatusLine guibg=' .. colors.none .. ' guifg=' .. colors.none)
+    -- vim.api.nvim_command('hi StatusLine guibg=' .. colors.none .. ' guifg=' .. colors.none)
     vim.api.nvim_command('hi StatusLineNC guibg=' .. colors.none .. ' guifg=' .. colors.none)
     vim.api.nvim_command('hi StatusLineInactiveBackground guibg=' .. colors.none .. ' guifg=' .. colors.inactive.primary)
     vim.api.nvim_command('hi StatusLineInactiveForeground guibg=' .. colors.inactive.primary .. ' guifg=' .. colors.text)

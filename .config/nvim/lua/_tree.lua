@@ -17,7 +17,6 @@ local keybindings = {
 }
 
 require('nvim-tree').setup {
-    lsp_diagnostics    = false,
     disable_netrw      = true,
     open_on_setup      = false,
     hijack_cursor      = false,

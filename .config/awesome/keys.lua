@@ -98,20 +98,17 @@ for i = 1, 5 do
             function()
                 local screen = awful.screen.focused()
                 local tag = screen.tags[i]
-                if tag then
-                    tag:view_only()
-                end
+                if tag then tag:view_only() end
+                -- awful.spawn.with_shell('echo "' .. i .. '" > /tmp/currenttag && ~/github/eww/target/release/eww open taglist')
             end,
-            { description = 'view tag #'..i, group = 'tag' }),
+            { description = 'view tag #' .. i, group = 'tag' }),
 
         -- Toggle tag display
         awful.key({ superkey, controlkey }, '#' .. i + 9,
             function()
                 local screen = awful.screen.focused()
                 local tag = screen.tags[i]
-                    if tag then
-                        awful.tag.viewtoggle(tag)
-                    end
+                if tag then awful.tag.viewtoggle(tag) end
             end,
             { description = 'toggle tag #' .. i, group = 'tag' }),
 
@@ -120,9 +117,7 @@ for i = 1, 5 do
             function()
                 if client.focus then
                     local tag = client.focus.screen.tags[i]
-                        if tag then
-                            client.focus:move_to_tag(tag)
-                        end
+                    if tag then client.focus:move_to_tag(tag) end
                 end
             end,
             { description = 'move focused client to tag #'..i, group = 'tag' }),
@@ -132,9 +127,7 @@ for i = 1, 5 do
             function()
                 if client.focus then
                     local tag = client.focus.screen.tags[i]
-                    if tag then
-                        client.focus:toggle_tag(tag)
-                    end
+                    if tag then client.focus:toggle_tag(tag) end
                 end
             end,
             { description = 'toggle focused client on tag #' .. i, group = 'tag' })
