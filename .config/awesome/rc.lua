@@ -166,13 +166,15 @@ client.connect_signal('focus', function(c) c.border_color = beautiful.border_foc
 
 
 ----------------------------------------
--- Daemons
+-- Daemons & Startups
 ----------------------------------------
 
 awful.spawn.with_shell('~/github/eww/target/release/eww open-many apps tray date &')
 awful.spawn.with_shell('libinput-gestures-setup start &')
 awful.spawn.with_shell('xss-lock ~/scripts/lock.sh &')
--- awful.spawn.with_shell('redshift &')
+awful.spawn.with_shell('redshift &')
 awful.spawn.with_shell('dunst &')
-awful.spawn.with_shell('~/scripts/greeting.sh')
-
+awful.spawn.with_shell('udiskie &')
+awful.spawn.with_shell('xbindkeys')
+awful.spawn.with_shell('sleep 1 && ~/scripts/greeting.sh')
+awful.spawn.with_shell('~/scripts/weather.sh')

@@ -8,12 +8,12 @@ dirs:
 	mkdir ~/github
 
 pacman:
-	sudo pacman -S git kitty tmux zsh zsh-syntax-highlighting ripgrep exa htop --needed # terminal
+	sudo pacman -S git kitty tmux zsh zsh-syntax-highlighting ripgrep exa htop ranger neofetch --needed # terminal
 	sudo pacman -S xorg-server xorg-xinit xorg-xbacklight xorg-xrandr xbindkeys xclip --needed # x11
-	sudo pacman -S i3-gaps i3lock xss-lock feh redshift rofi dunst flameshot papirus-icon-theme light --needed # i3
-	sudo pacman -S light rofi dunst redshift feh flameshot xss-lock papirus-icon-theme --needed # awesome
+	sudo pacman -S udiskie i3-gaps i3lock xss-lock feh redshift rofi dunst flameshot papirus-icon-theme light jq --needed # i3
+	sudo pacman -S udiskie light rofi dunst redshift feh flameshot xss-lock papirus-icon-theme jq --needed # awesome
 	sudo pacman -S nodejs npm python --needed # dev
-	sudo pacman -S brave code ranger neofetch --needed # apps
+	sudo pacman -S brave code --needed # apps
 
 yay:
 	git clone https://aur.archlinux.org/yay.git ~/github/yay
@@ -48,7 +48,7 @@ scripts:
 neovim:
 	git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 	nvim --headless +PackerInstall +qa
-	sudo npm install -g pyright # language servers
+	sudo npm install -g pyright
 
 x11:
 	[ -f "/etc/X11/xorg.conf.d/90-touchpad.conf" ] && sudo mv /etc/X11/xorg.conf.d/90-touchpad.conf /etc/X11/xorg.conf.d/90-touchpad.conf_%Y-%m-%dT%H:%M:%S
@@ -73,9 +73,10 @@ eww:
 
 manual:
 	@echo ""
-	@echo "Perform the following manual tasks as necessary:"
+	@echo "After installation, perform the following:"
 	@echo ""
-	@echo "* Display scaling - Update 'dpi' in ~/.Xresources"
-	@echo "* Cron jobs - Run 'crontab -e' & populate with '# 0 * * * * /home/{user}/scripts/health.sh', updating {user}"
-	@echo "* Redshift location - Update the longitude and latitude in ~/.config/redhisft/redshift.conf"
+	@echo "* Display - Update dpi in ~/.Xresources"
+	@echo "* Redshift - Update lon & lat in ~/.config/redshift/redshift.conf"
+	@echo "* Weather - Update key, lon & lat in ~/scripts/weather.sh"
+	@echo "* Crontab - Run 'crontab -e' and insert '*/30 * * * * ~/scripts/weather.sh'"
 

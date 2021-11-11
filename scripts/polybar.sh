@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 killall -q polybar
 polybar main -r -c ~/.config/polybar/config.ini

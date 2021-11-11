@@ -21,12 +21,11 @@ The core components which comprise my current desktop environment. This reposito
 The Makefile is theoretical and hasn't been tested yet. It also assumes your $HOME directory is empty and may perform destructive actions. **Use the Makefile at your own risk!**
 
 1. Install everything at once with `make all` or individual components with `make {xxxx}`. Refer to [Makefile](Makefile) for options.
-2. Some configurations may require manual updates. Refer to the *manual* section in [Makefile](Makefile) for details.
+2. After installation, some configurations may require manual updates. Refer to the output of `make manual`
 3. Restart to ensure all changes take effect.
 
 
 ## Keybindings
-A summary of important keybindings.
 
 * [Awesome](.config/awesome/README.md)
 * [I3](.config/i3/README.md)

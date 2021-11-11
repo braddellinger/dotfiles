@@ -1,3 +1,8 @@
+# To identify key, run: xbindkeys --key
+# To identify multiple keys, run: xbindkeys --multikey
+# To immediately reflect any changes, run: xbindkeys
+
+
 # Mute volumes
 "amixer -q sset Master toggle"
    XF86AudioMute
@@ -19,6 +24,5 @@
    XF86MonBrightnessDown
 
 # Screenshot
-"flameshot full --path ~/screenshots"
+"flameshot gui"
     m:0x0 + c:107
-    Print

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 cmd="rofi -theme ~/.config/rofi/powermenu.rasi -dmenu -selected-row 1"
 

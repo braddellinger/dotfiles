@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/sh
 
 DEFAULT='#232a30'
 TEXT='#98c0e0'
@@ -28,3 +28,4 @@ i3lock -n -i ~/wallpapers/shore.jpg \
     --scale
 
 sh ~/scripts/greeting.sh
+sh ~/scripts/weather.sh
