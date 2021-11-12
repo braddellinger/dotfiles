@@ -1,0 +1,132 @@
+; windows
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defwindow pacman
+    :monitor 0
+    :geometry (geometry :x '-360px' :y '90px' :width '320px' :height '150px' :anchor 'top right')
+    :stacking 'fg'
+    :reserve (struts :distance '70px' :side 'top')
+    :windowtype 'dock'
+    :wm-ignore false
+    (pacman))
+
+(defwindow weather
+    :monitor 0
+    :geometry (geometry :x '-20px' :y '90px' :width '320px' :height '150px' :anchor 'top right')
+    :stacking 'fg'
+    :reserve (struts :distance '70px' :side 'top')
+    :windowtype 'dock'
+    :wm-ignore false
+    (weather))
+
+(defwindow lock
+    :monitor 0
+    :geometry (geometry :x '-530px' :y '260px' :width '150px' :height '150px' :anchor 'top right')
+    :stacking 'fg'
+    :reserve (struts :distance '70px' :side 'top')
+    :windowtype 'dock'
+    :wm-ignore false
+    (lock))
+
+(defwindow logout
+    :monitor 0
+    :geometry (geometry :x '-360px' :y '260px' :width '150px' :height '150px' :anchor 'top right')
+    :stacking 'fg'
+    :reserve (struts :distance '70px' :side 'top')
+    :windowtype 'dock'
+    :wm-ignore false
+    (logout))
+
+(defwindow restart
+    :monitor 0
+    :geometry (geometry :x '-190px' :y '260px' :width '150px' :height '150px' :anchor 'top right')
+    :stacking 'fg'
+    :reserve (struts :distance '70px' :side 'top')
+    :windowtype 'dock'
+    :wm-ignore false
+    (restart))
+
+(defwindow poweroff
+    :monitor 0
+    :geometry (geometry :x '-20px' :y '260px' :width '150px' :height '150px' :anchor 'top right')
+    :stacking 'fg'
+    :reserve (struts :distance '70px' :side 'top')
+    :windowtype 'dock'
+    :wm-ignore false
+    (poweroff))
+
+
+; widgets
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defwidget pacman []
+    (box
+        (box
+            :class 'icon'
+            '')
+        (box
+            :class 'sidebar-text'
+            pacman)))
+
+(defwidget weather []
+    (eventbox
+        :cursor 'pointer'
+        (button
+            :onclick 'brave https://weather.com/weather/today'
+            (box
+                (box
+                    :class 'icon'
+                    icon)
+                (box
+                    :class 'sidebar-text'
+                    temperature)))))
+
+(defwidget lock []
+    (eventbox
+        :cursor 'pointer'
+        (button
+            :onclick '~/scripts/lock.sh'
+            :class 'icon'
+            '')))
+
+(defwidget logout []
+    (eventbox
+        :cursor 'pointer'
+        (button
+            :onclick 'logout'
+            :class 'icon'
+            '﫻')))
+
+(defwidget restart []
+    (eventbox
+        :cursor 'pointer'
+        (button
+            :onclick 'restart'
+            :class 'icon'
+            '')))
+
+(defwidget poweroff []
+    (eventbox
+        :cursor 'pointer'
+        (button
+            :onclick 'poweroff'
+            :class 'icon'
+            '')))
+
+
+; variables
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(deflisten temperature
+    `tail -F /tmp/weather/temperature`)
+
+(deflisten icon
+    `tail -F /tmp/weather/icon`)
+
+(deflisten description
+    `tail -F /tmp/weather/description`)
+
+(defpoll pacman
+    :interval '1h'
+    `pacman -Sup | wc -l`)
+

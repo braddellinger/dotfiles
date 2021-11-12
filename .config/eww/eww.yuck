@@ -1,39 +1,24 @@
+; imports
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(include './sidebar.yuck')
+
+
 ; windows
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defwindow apps
     :monitor 0
-    :geometry (geometry :x '20px'
-                        :y '20px'
-                        :width '260px'
-                        :height '50px'
-                        :anchor 'top left')
+    :geometry (geometry :x '20px' :y '20px' :width '260px' :height '50px' :anchor 'top left')
     :stacking 'fg'
     :reserve (struts :distance '70px' :side 'top')
     :windowtype 'dock'
     :wm-ignore false
     (apps))
 
-(defwindow taglist
-    :monitor 0
-    :geometry (geometry :x '0px'
-                        :y '20px'
-                        :width '180px'
-                        :height '50px'
-                        :anchor 'top center')
-    :stacking 'fg'
-    :reserve (struts :distance '70px' :side 'top')
-    :windowtype 'dock'
-    :wm-ignore false
-    (taglist))
-
 (defwindow tray
     :monitor 0
-    :geometry (geometry :x '-340px'
-                        :y '20px'
-                        :width '200px'
-                        :height '50px'
-                        :anchor 'top right')
+    :geometry (geometry :x '-340px' :y '20px' :width '200px' :height '50px' :anchor 'top right')
     :stacking 'fg'
     :reserve (struts :distance '70px' :side 'top')
     :windowtype 'dock'
@@ -42,11 +27,7 @@
 
 (defwindow date
     :monitor 0
-    :geometry (geometry :x '-20px'
-                        :y '20px'
-                        :width '300px'
-                        :height '50px'
-                        :anchor 'top right')
+    :geometry (geometry :x '-20px' :y '20px' :width '300px' :height '50px' :anchor 'top right')
     :stacking 'fg'
     :reserve (struts :distance '40px' :side 'top')
     :windowtype 'dock'
@@ -84,18 +65,6 @@
             (button
                 :onclick 'flameshot gui &'
                 ''))))
-
-(defwidget taglist []
-    (box
-        :orientation 'horizontal'
-        :space-evenly true
-        :spacing 10
-        :class 'taglist'
-        {tag == '1' ? 'ﱣ' : 'ﱤ'}
-        {tag == '2' ? 'ﱣ' : 'ﱤ'}
-        {tag == '3' ? 'ﱣ' : 'ﱤ'}
-        {tag == '4' ? 'ﱣ' : 'ﱤ'}
-        {tag == '5' ? 'ﱣ' : 'ﱤ'}))
 
 (defwidget tray []
     (box
@@ -158,6 +127,3 @@
 (defpoll volume
     :interval '5s'
     `awk -F"[][]" '/Left:/ { print $4 }' <(amixer sget Master)`)
-
-(deflisten tag
-    `tail -F /tmp/currenttag`)

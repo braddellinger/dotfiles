@@ -40,9 +40,10 @@ keys.globalkeys = gears.table.join(
     awful.key({ superkey }, 'Return', function() awful.spawn(user.terminal) end, { description = 'open terminal', group = 'launcher' }),
     awful.key({ superkey }, 'b', function() awful.spawn(user.browser) end, { description = 'open browser', group = 'launcher' }),
     awful.key({ superkey, shiftkey }, 'b', function() awful.spawn(user.browser_incognito) end, { description = 'open incognito browser', group = 'launcher' }),
+    awful.key({ superkey }, 'Escape', function() awful.spawn.with_shell('~/scripts/sidebar.sh') end, { description = 'show exit screen', group = 'awesome' }),
 
     -- Awesome
-    awful.key({ superkey }, 'Escape', function() show_exit_screen() end, { description = 'show exit screen', group = 'awesome' }),
+    -- awful.key({ superkey }, 'Escape', function() show_exit_screen() end, { description = 'show exit screen', group = 'awesome' }),
     awful.key({ superkey }, 'l', function() awful.spawn.with_shell('~/scripts/lock.sh') end, { description = 'lock screen', group = 'awesome' }),
     awful.key({ superkey, shiftkey }, 'r', awesome.restart, { description = 'reload awesome', group = 'awesome' }),
     awful.key({ superkey, shiftkey }, 'q', awesome.quit, { description = 'quit awesome', group = 'awesome' }),

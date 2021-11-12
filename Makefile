@@ -8,7 +8,7 @@ dirs:
 	mkdir ~/github
 
 pacman:
-	sudo pacman -S git kitty tmux zsh zsh-syntax-highlighting ripgrep exa htop ranger neofetch --needed # terminal
+	sudo pacman -S git kitty tmux zsh zsh-syntax-highlighting ripgrep exa htop ranger neofetch dictd --needed # terminal
 	sudo pacman -S xorg-server xorg-xinit xorg-xbacklight xorg-xrandr xbindkeys xclip --needed # x11
 	sudo pacman -S udiskie i3-gaps i3lock xss-lock feh redshift rofi dunst flameshot papirus-icon-theme light jq --needed # i3
 	sudo pacman -S udiskie light rofi dunst redshift feh flameshot xss-lock papirus-icon-theme jq --needed # awesome
@@ -18,7 +18,7 @@ pacman:
 yay:
 	git clone https://aur.archlinux.org/yay.git ~/github/yay
 	cd ~/github/yay && makepkg -si && cd ~
-	yay -S picom-ibhagwan-git polybar git-delta awesome-git libinput-gestures i3lock-color
+	yay -S picom-ibhagwan-git polybar git-delta awesome-git libinput-gestures i3lock-color dict-wn
 
 fonts:
 	git clone https://github.com/ryanoasis/nerd-fonts.git ~/github/nerd-fonts
