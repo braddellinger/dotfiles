@@ -1,6 +1,6 @@
 #!/bin/sh
 
-window_options='pacman weather lock logout restart poweroff'
+window_options='pacman weather sliders lock logout restart poweroff'
 grep_options='\*pacman|\*weather'
 
 windows=`~/github/eww/target/release/eww windows`

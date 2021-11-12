@@ -19,9 +19,18 @@
     :wm-ignore false
     (weather))
 
+(defwindow sliders
+    :monitor 0
+    :geometry (geometry :x '-20px' :y '260px' :width '660px' :height '350px' :anchor 'top right')
+    :stacking 'fg'
+    :reserve (struts :distance '70px' :side 'top')
+    :windowtype 'dock'
+    :wm-ignore false
+    (sliders))
+
 (defwindow lock
     :monitor 0
-    :geometry (geometry :x '-530px' :y '260px' :width '150px' :height '150px' :anchor 'top right')
+    :geometry (geometry :x '-530px' :y '630px' :width '150px' :height '150px' :anchor 'top right')
     :stacking 'fg'
     :reserve (struts :distance '70px' :side 'top')
     :windowtype 'dock'
@@ -30,7 +39,7 @@
 
 (defwindow logout
     :monitor 0
-    :geometry (geometry :x '-360px' :y '260px' :width '150px' :height '150px' :anchor 'top right')
+    :geometry (geometry :x '-360px' :y '630px' :width '150px' :height '150px' :anchor 'top right')
     :stacking 'fg'
     :reserve (struts :distance '70px' :side 'top')
     :windowtype 'dock'
@@ -39,7 +48,7 @@
 
 (defwindow restart
     :monitor 0
-    :geometry (geometry :x '-190px' :y '260px' :width '150px' :height '150px' :anchor 'top right')
+    :geometry (geometry :x '-190px' :y '630px' :width '150px' :height '150px' :anchor 'top right')
     :stacking 'fg'
     :reserve (struts :distance '70px' :side 'top')
     :windowtype 'dock'
@@ -48,7 +57,7 @@
 
 (defwindow poweroff
     :monitor 0
-    :geometry (geometry :x '-20px' :y '260px' :width '150px' :height '150px' :anchor 'top right')
+    :geometry (geometry :x '-20px' :y '630px' :width '150px' :height '150px' :anchor 'top right')
     :stacking 'fg'
     :reserve (struts :distance '70px' :side 'top')
     :windowtype 'dock'
@@ -81,6 +90,41 @@
                     :class 'sidebar-text'
                     temperature)))))
 
+(defwidget sliders []
+    (box
+        :orientation 'vertical'
+        :valign 'center'
+        (box
+            :space-evenly false
+            :halign 'center'
+            :class 'battery-slider'
+            :spacing 30
+            ''
+            (scale
+                :value 70
+                :min 0
+                :max 100))
+        (box
+            :space-evenly false
+            :halign 'center'
+            :class 'volume-slider'
+            :spacing 30
+            ''
+            (scale
+                :value 70
+                :min 0
+                :max 100))
+        (box
+            :space-evenly false
+            :halign 'center'
+            :class 'brightness-slider'
+            :spacing 30
+            '盛'
+            (scale
+                :value 70
+                :min 0
+                :max 100))))
+
 (defwidget lock []
     (eventbox
         :cursor 'pointer'
@@ -95,7 +139,7 @@
         (button
             :onclick 'logout'
             :class 'icon'
-            '﫻')))
+            '')))
 
 (defwidget restart []
     (eventbox

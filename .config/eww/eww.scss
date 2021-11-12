@@ -62,3 +62,60 @@ button:hover {
     font-family: FiraMono Nerd Font Mono;
     font-size: 38;
 }
+
+.battery-slider {
+    font-size: 90;
+    margin: 10px 0px 10px 0px;
+}
+
+.battery-slider scale trough {
+	background-color: #000000;
+    border-color: #000000;
+	border-radius: 10px;
+	min-height: 30px;
+	min-width: 450px;
+    margin: 10px 0px 10px 0px;
+}
+
+.battery-slider scale trough highlight {
+	background-color: #aee098;
+	border-radius: 10px;
+}
+
+.volume-slider {
+    font-size: 90;
+    margin: 10px 0px 10px 0px;
+}
+
+.volume-slider scale trough {
+	background-color: #000000;
+    border-color: #000000;
+	border-radius: 10px;
+	min-height: 30px;
+	min-width: 450px;
+    margin: 10px 0px 10px 0px;
+}
+
+.volume-slider scale trough highlight {
+	background-color: #aee098;
+	border-radius: 10px;
+}
+
+.brightness-slider {
+    font-size: 90;
+    margin: 10px 0px 10px 0px;
+}
+
+.brightness-slider scale trough {
+	background-color: #000000;
+    border-color: #000000;
+	border-radius: 10px;
+	min-height: 30px;
+	min-width: 450px;
+    margin: 10px 0px 10px 0px;
+}
+
+.brightness-slider scale trough highlight {
+	background-color: #aee098;
+	border-radius: 10px;
+}
