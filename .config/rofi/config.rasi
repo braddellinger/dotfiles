@@ -14,9 +14,11 @@ configuration {
     fullscreen: false;
 }
 
+@theme "/dev/null"
+
 * {
     background-color: #232a30;
-    text-color: #d4eafc;
+    text-color: #eeeeee;
 }
 
 window {
@@ -56,13 +58,19 @@ element {
 
 element selected {
     background-color: #98c0e0;
-    text-color: #d4eafc;
+    text-color: #eeeeee;
 }
 
 element-icon {
     size: 50px;
 }
 
+element-text, element-icon {
+    background-color: inherit;
+    text-color: inherit;
+}
+
 listview {
     columns: 2;
 }
+

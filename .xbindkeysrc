@@ -4,15 +4,15 @@
 
 
 # Mute volumes
-"amixer -q sset Master toggle"
+"amixer -q set Master toggle"
    XF86AudioMute
 
 # Increase volume
-"amixer -q sset Master 10%+"
+"amixer -q set Master 10%+"
    XF86AudioRaiseVolume
 
 # Decrease volume
-"amixer -q sset Master 10%-"
+"amixer -q set Master 10%-"
    XF86AudioLowerVolume
 
 # Increase backlight

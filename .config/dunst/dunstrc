@@ -3,15 +3,13 @@
     # display
     monitor = 0
     follow = mouse
-    geometry = "1000x8-20+90"
+    geometry = "660x8-20+100"
     indicate_hidden = yes
-    shrink = yes
     transparency = 0
-    notification_height = 100
+    notification_height = 150
     separator_height = 2
-    padding = 20
+    padding = 30
     horizontal_padding = 40
-    # frame_width = 0
     separator_color = frame
     sort = yes
     idle_threshold = 120

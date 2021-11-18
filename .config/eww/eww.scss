@@ -1,7 +1,7 @@
 window {
     all: unset;
     background-color: #232a30;
-    color: #d4eafc;
+    color: #eeeeee;
     font-family: Nunito;
     font-size: 28;
     font-weight: bold
@@ -61,11 +61,16 @@ button:hover {
 .sidebar-text {
     font-family: FiraMono Nerd Font Mono;
     font-size: 38;
+    color: #eeeeee;
 }
 
 .battery-slider {
     font-size: 90;
     margin: 10px 0px 10px 0px;
+}
+
+.battery-slider slider {
+    all: unset;
 }
 
 .battery-slider scale trough {
@@ -87,6 +92,10 @@ button:hover {
     margin: 10px 0px 10px 0px;
 }
 
+.volume-slider slider {
+    all: unset;
+}
+
 .volume-slider scale trough {
 	background-color: #000000;
     border-color: #000000;
@@ -106,6 +115,10 @@ button:hover {
     margin: 10px 0px 10px 0px;
 }
 
+.brightness-slider slider {
+    all: unset;
+}
+
 .brightness-slider scale trough {
 	background-color: #000000;
     border-color: #000000;
@@ -118,4 +131,50 @@ button:hover {
 .brightness-slider scale trough highlight {
 	background-color: #aee098;
 	border-radius: 10px;
+}
+
+.lock {
+    color: #98dce0;
+}
+
+.lock :hover {
+    color: #232a30;
+    background-color: #98dce0;
+}
+
+.logout {
+    color: #b098e0;
+}
+
+.logout :hover {
+    color: #232a30;
+    background-color: #b098e0;
+}
+
+.reboot {
+    color: #e0d898;
+}
+
+.reboot :hover {
+    color: #232a30;
+    background-color: #e0d898;
+}
+
+.poweroff {
+    color: #e09898;
+}
+
+.poweroff :hover {
+    color: #232a30;
+    background-color: #e09898;
+}
+
+.weather {
+    font-family: FiraMono Nerd Font Mono;
+    font-size: 90;
+    color: #e0d898;
+}
+
+.pacman {
+    color: #939392;
 }

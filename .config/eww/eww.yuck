@@ -9,7 +9,7 @@
 
 (defwindow apps
     :monitor 0
-    :geometry (geometry :x '20px' :y '20px' :width '260px' :height '50px' :anchor 'top left')
+    :geometry (geometry :x '20px' :y '20px' :width '260px' :height '60px' :anchor 'top left')
     :stacking 'fg'
     :reserve (struts :distance '70px' :side 'top')
     :windowtype 'dock'
@@ -18,7 +18,7 @@
 
 (defwindow tray
     :monitor 0
-    :geometry (geometry :x '-340px' :y '20px' :width '200px' :height '50px' :anchor 'top right')
+    :geometry (geometry :x '-440px' :y '20px' :width '240px' :height '60px' :anchor 'top right')
     :stacking 'fg'
     :reserve (struts :distance '70px' :side 'top')
     :windowtype 'dock'
@@ -27,7 +27,7 @@
 
 (defwindow date
     :monitor 0
-    :geometry (geometry :x '-20px' :y '20px' :width '300px' :height '50px' :anchor 'top right')
+    :geometry (geometry :x '-20px' :y '20px' :width '400px' :height '60px' :anchor 'top right')
     :stacking 'fg'
     :reserve (struts :distance '40px' :side 'top')
     :windowtype 'dock'
@@ -110,7 +110,15 @@
 (defwidget date []
     (box
         :orientation 'horizontal'
-        time))
+        :space-evenly false
+        :halign 'center'
+        :spacing 40
+        time
+        (eventbox
+            :cursor 'pointer'
+            (button
+                :onclick '~/scripts/sidebar.sh'
+                ''))))
 
 
 ; variables
@@ -126,4 +134,5 @@
 
 (defpoll volume
     :interval '5s'
-    `awk -F"[][]" '/Left:/ { print $4 }' <(amixer sget Master)`)
+    `awk -F"[][]" '/Left:/ { print $4 }' <(amixer get Master)`)
+

@@ -1,27 +1,27 @@
 ; windows
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defwindow pacman
-    :monitor 0
-    :geometry (geometry :x '-360px' :y '90px' :width '320px' :height '150px' :anchor 'top right')
-    :stacking 'fg'
-    :reserve (struts :distance '70px' :side 'top')
-    :windowtype 'dock'
-    :wm-ignore false
-    (pacman))
-
 (defwindow weather
     :monitor 0
-    :geometry (geometry :x '-20px' :y '90px' :width '320px' :height '150px' :anchor 'top right')
+    :geometry (geometry :x '-360px' :y '270px' :width '320px' :height '150px' :anchor 'top right')
     :stacking 'fg'
     :reserve (struts :distance '70px' :side 'top')
     :windowtype 'dock'
     :wm-ignore false
     (weather))
 
+(defwindow pacman
+    :monitor 0
+    :geometry (geometry :x '-20px' :y '270px' :width '320px' :height '150px' :anchor 'top right')
+    :stacking 'fg'
+    :reserve (struts :distance '70px' :side 'top')
+    :windowtype 'dock'
+    :wm-ignore false
+    (pacman))
+
 (defwindow sliders
     :monitor 0
-    :geometry (geometry :x '-20px' :y '260px' :width '660px' :height '350px' :anchor 'top right')
+    :geometry (geometry :x '-20px' :y '440px' :width '660px' :height '350px' :anchor 'top right')
     :stacking 'fg'
     :reserve (struts :distance '70px' :side 'top')
     :windowtype 'dock'
@@ -30,7 +30,7 @@
 
 (defwindow lock
     :monitor 0
-    :geometry (geometry :x '-530px' :y '630px' :width '150px' :height '150px' :anchor 'top right')
+    :geometry (geometry :x '-530px' :y '810px' :width '150px' :height '150px' :anchor 'top right')
     :stacking 'fg'
     :reserve (struts :distance '70px' :side 'top')
     :windowtype 'dock'
@@ -39,25 +39,25 @@
 
 (defwindow logout
     :monitor 0
-    :geometry (geometry :x '-360px' :y '630px' :width '150px' :height '150px' :anchor 'top right')
+    :geometry (geometry :x '-360px' :y '810px' :width '150px' :height '150px' :anchor 'top right')
     :stacking 'fg'
     :reserve (struts :distance '70px' :side 'top')
     :windowtype 'dock'
     :wm-ignore false
     (logout))
 
-(defwindow restart
+(defwindow reboot
     :monitor 0
-    :geometry (geometry :x '-190px' :y '630px' :width '150px' :height '150px' :anchor 'top right')
+    :geometry (geometry :x '-190px' :y '810px' :width '150px' :height '150px' :anchor 'top right')
     :stacking 'fg'
     :reserve (struts :distance '70px' :side 'top')
     :windowtype 'dock'
     :wm-ignore false
-    (restart))
+    (reboot))
 
 (defwindow poweroff
     :monitor 0
-    :geometry (geometry :x '-20px' :y '630px' :width '150px' :height '150px' :anchor 'top right')
+    :geometry (geometry :x '-20px' :y '810px' :width '150px' :height '150px' :anchor 'top right')
     :stacking 'fg'
     :reserve (struts :distance '70px' :side 'top')
     :windowtype 'dock'
@@ -68,6 +68,19 @@
 ; widgets
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defwidget weather []
+    (eventbox
+        :cursor 'pointer'
+        (button
+            :onclick 'brave https://weather.com/weather/today'
+            (box
+                (box
+                    :class 'weather'
+                    icon)
+                (box
+                    :class 'sidebar-text'
+                    temperature)))))
+
 (defwidget pacman []
     (box
         (box
@@ -77,57 +90,48 @@
             :class 'sidebar-text'
             pacman)))
 
-(defwidget weather []
-    (eventbox
-        :cursor 'pointer'
-        (button
-            :onclick 'brave https://weather.com/weather/today'
-            (box
-                (box
-                    :class 'icon'
-                    icon)
-                (box
-                    :class 'sidebar-text'
-                    temperature)))))
-
 (defwidget sliders []
     (box
         :orientation 'vertical'
         :valign 'center'
         (box
+            :class 'battery-slider'
             :space-evenly false
             :halign 'center'
-            :class 'battery-slider'
             :spacing 30
             ''
             (scale
-                :value 70
+                :value {EWW_BATTERY.BAT0.capacity}
+                :active false
                 :min 0
                 :max 100))
         (box
+            :class 'volume-slider'
             :space-evenly false
             :halign 'center'
-            :class 'volume-slider'
             :spacing 30
             ''
             (scale
-                :value 70
+                :onchange 'amixer set Master {}%'
+                :value {volume_two}
                 :min 0
                 :max 100))
         (box
+            :class 'brightness-slider'
             :space-evenly false
             :halign 'center'
-            :class 'brightness-slider'
             :spacing 30
             '盛'
             (scale
-                :value 70
+                :onchange 'light -S {}%'
+                :value {light}
                 :min 0
                 :max 100))))
 
 (defwidget lock []
     (eventbox
         :cursor 'pointer'
+        :class 'lock'
         (button
             :onclick '~/scripts/lock.sh'
             :class 'icon'
@@ -136,22 +140,25 @@
 (defwidget logout []
     (eventbox
         :cursor 'pointer'
+        :class 'logout'
         (button
-            :onclick 'logout'
+            :onclick 'kill -9 -1'
             :class 'icon'
             '')))
 
-(defwidget restart []
+(defwidget reboot []
     (eventbox
         :cursor 'pointer'
+        :class 'reboot'
         (button
-            :onclick 'restart'
+            :onclick 'reboot'
             :class 'icon'
             '')))
 
 (defwidget poweroff []
     (eventbox
         :cursor 'pointer'
+        :class 'poweroff'
         (button
             :onclick 'poweroff'
             :class 'icon'
@@ -174,3 +181,10 @@
     :interval '1h'
     `pacman -Sup | wc -l`)
 
+(defpoll light
+    :interval '1s'
+    `light -G`)
+
+(defpoll volume_two
+    :interval '5s'
+    `awk -F"[][]" '/Left:/ { print $2 }' <(amixer get Master) | cut -d '%' -f 1`)

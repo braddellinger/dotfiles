@@ -42,7 +42,7 @@ The Makefile is theoretical and hasn't been tested yet. It also assumes your $HO
 
 ## Credits
 
-* Wallpaper sourced from [Unsplash](https://unsplash.com/photos/T_Qe4QlMIvQ)
+* Wallpaper sourced from [Unsplash](https://unsplash.com/photos/rekDxuJKYdI)
 * Fonts sourced from [NerdFonts](https://www.nerdfonts.com)
 * Glyphs sourced from [Google Fonts](https://fonts.google.com/icons)
 * Icons sourced from [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
