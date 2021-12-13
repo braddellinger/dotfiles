@@ -8,30 +8,30 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defwindow apps
-    :monitor 0
-    :geometry (geometry :x '20px' :y '20px' :width '260px' :height '60px' :anchor 'top left')
-    :stacking 'fg'
+    :geometry (geometry :x '20px' :y '20px' :width '275px' :height '60px' :anchor 'top left')
     :reserve (struts :distance '70px' :side 'top')
     :windowtype 'dock'
     :wm-ignore false
+    :stacking 'fg'
+    :monitor 0
     (apps))
 
 (defwindow tray
-    :monitor 0
     :geometry (geometry :x '-440px' :y '20px' :width '240px' :height '60px' :anchor 'top right')
-    :stacking 'fg'
     :reserve (struts :distance '70px' :side 'top')
     :windowtype 'dock'
     :wm-ignore false
+    :stacking 'fg'
+    :monitor 0
     (tray))
 
 (defwindow date
-    :monitor 0
     :geometry (geometry :x '-20px' :y '20px' :width '400px' :height '60px' :anchor 'top right')
-    :stacking 'fg'
     :reserve (struts :distance '40px' :side 'top')
     :windowtype 'dock'
     :wm-ignore false
+    :stacking 'fg'
+    :monitor 0
     (date))
 
 
@@ -135,4 +135,3 @@
 (defpoll volume
     :interval '5s'
     `awk -F"[][]" '/Left:/ { print $4 }' <(amixer get Master)`)
-

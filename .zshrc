@@ -23,12 +23,12 @@ POWERLEVEL9K_HOME_ICON=''
 # Aliases
 ########################################
 alias dots='git --git-dir=$HOME/github/dotfiles --work-tree=$HOME'
-alias nvim='~/nvim.appimage -u ~/.config/nvim/init.lua'
 alias sandbox='source ~/sandbox/bin/activate'
 alias eww='~/github/eww/target/release/eww'
 alias startgnome='startx ~/.xinitrc gnome'
 alias starti3='startx ~/.xinitrc i3'
 alias e='exa -las modified --icons'
+alias nvim='~/nvim.appimage'
 alias gs='git status'
 alias mv='mv -i'
 alias rm='rm -i'

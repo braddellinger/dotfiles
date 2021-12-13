@@ -3,13 +3,15 @@
     # display
     monitor = 0
     follow = mouse
-    geometry = "660x8-20+100"
+    origin = top-right
+    offset = 20x100
+    width = 328
+    height = 80
     indicate_hidden = yes
     transparency = 0
-    notification_height = 150
-    separator_height = 2
-    padding = 30
-    horizontal_padding = 40
+    separator_height = 1
+    padding = 16
+    horizontal_padding = 30
     separator_color = frame
     sort = yes
     idle_threshold = 120
@@ -33,8 +35,8 @@
 
     # icons
     icon_position = left
-    min_icon_size = 50
-    max_icon_size = 50
+    min_icon_size = 30
+    max_icon_size = 30
     icon_path = /usr/share/icons/Papirus-Dark/32x32/apps:/usr/share/icons/Papirus-Dark/32x32/devices:/usr/share/icons/Papirus-Dark/32x32/status:/usr/share/icons/Papirus-Dark/32x32/emblems
 
     # history
@@ -47,13 +49,8 @@
     always_run_script = true
     title = Dunst
     class = Dunst
-    startup_notification = false
-    verbosity = mesg
-    corner_radius = 10
+    corner_radius = 6
     ignore_dbusclose = false
-
-    # legacy
-    force_xinerama = false
 
     # mouse
     mouse_left_click = close_current
@@ -63,27 +60,18 @@
 [experimental]
     per_monitor_dpi = false
 
-[shortcuts]
-    close = ctrl+space
-    close_all = ctrl+shift+space
-    history = ctrl+grave
-    context = ctrl+shift+period
-
 [urgency_low]
     background = "#232a30"
-    foreground = "#d4eafc"
+    foreground = "#eeeeee"
     timeout = 10
-    icon = ~/glyphs/info.svg
 
 [urgency_normal]
     background = "#232a30"
-    foreground = "#d4eafc"
+    foreground = "#eeeeee"
     timeout = 10
-    icon = ~/glyphs/info.svg
 
 [urgency_critical]
     background = "#232a30"
-    foreground = "#d4eafc"
+    foreground = "#eeeeee"
     timeout = 0
-    icon = ~/glyphs/info.svg
 

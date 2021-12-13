@@ -1,6 +1,15 @@
 ; windows
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defwindow greeting
+    :monitor 0
+    :geometry (geometry :x '-20px' :y '100px' :width '660px' :height '150px' :anchor 'top right')
+    :stacking 'fg'
+    :reserve (struts :distance '70px' :side 'top')
+    :windowtype 'dock'
+    :wm-ignore false
+    (greeting))
+
 (defwindow weather
     :monitor 0
     :geometry (geometry :x '-360px' :y '270px' :width '320px' :height '150px' :anchor 'top right')
@@ -67,6 +76,11 @@
 
 ; widgets
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defwidget greeting []
+    (label 
+        :wrap true
+        :text fortune))
 
 (defwidget weather []
     (eventbox
@@ -188,3 +202,7 @@
 (defpoll volume_two
     :interval '5s'
     `awk -F"[][]" '/Left:/ { print $2 }' <(amixer get Master) | cut -d '%' -f 1`)
+
+(defpoll fortune
+    :interval '1h'
+    `fortune -as`)

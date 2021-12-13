@@ -15,6 +15,7 @@
 | <kbd>space e</kbd> | Toggle file tree |
 | <kbd>space j</kbd> | Format JSON object |
 | <kbd>space z</kbd> | Toggle zen mode |
+| <kbd>space s</kbd> | Open search & replace dialog |
 | <kbd>gd</kbd> | LSP go to definition |
 | <kbd>gD</kbd> | LSP go to declaration |
 | <kbd>gh</kbd> | LSP trigger hover |

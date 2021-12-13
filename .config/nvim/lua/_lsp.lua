@@ -1,8 +1,8 @@
 -- Diagnostic signs
-vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'LspDiagnosticsDefaultError', linehl = '', numhl = '' })
-vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'LspDiagnosticsDefaultWarning', linehl = '', numhl = '' })
-vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'LspDiagnosticsDefaultInformation', linehl = '', numhl = '' })
-vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'LspDiagnosticsDefaultHint', linehl = '', numhl = '' })
+vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticError', linehl = '', numhl = '' })
+vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticWarn', linehl = '', numhl = '' })
+vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticInfo', linehl = '', numhl = '' })
+vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticHint', linehl = '', numhl = '' })
 
 -- Lsp setup
 require('lspconfig').tsserver.setup { }
@@ -25,11 +25,6 @@ require('lspconfig').gopls.setup {
 -- Custom on_attach function
 local on_attach = function(client, bufnr)
 
-    -- Apply borders to hover and signature
-    vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = vim.g.border, focusable = false })
-    vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.hover, { border = vim.g.border, focusable = false })
-    vim.lsp.handlers['textDocument/completion'] = vim.lsp.with(vim.lsp.handlers.hover, { border = vim.g.border })
-
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -48,10 +43,13 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', 'gT', ':lua vim.lsp.buf.type_definition()<CR>', opts)
     buf_set_keymap('n', 'gR', ':lua vim.lsp.buf.rename()<CR>', opts)
     buf_set_keymap('n', 'gr', ':lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap('n', '<space>e', ':lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-    buf_set_keymap('n', '[d', ':lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', ']d', ':lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-    buf_set_keymap('n', '<space>q', ':lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+    buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+    buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+    buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+    buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
     -- Keymaps for auto-formatting
     if client.resolved_capabilities.document_formatting then
@@ -107,17 +105,37 @@ function goimports(timeout_ms)
 end
 vim.cmd('autocmd BufWritePre *.go lua goimports(1000)')
 
--- Disable virtual text
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    {
-        update_in_insert = false,
-        virtual_text = false,
-        underline = true,
-        signs = true
-    }
-)
+-- Diagnostic configurations
+vim.diagnostic.config({
+    float = {
+        prefix = function(diagnostic, i, total)
+            sign = '?'
+            hl = ''
+            if diagnostic.severity == 4 then
+                sign = ''
+                hl = 'DiagnosticHint'
+            elseif diagnostic.severity == 3 then
+                sign = ''
+                hl = 'DiagnosticInfo'
+            elseif diagnostic.severity == 2 then
+                sign = ''
+                hl = 'DiagnosticWarn'
+            elseif diagnostic.severity == 1 then
+                sign = ''
+                hl = 'DiagnosticError'
+            end
+            return sign .. '  ', hl
+        end,
+        border = vim.g.border,
+        focusable = false,
+        header = ''
+    },
+    update_in_insert = false,
+    severity_sort = true,
+    virtual_text = false,
+    underline = true
+})
 
 -- Display line diagnostics on cursor hold
 vim.cmd('autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()')
-vim.cmd('autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({ border = ' .. vim.inspect(vim.g.border) .. ', focusable = false })')
+vim.cmd('autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float()')

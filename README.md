@@ -26,18 +26,18 @@ The Makefile is theoretical and hasn't been tested yet. It also assumes your $HO
 
 
 ## Keybindings
+A summary of important keybindings.
+
+| Keybinding | Description |
+| ---------- | ----------- |
+| <kbd>capslock</kbd> | Remapped to <kbd>control</kbd> |
+| <kbd>left-shift right-shift</kbd> | Both <kbd>shift</kbd> at the same time enables capslock. One <kbd>shift</kbd> disables capslock. |
+| <kbd>swipe left/right</kbd> | Cycle through virtual desktops |
 
 * [Awesome](.config/awesome/README.md)
 * [I3](.config/i3/README.md)
 * [Neovim](.config/nvim/README.md)
 * [Tmux](TMUX_README.md)
-* Other
-
-    | Keybinding | Description |
-    | ---------- | ----------- |
-    | <kbd>capslock</kbd> | Remapped to <kbd>control</kbd> |
-    | <kbd>left-shift right-shift</kbd> | Both <kbd>shift</kbd> at the same time enables capslock. One <kbd>shift</kbd> disables capslock. |
-    | <kbd>swipe left/right</kbd> | Change virtual desktop |
 
 
 ## Credits

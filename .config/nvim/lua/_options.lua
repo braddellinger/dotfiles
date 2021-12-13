@@ -45,16 +45,17 @@ vim.o.incsearch = true
 vim.o.hlsearch = true
 
 -- Reusable border object
-vim.g.border = {
-    { '🭽', 'FloatBorder' },
-    { '▔', 'FloatBorder' },
-    { '🭾', 'FloatBorder' },
-    { '▕', 'FloatBorder' },
-    { '🭿', 'FloatBorder' },
-    { '▁', 'FloatBorder' },
-    { '🭼', 'FloatBorder' },
-    { '▏', 'FloatBorder' }
-}
+vim.g.border = 'rounded'
+-- vim.g.border = {
+--     { '🭽', 'FloatBorder' },
+--     { '▔', 'FloatBorder' },
+--     { '🭾', 'FloatBorder' },
+--     { '▕', 'FloatBorder' },
+--     { '🭿', 'FloatBorder' },
+--     { '▁', 'FloatBorder' },
+--     { '🭼', 'FloatBorder' },
+--     { '▏', 'FloatBorder' }
+-- }
 
 -- Set cursor shape on leave
 vim.cmd('autocmd VimLeave * set guicursor=a:hor100')

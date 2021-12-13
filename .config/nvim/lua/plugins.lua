@@ -79,6 +79,12 @@ return require('packer').startup({function()
             }
         }
     }
+    use {
+        'VonHeikemen/searchbox.nvim',
+        config = function() require('_searchbox') end,
+        requires = { 'MunifTanjim/nui.nvim' }
+    }
+
     use { 'christoomey/vim-tmux-navigator' }
     use { 'wbthomason/packer.nvim' }
     use { 'nvim-lua/plenary.nvim' }
@@ -96,16 +102,16 @@ return require('packer').startup({function()
     -- use { 'sainnhe/everforest', config = function() vim.cmd('colorscheme everforest') end }
     -- use { 'ntk148v/vim-horizon', config = function() vim.cmd('colorscheme horizon') end }
     -- use { 'navarasu/onedark.nvim', config = function() require('onedark').setup() end }
-    use {
-        'EdenEast/nightfox.nvim',
-        config = function()
-            require('nightfox').setup {
-                fox = 'nordfox', -- nightfox, nordfox, palefox
-                styles = { comments = 'italic' },
-            }
-            require('nightfox').load()
-        end
-    }
+    -- use {
+    --     'EdenEast/nightfox.nvim',
+    --     config = function()
+    --         require('nightfox').setup {
+    --             fox = 'nordfox', -- nightfox, nordfox, palefox
+    --             styles = { comments = 'italic' },
+    --         }
+    --         require('nightfox').load()
+    --     end
+    -- }
     -- use {
     --     'marko-cerovac/material.nvim',
     --     config = function()
@@ -128,6 +134,11 @@ return require('packer').startup({function()
     --     config = function() vim.cmd('colorscheme challenger-deep') end,
     --     as = 'challenger-deep'
     -- }
+    use({
+        'catppuccin/nvim',
+        as = 'catppuccin',
+        config = function() require('catppuccin').load() end
+    })
 
 end,
 config = {
