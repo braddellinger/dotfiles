@@ -19,13 +19,13 @@ vim.o.splitright = true
 vim.o.updatetime = 300
 vim.o.showmode = true
 vim.o.wildmenu = true
+vim.g.mapleader = ' '
 vim.o.showcmd = true
 vim.o.foldlevel = 99
-vim.g.mapleader = ' '
 vim.o.laststatus = 2
 vim.o.scrolloff = 3
-vim.o.wrap = false
 vim.o.fcs = 'eob: '
+vim.o.wrap = false
 vim.o.mouse = 'a'
 
 -- Indentation

@@ -2,9 +2,10 @@
 ----------------------------------------
 -- Language servers (https://github.com/neovim/nvim-lspconfig)
 -- Packer (https://github.com/wbthomason/packer.nvim)
--- Neovim >=0.5 (https://github.com/neovim/neovim)
+-- Neovim >=0.6 (https://github.com/neovim/neovim)
 -- Rg (https://github.com/BurntSushi/ripgrep)
 -- Nerdfont (https://www.nerdfonts.com/)
+-- Fd (https://github.com/sharkdp/fd)
 -- NodeJs (https://nodejs.org/en/)
 
 
@@ -21,18 +22,15 @@ return require('packer').startup({function()
         opt = true
     }
     use {
-        'dstein64/nvim-scrollview',
-        config = function() require('_scrollview') end,
-    }
-    use {
         'nvim-telescope/telescope.nvim',
-        requires = { 'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim', 'trouble.nvim' },
-        wants = { 'plenary.nvim', 'popup.nvim' },
-        config = function() require('_telescope') end
-    }
-    use {
-        'kyazdani42/nvim-tree.lua',
-        config = function() require('_tree') end
+        requires = {
+            'nvim-telescope/telescope-fzf-native.nvim',
+            'nvim-lua/plenary.nvim',
+            'nvim-lua/popup.nvim',
+            'trouble.nvim'
+        },
+        config = function() require('_telescope') end,
+        wants = { 'plenary.nvim', 'popup.nvim' }
     }
     use {
         'lewis6991/gitsigns.nvim',
@@ -47,25 +45,6 @@ return require('packer').startup({function()
         opt = true
     }
     use {
-        'b3nj5m1n/kommentary',
-        config = function() require('_kommentary') end,
-        keys = { 'gc' },
-        opt = true
-    }
-    use {
-        'folke/zen-mode.nvim',
-        config = function() require('_zen') end,
-    }
-    use {
-        'folke/trouble.nvim',
-        config = function() require('_trouble') end,
-        wants = 'nvim-web-devicons',
-    }
-    use {
-        'kyazdani42/nvim-web-devicons',
-        config = function() require('nvim-web-devicons').setup { default = true } end
-    }
-    use {
         'hrsh7th/nvim-cmp',
         config = function() require('_cmp') end,
         requires = {
@@ -75,16 +54,52 @@ return require('packer').startup({function()
             {
                 'onsails/lspkind-nvim',
                 config = function() require('nvim-web-devicons').setup { default = true } end,
-                -- event = 'BufRead'
             }
         }
+    }
+    use {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        config = function() require('telescope').load_extension('fzf') end,
+        run = 'make'
     }
     use {
         'VonHeikemen/searchbox.nvim',
         config = function() require('_searchbox') end,
         requires = { 'MunifTanjim/nui.nvim' }
     }
-
+    use {
+        'folke/trouble.nvim',
+        config = function() require('_trouble') end,
+        wants = 'nvim-web-devicons',
+    }
+    use {
+        'numToStr/Comment.nvim',
+        config = function() require('Comment').setup() end
+    }
+    use {
+        'folke/zen-mode.nvim',
+        config = function() require('_zen') end,
+    }
+    use {
+        'kyazdani42/nvim-web-devicons',
+        config = function() require('nvim-web-devicons').setup { default = true } end
+    }
+    use {
+        'dstein64/nvim-scrollview',
+        config = function() vim.api.nvim_set_var('scrollview_current_only', true) end
+    }
+    use {
+        'lukas-reineke/indent-blankline.nvim',
+        config = function() require('_indentline') end
+    }
+    use {
+        'psf/black',
+        config = function() vim.cmd('autocmd BufWritePre *.py execute ":Black"') end
+    }
+    use {
+        'kyazdani42/nvim-tree.lua',
+        config = function() require('_tree') end
+    }
     use { 'christoomey/vim-tmux-navigator' }
     use { 'wbthomason/packer.nvim' }
     use { 'nvim-lua/plenary.nvim' }
@@ -134,11 +149,11 @@ return require('packer').startup({function()
     --     config = function() vim.cmd('colorscheme challenger-deep') end,
     --     as = 'challenger-deep'
     -- }
-    use({
+    use {
         'catppuccin/nvim',
-        as = 'catppuccin',
-        config = function() require('catppuccin').load() end
-    })
+        config = function() require('catppuccin').load() end,
+        as = 'catppuccin'
+    }
 
 end,
 config = {

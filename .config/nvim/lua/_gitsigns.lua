@@ -8,15 +8,11 @@ require('gitsigns').setup {
         topdelete    = { hl = 'GitSignsDelete', text = '‾', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
         changedelete = { hl = 'GitSignsChange', text = '┃', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
     },
-    numhl = false,
-    linehl = false,
     keymaps = {
-        noremap = true,
-        buffer = true,
 
         -- Navigate between hunks
-        ['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'" },
-        ['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'" },
+        ['n ]h'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'" },
+        ['n [h'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'" },
 
         -- Utilities
         ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
@@ -28,12 +24,17 @@ require('gitsigns').setup {
 
         -- Text objects
         ['o ih'] = ':<C-U>lua require"gitsigns".text_object()<CR>',
-        ['x ih'] = ':<C-U>lua require"gitsigns".text_object()<CR>'
+        ['x ih'] = ':<C-U>lua require"gitsigns".text_object()<CR>',
+
+        noremap = true,
+        buffer = true,
     },
     watch_index = { interval = 1000 },
-    sign_priority = 6,
-    update_debounce = 100,
-    status_formatter = nil,
     use_decoration_api = true,
     use_internal_diff = true,
+    status_formatter = nil,
+    update_debounce = 100,
+    sign_priority = 6,
+    linehl = false,
+    numhl = false
 }

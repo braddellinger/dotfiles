@@ -1,4 +1,4 @@
-vim.api.nvim_set_keymap('n', '<leader>z', ':ZenMode<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>z', ':ZenMode<CR>', { silent = true })
 
 require('zen-mode').setup {
     window = {
@@ -13,16 +13,16 @@ require('zen-mode').setup {
     },
     plugins = {
         options = {
+            showcmd = false,
             enabled = true,
-            ruler = false,
-            showcmd = false
+            ruler = false
         },
-        twilight = { enabled = true },
         gitsigns = { enabled = false },
+        twilight = { enabled = true },
         tmux = { enabled = false },
         kitty = {
             enabled = false,
-            font = '+4',
+            font = '+4'
         }
     },
     on_open = function(win) vim.cmd('ScrollViewDisable') end,
