@@ -43,8 +43,8 @@ require('awful.autofocus')
 user = {
     terminal = 'kitty',
     browser = 'brave',
-    browser_incognito = 'brave -incognito',
-    wallpaper = os.getenv('HOME') .. '/wallpapers/path.jpeg',
+    browser_incognito = 'brave --incognito',
+    wallpaper = os.getenv('HOME') .. '/wallpapers/moon.png',
 }
 
 local xrdb = beautiful.xresources.get_current_theme()

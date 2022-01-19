@@ -2,7 +2,7 @@
 ########################################
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(background_jobs virtualenv dir vcs)
 POWERLEVEL9K_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=" "
-POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR='錄'
+POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=' '
 POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 POWERLEVEL9K_MODE='nerdfont-complete'
@@ -57,7 +57,6 @@ fi
 source ~/.oh-my-zsh/oh-my-zsh.sh
 source ~/github/powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
 # Set cursor by referencing number (below).
