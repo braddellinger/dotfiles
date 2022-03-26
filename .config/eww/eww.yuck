@@ -10,25 +10,25 @@
 (defwindow apps
     :geometry (geometry :x '20px' :y '20px' :width '275px' :height '60px' :anchor 'top left')
     :reserve (struts :distance '70px' :side 'top')
-    :windowtype 'dock'
+    :windowtype 'toolbar'
     :wm-ignore false
     :stacking 'fg'
     :monitor 0
     (apps))
 
 (defwindow tray
-    :geometry (geometry :x '-440px' :y '20px' :width '240px' :height '60px' :anchor 'top right')
+    :geometry (geometry :x '-500px' :y '20px' :width '240px' :height '60px' :anchor 'top right')
     :reserve (struts :distance '70px' :side 'top')
-    :windowtype 'dock'
+    :windowtype 'toolbar'
     :wm-ignore false
     :stacking 'fg'
     :monitor 0
     (tray))
 
 (defwindow date
-    :geometry (geometry :x '-20px' :y '20px' :width '400px' :height '60px' :anchor 'top right')
+    :geometry (geometry :x '-20px' :y '20px' :width '460px' :height '60px' :anchor 'top right')
     :reserve (struts :distance '40px' :side 'top')
-    :windowtype 'dock'
+    :windowtype 'toolbar'
     :wm-ignore false
     :stacking 'fg'
     :monitor 0
@@ -82,30 +82,14 @@
             :class {wifi == 'Not connected.' ? 'wifi-disconnected' : 'wifi-connected'}
             {wifi == 'Not connected.' ? '睊' : '直'})
         (box
-            :class {EWW_BATTERY.BAT0.capacity > 15 ? 'battery-healthy' : 'battery-critical'}
-            {EWW_BATTERY.BAT0.status == 'Charging'
-                ? ''
-                : EWW_BATTERY.BAT0.capacity == 100
-                ? ''
-                : EWW_BATTERY.BAT0.capacity > 89
-                ? ''
-                : EWW_BATTERY.BAT0.capacity > 79
-                ? ''
-                : EWW_BATTERY.BAT0.capacity > 69
-                ? ''
-                : EWW_BATTERY.BAT0.capacity > 59
-                ? ''
-                : EWW_BATTERY.BAT0.capacity > 49
-                ? ''
-                : EWW_BATTERY.BAT0.capacity > 39
-                ? ''
-                : EWW_BATTERY.BAT0.capacity > 29
-                ? ''
-                : EWW_BATTERY.BAT0.capacity > 19
-                ? ''
-                : EWW_BATTERY.BAT0.capacity > 9
-                ? ''
-                : ''})))
+            (circular-progress
+                :class {EWW_BATTERY.BAT0.capacity > 15 ? 'battery-healthy' : 'battery-critical'}
+                :value {EWW_BATTERY.BAT0.capacity}
+                :thickness 3
+                (button 
+                    :class 'battery-icon'
+                    :tooltip '${EWW_BATTERY.BAT0.capacity}%'
+                    {EWW_BATTERY.BAT0.status == 'Charging' ? '' : ''})))))
 
 (defwidget date []
     (box

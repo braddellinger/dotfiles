@@ -2,14 +2,14 @@ window {
     all: unset;
     background-color: #232a30;
     color: #eeeeee;
-    font-family: Nunito;
+    font-family: JetBrainsMono Nerd Font Mono;
     font-size: 28;
-    font-weight: bold
+    font-weight: bold;
 }
 
 button {
     all: unset;
-    font-family: FiraMono Nerd Font Mono;
+    font-family: JetBrainsMono Nerd Font Mono;
     font-size: 38;
     background-color: #232a30;
     padding: 0px 5px 0px 5px;
@@ -21,45 +21,50 @@ button:hover {
 }
 
 .volume-on {
-    font-family: FiraMono Nerd Font Mono;
+    font-family: JetBrainsMono Nerd Font Mono;
     font-size: 38;
 }
 
 .volume-off {
-    font-family: FiraMono Nerd Font Mono;
+    font-family: JetBrainsMono Nerd Font Mono;
     font-size: 38;
     color: #e0989a;
 }
 
 .wifi-connected {
-    font-family: FiraMono Nerd Font Mono;
+    font-family: JetBrainsMono Nerd Font Mono;
     font-size: 38;
 }
 
 .wifi-disconnected {
-    font-family: FiraMono Nerd Font Mono;
+    font-family: JetBrainsMono Nerd Font Mono;
     font-size: 38;
     color: #e0989a;
 }
 
+.battery-icon {
+    font-family: JetBrainsMono Nerd Font Mono;
+    font-size: 20;
+}
+
 .battery-healthy {
-    font-family: FiraMono Nerd Font Mono;
+    font-family: JetBrainsMono Nerd Font Mono;
     font-size: 26;
 }
 
 .battery-critical {
-    font-family: FiraMono Nerd Font Mono;
+    font-family: JetBrainsMono Nerd Font Mono;
     font-size: 26;
     color: #e0989a;
 }
 
 .icon {
-    font-family: FiraMono Nerd Font Mono;
+    font-family: JetBrainsMono Nerd Font Mono;
     font-size: 90;
 }
 
 .sidebar-text {
-    font-family: FiraMono Nerd Font Mono;
+    font-family: JetBrainsMono Nerd Font Mono;
     font-size: 38;
     color: #eeeeee;
 }
@@ -76,15 +81,15 @@ button:hover {
 .battery-slider scale trough {
 	background-color: #000000;
     border-color: #000000;
-	border-radius: 10px;
-	min-height: 30px;
+	border-radius: 20px;
+	min-height: 20px;
 	min-width: 450px;
     margin: 10px 0px 10px 0px;
 }
 
 .battery-slider scale trough highlight {
 	background-color: #aee098;
-	border-radius: 10px;
+	border-radius: 20px;
 }
 
 .volume-slider {
@@ -99,15 +104,15 @@ button:hover {
 .volume-slider scale trough {
 	background-color: #000000;
     border-color: #000000;
-	border-radius: 10px;
-	min-height: 30px;
+	border-radius: 20px;
+	min-height: 20px;
 	min-width: 450px;
     margin: 10px 0px 10px 0px;
 }
 
 .volume-slider scale trough highlight {
 	background-color: #aee098;
-	border-radius: 10px;
+	border-radius: 20px;
 }
 
 .brightness-slider {
@@ -122,15 +127,50 @@ button:hover {
 .brightness-slider scale trough {
 	background-color: #000000;
     border-color: #000000;
-	border-radius: 10px;
-	min-height: 30px;
+	border-radius: 20px;
+	min-height: 20px;
 	min-width: 450px;
     margin: 10px 0px 10px 0px;
 }
 
 .brightness-slider scale trough highlight {
 	background-color: #aee098;
-	border-radius: 10px;
+	border-radius: 20px;
+}
+
+.calendar-container {
+    padding: 40px;
+}
+
+.calendar {
+    background-color: #232a30;
+    color: #eeeeee;
+    font-family: JetBrainsMono Nerd Font Mono;
+    font-size: 34;
+    border: #232a30;
+    margin: 10px 0px 0px 0px;
+}
+
+.calendar.header {
+    color: #98dce0;
+    font-weight: bold;
+    padding-top: 50px;
+}
+
+.calendar.button {
+    color: #98dce0;
+}
+
+.calendar.highlight {
+    color: #b098e0;
+}
+
+.calendar:indeterminate {
+    color: #919191;
+}
+
+.calendar:selected {
+  color: #98dce0;
 }
 
 .lock {
@@ -170,7 +210,7 @@ button:hover {
 }
 
 .weather {
-    font-family: FiraMono Nerd Font Mono;
+    font-family: JetBrainsMono Nerd Font Mono;
     font-size: 90;
     color: #e0d898;
 }

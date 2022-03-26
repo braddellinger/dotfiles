@@ -44,7 +44,7 @@ user = {
     terminal = 'kitty',
     browser = 'brave',
     browser_incognito = 'brave --incognito',
-    wallpaper = os.getenv('HOME') .. '/wallpapers/moon.png',
+    wallpaper = os.getenv('HOME') .. '/wallpapers/plant.jpg',
 }
 
 local xrdb = beautiful.xresources.get_current_theme()

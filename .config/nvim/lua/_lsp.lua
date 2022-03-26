@@ -9,9 +9,9 @@ require('lspconfig').tsserver.setup { }
 require('lspconfig').pyright.setup { }
 require('lspconfig').jsonls.setup { }
 require('lspconfig').yamlls.setup { }
-require('lspconfig').vimls.setup { }
 require('lspconfig').cssls.setup { }
 require('lspconfig').html.setup { }
+require'lspconfig'.eslint.setup{ }
 require('lspconfig').gopls.setup {
     cmd = { 'gopls', 'serve' },
     settings = {

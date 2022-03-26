@@ -39,10 +39,10 @@ require('trouble').setup {
     use_diagnostic_signs = true -- enabling this will use the signs defined in your lsp client
 }
 
-vim.keymap.set('n', '<leader>xx', ':Trouble<CR>', { silent = true })
 vim.keymap.set('n', '<leader>xw', ':Trouble workspace_diagnostics<CR>', { silent = true })
 vim.keymap.set('n', '<leader>xd', ':Trouble document_diagnostics<CR>', { silent = true })
-vim.keymap.set('n', '<leader>xl', ':Trouble loclist<CR>', { silent = true })
 vim.keymap.set('n', '<leader>xq', ':Trouble quickfix<CR>', { silent = true })
+vim.keymap.set('n', '<leader>xl', ':Trouble loclist<CR>', { silent = true })
 vim.keymap.set('n', 'gR', ':Trouble lsp_references<CR>', { silent = true })
+vim.keymap.set('n', '<leader>xx', ':Trouble<CR>', { silent = true })
 

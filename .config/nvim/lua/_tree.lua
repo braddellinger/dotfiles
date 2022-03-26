@@ -17,61 +17,76 @@ vim.g.nvim_tree_icons = {
     }
 }
 
-local tree_cb = require'nvim-tree.config'.nvim_tree_callback
-local keybindings = {
-    { key = {'<CR>', 'o', '<2-LeftMouse>'}, cb = tree_cb('edit') },
-    { key = '<Tab>', cb = tree_cb('preview') },
-    { key = '?', cb = tree_cb('toggle_help') },
-    { key = '<C-v>', cb = tree_cb('vsplit') },
-    { key = '<C-t>', cb = tree_cb('tabnew') },
-    { key = '<C-s>', cb = tree_cb('split') },
-    { key = 'R', cb = tree_cb('refresh') },
-    { key = 'c', cb = tree_cb('create') },
-    { key = 'd', cb = tree_cb('remove') },
-    { key = 'r', cb = tree_cb('rename') },
-    { key = 'p', cb = tree_cb('paste') },
-    { key = 'x', cb = tree_cb('cut') }
-}
-
 require('nvim-tree').setup {
+    hijack_unnamed_buffer_when_opening = false,
+    auto_reload_on_write = true,
     hijack_cursor = false,
+    disable_netrw = false,
     open_on_setup = false,
-    disable_netrw = true,
-    hijack_netrw = true,
     open_on_tab = false,
-    update_cwd = false,
+    hijack_netrw = true,
     auto_close = false,
-    update_focused_file = {
-        update_cwd = false,
-        ignore_list = { },
-        enable = false
+    update_cwd = false,
+    actions = {
+        change_dir = {
+            global = false,
+            enable = true
+        },
+        open_file = {
+            quit_on_open = false,
+            window_picker = {
+                chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890',
+                enable = true,
+                exclude = {
+                    filetype = {
+                        'notify',
+                        'packer',
+                        'qf'
+                    }
+                }
+            }
+        }
     },
     view = {
         hide_root_folder = false,
         relativenumber = false,
         auto_resize = false,
-        signcolumn = true,
+        signcolumn = 'yes',
         number = false,
         side = 'right',
         height = 30,
         width = 30,
         mappings = {
-            list = { keybindings },
+            list = {
+                { key = { '<CR>', 'o', '<2-LeftMouse>' }, action = 'edit' },
+                { key = '<Tab>', action = 'preview' },
+                { key = '?', action = 'toggle_help' },
+                { key = '<C-v>', action = 'vsplit' },
+                { key = '<C-t>', action = 'tabnew' },
+                { key = '<C-s>', action = 'split' },
+                { key = 'R', action = 'refresh' },
+                { key = 'c', action = 'create' },
+                { key = 'd', action = 'remove' },
+                { key = 'r', action = 'rename' },
+                { key = 'p', action = 'paste' },
+                { key = 'x', action = 'cut' }
+            },
             custom_only = false
         }
     },
     git = {
-        enable = true,
+        enable = false,
         ignore = true,
         timeout = 500
+    },
+    update_focused_file = {
+        update_cwd = false,
+        ignore_list = { },
+        enable = false
     },
     filters = {
         dotfiles = false,
         custom = { }
-    },
-    update_to_buf_dir = {
-        auto_open = true,
-        enable = true
     },
     system_open = {
         args = { },
@@ -88,6 +103,10 @@ require('nvim-tree').setup {
     trash = {
         require_confirm = true,
         cmd = 'trash'
+    },
+    hijack_directories = {
+        auto_open = true,
+        enable = true
     },
     ignore_ft_on_setup = { }
 }

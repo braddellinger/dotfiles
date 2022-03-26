@@ -2,75 +2,84 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defwindow greeting
-    :monitor 0
     :geometry (geometry :x '-20px' :y '100px' :width '660px' :height '150px' :anchor 'top right')
-    :stacking 'fg'
     :reserve (struts :distance '70px' :side 'top')
-    :windowtype 'dock'
+    :windowtype 'toolbar'
     :wm-ignore false
+    :stacking 'fg'
+    :monitor 0
     (greeting))
 
 (defwindow weather
-    :monitor 0
-    :geometry (geometry :x '-360px' :y '270px' :width '320px' :height '150px' :anchor 'top right')
-    :stacking 'fg'
+    :geometry (geometry :x '-360px' :y '100px' :width '320px' :height '150px' :anchor 'top right')
     :reserve (struts :distance '70px' :side 'top')
-    :windowtype 'dock'
+    :windowtype 'toolbar'
     :wm-ignore false
+    :stacking 'fg'
+    :monitor 0
     (weather))
 
 (defwindow pacman
-    :monitor 0
-    :geometry (geometry :x '-20px' :y '270px' :width '320px' :height '150px' :anchor 'top right')
-    :stacking 'fg'
+    :geometry (geometry :x '-20px' :y '100px' :width '320px' :height '150px' :anchor 'top right')
     :reserve (struts :distance '70px' :side 'top')
-    :windowtype 'dock'
+    :windowtype 'toolbar'
     :wm-ignore false
+    :stacking 'fg'
+    :monitor 0
     (pacman))
 
 (defwindow sliders
-    :monitor 0
-    :geometry (geometry :x '-20px' :y '440px' :width '660px' :height '350px' :anchor 'top right')
-    :stacking 'fg'
+    :geometry (geometry :x '-20px' :y '270px' :width '660px' :height '440px' :anchor 'top right')
     :reserve (struts :distance '70px' :side 'top')
-    :windowtype 'dock'
+    :windowtype 'toolbar'
     :wm-ignore false
+    :stacking 'fg'
+    :monitor 0
     (sliders))
 
-(defwindow lock
-    :monitor 0
-    :geometry (geometry :x '-530px' :y '810px' :width '150px' :height '150px' :anchor 'top right')
-    :stacking 'fg'
+(defwindow cal
+    :geometry (geometry :x '-20px' :y '730px' :width '660px' :height '460px' :anchor 'top right')
     :reserve (struts :distance '70px' :side 'top')
-    :windowtype 'dock'
+    :windowtype 'toolbar'
     :wm-ignore false
+    :stacking 'fg'
+    :monitor 0
+    (cal))
+
+(defwindow lock
+    :geometry (geometry :x '-530px' :y '1210px' :width '150px' :height '150px' :anchor 'top right')
+    :reserve (struts :distance '70px' :side 'top')
+    :windowtype 'toolbar'
+    :wm-ignore false
+    :stacking 'fg'
+    :monitor 0
     (lock))
 
 (defwindow logout
-    :monitor 0
-    :geometry (geometry :x '-360px' :y '810px' :width '150px' :height '150px' :anchor 'top right')
-    :stacking 'fg'
+    :geometry (geometry :x '-360px' :y '1210px' :width '150px' :height '150px' :anchor 'top right')
     :reserve (struts :distance '70px' :side 'top')
-    :windowtype 'dock'
+    :windowtype 'toolbar'
     :wm-ignore false
+    :stacking 'fg'
+    :monitor 0
     (logout))
 
 (defwindow reboot
-    :monitor 0
-    :geometry (geometry :x '-190px' :y '810px' :width '150px' :height '150px' :anchor 'top right')
-    :stacking 'fg'
+    :geometry (geometry :x '-190px' :y '1210px' :width '150px' :height '150px' :anchor 'top right')
     :reserve (struts :distance '70px' :side 'top')
-    :windowtype 'dock'
+    :windowtype 'toolbar'
     :wm-ignore false
+    :stacking 'fg'
+    :monitor 0
     (reboot))
 
 (defwindow poweroff
-    :monitor 0
-    :geometry (geometry :x '-20px' :y '810px' :width '150px' :height '150px' :anchor 'top right')
-    :stacking 'fg'
+    :geometry (geometry :x '-20px' :y '1210px' :width '150px' :height '150px' :anchor 'top right')
     :reserve (struts :distance '70px' :side 'top')
-    :windowtype 'dock'
+    :windowtype 'toolbar'
     :wm-ignore false
+    :stacking 'fg'
+    :monitor 0
     (poweroff))
 
 
@@ -142,6 +151,12 @@
                 :min 0
                 :max 100))))
 
+(defwidget cal []
+    (box
+        :class 'calendar-container'
+        (calendar
+            :class 'calendar')))
+
 (defwidget lock []
     (eventbox
         :cursor 'pointer'
@@ -193,7 +208,7 @@
 
 (defpoll pacman
     :interval '1h'
-    `pacman -Sup | wc -l`)
+    `pacman -Qq | wc -l`)
 
 (defpoll light
     :interval '1s'

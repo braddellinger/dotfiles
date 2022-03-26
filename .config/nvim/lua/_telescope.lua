@@ -50,3 +50,15 @@ vim.keymap.set('n', '<leader>r', ':Telescope registers<CR>', { silent = true })
 vim.keymap.set('n', '<leader>g', ':Telescope live_grep<CR>', { silent = true })
 vim.keymap.set('n', '<leader>q', ':Telescope quickfix<CR>', { silent = true })
 vim.keymap.set('n', '<leader>b', ':Telescope buffers<CR>', { silent = true })
+
+
+-- Highlights
+-- vim.api.nvim_command('hi TelescopeBorder guibg=#232a30 guifg=#232a30')
+-- vim.api.nvim_command('hi TelescopePromptBorder guibg=#232a30 guifg=#232a30')
+-- vim.api.nvim_command('hi TelescopePromptNormal guibg=#232a30 guifg=#232a30')
+-- vim.api.nvim_command('hi TelescopePrompPrefix guibg=red guifg=red')
+-- vim.api.nvim_command('hi TelescopeNormal guibg=red guifg=#232a30')
+-- vim.api.nvim_command('hi TelescopePreviewTitle guibg=#232a30 guifg=#232a30')
+-- vim.api.nvim_command('hi TelescopePromptTitle guibg=#232a30 guifg=#ffffff')
+-- vim.api.nvim_command('hi TelescopeResultsTitle guibg=#232a30 guifg=#232a30')
+-- vim.api.nvim_command('hi TelescopeSelection guibg=#232a30 guifg=#232a30')

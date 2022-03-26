@@ -2,7 +2,7 @@
 ----------------------------------------
 -- Language servers (https://github.com/neovim/nvim-lspconfig)
 -- Packer (https://github.com/wbthomason/packer.nvim)
--- Neovim >=0.6 (https://github.com/neovim/neovim)
+-- Neovim >=0.7 (https://github.com/neovim/neovim)
 -- Rg (https://github.com/BurntSushi/ripgrep)
 -- Nerdfont (https://www.nerdfonts.com/)
 -- Fd (https://github.com/sharkdp/fd)
@@ -12,7 +12,7 @@
 -- Run :PackerCompile whenever plugins.lua is updated
 vim.cmd('autocmd BufWritePost plugins.lua source <afile> | PackerCompile')
 
-return require('packer').startup({function()
+return require('packer').startup({ function()
 
     use {
         'nvim-treesitter/nvim-treesitter',
@@ -98,7 +98,8 @@ return require('packer').startup({function()
     }
     use {
         'kyazdani42/nvim-tree.lua',
-        config = function() require('_tree') end
+        config = function() require('_tree') end,
+        requires = 'nvim-web-devicons'
     }
     use { 'christoomey/vim-tmux-navigator' }
     use { 'wbthomason/packer.nvim' }
@@ -114,7 +115,7 @@ return require('packer').startup({function()
     -- use { 'bluz71/vim-moonfly-colors', config = function() vim.cmd('colorscheme moonfly') end }
     -- use { 'tomasiser/vim-code-dark', config = function() vim.cmd('colorscheme code-dark') end }
     -- use { 'folke/tokyonight.nvim', config = function() vim.cmd('colorscheme tokyonight') end }
-    -- use { 'sainnhe/everforest', config = function() vim.cmd('colorscheme everforest') end }
+    use { 'sainnhe/everforest', config = function() vim.cmd('colorscheme everforest') end }
     -- use { 'ntk148v/vim-horizon', config = function() vim.cmd('colorscheme horizon') end }
     -- use { 'navarasu/onedark.nvim', config = function() require('onedark').setup() end }
     -- use {
@@ -149,11 +150,11 @@ return require('packer').startup({function()
     --     config = function() vim.cmd('colorscheme challenger-deep') end,
     --     as = 'challenger-deep'
     -- }
-    use {
-        'catppuccin/nvim',
-        config = function() require('catppuccin').load() end,
-        as = 'catppuccin'
-    }
+    -- use {
+    --     'catppuccin/nvim',
+    --     config = function() require('catppuccin').load() end,
+    --     as = 'catppuccin'
+    -- }
 
 end,
 config = {

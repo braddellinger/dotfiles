@@ -57,6 +57,13 @@ vim.g.border = 'rounded'
 --     { '▏', 'FloatBorder' }
 -- }
 
+
+-- Set fold appearance
+-- function foldtext()
+--     return vim.fn.getline(vim.v.foldstart)
+-- end
+-- vim.opt.foldtext = 'v:lua.foldtext()'
+
 -- Set cursor shape on leave
 vim.cmd('autocmd VimLeave * set guicursor=a:hor100')
 
