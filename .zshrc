@@ -22,19 +22,29 @@ POWERLEVEL9K_HOME_ICON=''
 
 # Aliases
 ########################################
-alias dots='git --git-dir=$HOME/github/dotfiles --work-tree=$HOME'
-alias sandbox='source ~/sandbox/bin/activate'
-alias eww='~/github/eww/target/release/eww'
-alias startgnome='startx ~/.xinitrc gnome'
-alias starti3='startx ~/.xinitrc i3'
-alias e='exa -las modified --icons'
-alias nvim='~/nvim.appimage'
-alias open='xdg-open'
-alias gs='git status'
-alias mv='mv -i'
-alias rm='rm -i'
-alias cp='cp -i'
-alias g='git'
+if [[ `uname` == "Linux" ]]; then
+    alias dots='git --git-dir=$HOME/github/dotfiles --work-tree=$HOME'
+    alias sandbox='source ~/sandbox/bin/activate'
+    alias eww='~/github/eww/target/release/eww'
+    alias startgnome='startx ~/.xinitrc gnome'
+    alias starti3='startx ~/.xinitrc i3'
+    alias e='exa -las modified --icons'
+    alias nvim='~/nvim.appimage'
+    alias open='xdg-open'
+    alias gs='git status'
+    alias mv='mv -i'
+    alias rm='rm -i'
+    alias cp='cp -i'
+    alias g='git'
+elif [[ `uname` == "Darwin" ]]; then
+    alias sandbox='source ~/sandbox/bin/activate'
+    alias e='exa -las modified --icons'
+    alias gs='git status'
+    alias mv='mv -i'
+    alias rm='rm -i'
+    alias cp='cp -i'
+    alias g='git'
+fi
 
 
 # Exports
@@ -47,17 +57,29 @@ export EDITOR=nvim
 # Start tmux automatically but only
 # if a graphical environment is running
 ########################################
-if [[ $DISPLAY ]]; then
-    [[ $- != *i* ]] && return
+if [[ `uname` == "Linux" ]]; then
+    if [[ $DISPLAY ]]; then
+       [[ $- != *i* ]] && return
+       [ -z $TMUX ] && tmux new-session -As 0
+    fi
+elif [[ `uname` == "Darwin" ]]; then
     [ -z $TMUX ] && tmux new-session -As 0
 fi
 
 
 # Source
 ########################################
-source ~/.oh-my-zsh/oh-my-zsh.sh
-source ~/github/powerlevel10k/powerlevel10k.zsh-theme
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [[ `uname` == "Linux" ]]; then
+    source ~/.oh-my-zsh/oh-my-zsh.sh
+    source ~/github/powerlevel10k/powerlevel10k.zsh-theme
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [[ `uname` == "Darwin" ]]; then
+    source ~/.oh-my-zsh/oh-my-zsh.sh
+    source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+    source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+
 
 
 # Set cursor by referencing number (below).
@@ -71,3 +93,4 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # 6 - steady beam
 ########################################
 printf '\e[4 q'
+

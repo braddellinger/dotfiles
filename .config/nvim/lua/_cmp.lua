@@ -1,4 +1,33 @@
 local cmp = require('cmp')
+
+local icons = {
+    Text = ' ',
+    Method = ' ',
+    Function = ' ',
+    Constructor = ' ',
+    Field = 'ﰠ ',
+    Variable = ' ',
+    Class = 'ﴯ ',
+    Interface = ' ',
+    Module = ' ',
+    Property = 'ﰠ ',
+    Unit = '塞 ',
+    Value = ' ',
+    Enum = ' ',
+    Keyword = ' ',
+    Snippet = ' ',
+    Color = ' ',
+    File = ' ',
+    Reference = ' ',
+    Folder = ' ',
+    EnumMember = ' ',
+    Constant = ' ',
+    Struct = 'פּ ',
+    Event = ' ',
+    Operator = ' ',
+    TypeParameter = ''
+}
+
 cmp.setup {
     mapping = {
         ['<S-Tab>'] = cmp.mapping.select_prev_item(),
@@ -15,14 +44,11 @@ cmp.setup {
         { name = 'calc' }
     },
     formatting = {
-        format = function(entry, vim_item)
-            vim_item.kind = require('lspkind').presets.default[vim_item.kind] .. ' ' .. vim_item.kind
-            vim_item.menu = ({
-                buffer = '[Buffer]',
-                nvim_lsp = '[LSP]',
-                calc = '[Calc]'
-            })[entry.source.name]
+        fields = { 'kind', 'abbr', 'menu' },
+        format = function(_, vim_item)
+            vim_item.menu = vim_item.kind
+            vim_item.kind = icons[vim_item.kind]
             return vim_item
-        end,
+        end
     },
 }

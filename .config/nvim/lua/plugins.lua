@@ -23,14 +23,18 @@ return require('packer').startup({ function()
     }
     use {
         'nvim-telescope/telescope.nvim',
+        config = function() require('_telescope') end,
+        wants = { 'plenary.nvim', 'popup.nvim' },
         requires = {
-            'nvim-telescope/telescope-fzf-native.nvim',
+            {
+                'nvim-telescope/telescope-fzf-native.nvim',
+                config = function() require('telescope').load_extension('fzf') end,
+                run = 'make'
+            },
             'nvim-lua/plenary.nvim',
             'nvim-lua/popup.nvim',
             'trouble.nvim'
-        },
-        config = function() require('_telescope') end,
-        wants = { 'plenary.nvim', 'popup.nvim' }
+        }
     }
     use {
         'lewis6991/gitsigns.nvim',
@@ -51,16 +55,7 @@ return require('packer').startup({ function()
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-calc',
-            {
-                'onsails/lspkind-nvim',
-                config = function() require('nvim-web-devicons').setup { default = true } end,
-            }
         }
-    }
-    use {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        config = function() require('telescope').load_extension('fzf') end,
-        run = 'make'
     }
     use {
         'VonHeikemen/searchbox.nvim',
@@ -115,7 +110,7 @@ return require('packer').startup({ function()
     -- use { 'bluz71/vim-moonfly-colors', config = function() vim.cmd('colorscheme moonfly') end }
     -- use { 'tomasiser/vim-code-dark', config = function() vim.cmd('colorscheme code-dark') end }
     -- use { 'folke/tokyonight.nvim', config = function() vim.cmd('colorscheme tokyonight') end }
-    use { 'sainnhe/everforest', config = function() vim.cmd('colorscheme everforest') end }
+    -- use { 'sainnhe/everforest', config = function() vim.cmd('colorscheme everforest') end }
     -- use { 'ntk148v/vim-horizon', config = function() vim.cmd('colorscheme horizon') end }
     -- use { 'navarasu/onedark.nvim', config = function() require('onedark').setup() end }
     -- use {
@@ -155,6 +150,10 @@ return require('packer').startup({ function()
     --     config = function() require('catppuccin').load() end,
     --     as = 'catppuccin'
     -- }
+    use {
+        'rmehri01/onenord.nvim',
+        config = function() require('onenord').setup() end
+    }
 
 end,
 config = {

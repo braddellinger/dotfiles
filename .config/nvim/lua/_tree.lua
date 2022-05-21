@@ -25,7 +25,6 @@ require('nvim-tree').setup {
     open_on_setup = false,
     open_on_tab = false,
     hijack_netrw = true,
-    auto_close = false,
     update_cwd = false,
     actions = {
         change_dir = {
@@ -50,7 +49,6 @@ require('nvim-tree').setup {
     view = {
         hide_root_folder = false,
         relativenumber = false,
-        auto_resize = false,
         signcolumn = 'yes',
         number = false,
         side = 'right',
@@ -72,6 +70,20 @@ require('nvim-tree').setup {
                 { key = 'x', action = 'cut' }
             },
             custom_only = false
+        }
+    },
+    renderer = {
+        indent_markers = {
+            enable = true,
+            icons = {
+                corner = '  ',
+                edge = '  ',
+                none = '  '
+            }
+        },
+        icons = {
+            git_placement = 'before',
+            webdev_colors = true
         }
     },
     git = {

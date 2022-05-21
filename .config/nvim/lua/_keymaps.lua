@@ -32,3 +32,7 @@ vim.keymap.set('n', '<C-l>', '<C-W>l', { silent = true })
 -- Resize vertical splits
 vim.keymap.set('n', '<C-w>k', ':vertical resize +10<CR>', { silent = true })
 vim.keymap.set('n', '<C-w>j', ':vertical resize -10<CR>', { silent = true })
+
+-- Delete without copying
+vim.keymap.set('n', 'D', '"_d', { silent = true })
+vim.keymap.set('v', 'D', '"_d', { silent = true })

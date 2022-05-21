@@ -2,9 +2,10 @@ vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 
 require('nvim-treesitter.configs').setup {
-    ensure_installed = 'maintained',
+    ignore_install = { 'phpdoc' },
     highlight = { enable = true },
     indent = { enable = true },
+    ensure_installed = 'all',
     incremental_selection = {
         enable = true,
         keymaps = {

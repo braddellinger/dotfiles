@@ -4,10 +4,10 @@
 
 
 ## Components
-The core components which comprise my current desktop environment. This repository also contains dotfiles for many other applications not listed here.
+The core components which comprise my desktop environment.
 
-* **OS:** [Arch](https://www.archlinux.org/)
-* **Window manager:** [Awesome](https://awesomewm.org/)
+* **OS:** [Arch](https://www.archlinux.org), [Manjaro](https://manjaro.org) and [MacOS](https://www.apple.com/macos)
+* **Window manager:** [Awesome](https://awesomewm.org)
 * **Compositor:** [Picom](https://github.com/ibhagwan/picom)
 * **App launcher:** [Rofi](https://github.com/davatorium/rofi)
 * **Terminal:** [Kitty](https://github.com/kovidgoyal/kitty)
@@ -18,11 +18,14 @@ The core components which comprise my current desktop environment. This reposito
 
 
 ## Installation
-The Makefile is theoretical and hasn't been tested yet. It also assumes your $HOME directory is empty and may perform destructive actions. **Use the Makefile at your own risk!**
+The Makefile has not been tested. It assumes your $HOME directory is empty and may perform destructive actions. **Use the Makefile at your own risk.**
 
-1. Install everything at once with `make all` or individual components with `make {xxxx}`. Refer to [Makefile](Makefile) for options.
-2. After installation, some configurations may require manual updates. Refer to the output of `make manual`
-3. Restart to ensure all changes take effect.
+**Mac:** 
+1. Install everything at once with `make mac-all` or individual components with `make mac-{xxxx}`. Refer to [Makefile](Makefile) for options.
+
+**Arch or Manjaro:** 
+1. Install everything at once with `make linux-all` or individual components with `make linux-{xxxx}`. Refer to [Makefile](Makefile) for options.
+2. After installation, some configurations may require manual updates. Refer to the output of `make linux-manual`.
 
 
 ## Keybindings
@@ -35,9 +38,9 @@ A summary of important keybindings.
 | <kbd>swipe left/right</kbd> | Cycle through virtual desktops |
 
 * [Awesome](.config/awesome/README.md)
-* [I3](.config/i3/README.md)
 * [Neovim](.config/nvim/README.md)
 * [Tmux](TMUX_README.md)
+* [I3](.config/i3/README.md)
 
 
 ## Credits

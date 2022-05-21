@@ -1,24 +1,25 @@
-all: dirs pacman yay fonts shell dotfiles scripts neovim x11 eww manual
+linux-all: linux-dirs linux-pacman linux-yay linux-fonts linux-shell linux-dotfiles linux-scripts linux-neovim linux-x11 linux-eww linux-manual
+mac-all: mac-brew mac-shell mac-neovim
 
-dirs:
+linux-dirs:
 	mkdir ~/documents
 	mkdir ~/downloads
 	mkdir ~/screenshots
 	mkdir ~/wallpapers
 	mkdir ~/github
 
-pacman:
+linux-pacman:
 	sudo pacman -S git kitty tmux zsh zsh-syntax-highlighting ripgrep fd exa htop ranger neofetch dictd fortune jq --needed # terminal
 	sudo pacman -S udiskie light rofi dunst redshift feh flameshot xss-lock papirus-icon-theme peek mpv code --needed # apps
 	sudo pacman -S xorg-server xorg-xinit xorg-xbacklight xorg-xrandr xbindkeys xclip xdg-utils --needed # x11
 	sudo pacman -S nodejs npm python --needed # dev
 
-yay:
+linux-yay:
 	git clone https://aur.archlinux.org/yay.git ~/github/yay
 	cd ~/github/yay && makepkg -si && cd ~
 	yay -S picom-ibhagwan-git neovim-nightly-bin git-delta awesome-git libinput-gestures i3lock-color i3-gaps-rounded-git dict-wn brave-bin
 
-fonts:
+linux-fonts:
 	git clone https://github.com/ryanoasis/nerd-fonts.git ~/github/nerd-fonts
 	~/github/nerd-fonts/install.sh Inconsolata
 	~/github/nerd-fonts/install.sh FiraMono
@@ -28,27 +29,27 @@ fonts:
 	mkdir ~/.local/share/fonts/material && cp -r ~/github/material-design-icons/font/* ~/.local/share/fonts/material
 	fc-cache -v
 
-dotfiles:
+linux-dotfiles:
 	git clone --bare https://github.com/braddellinger/dotfiles.git ~/github/dotfiles
 	git --git-dir=$HOME/github/dotfiles --work-tree=$HOME config --local status.showUntrackedFiles no
 	git --git-dir=$HOME/github/dotfiles --work-tree=$HOME reset --hard
 	source ~/.zshrc
 
-shell:
+linux-shell:
 	tic ~/xterm-256color-italic.terminfo
 	git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/github/powerlevel10k
 	chsh -s /bin/zsh
 
-scripts:
+linux-scripts:
 	chmod +x ~/scripts/*.sh
 
-neovim:
+linux-neovim:
 	git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 	nvim --headless +PackerInstall +qa
-	sudo npm install -g pyright
+	npm i -g vscode-langservers-extracted pyright typescript-language-server typescript
 
-x11:
+linux-x11:
 	[ -f "/etc/X11/xorg.conf.d/90-touchpad.conf" ] && sudo mv /etc/X11/xorg.conf.d/90-touchpad.conf /etc/X11/xorg.conf.d/90-touchpad.conf_%Y-%m-%dT%H:%M:%S
 	sudo cp ~/90-touchpad.conf /etc/X11/xorg.conf.d/90-touchpad.conf
 	[ -f "/etc/X11/xorg.conf.d/95-dpms.conf" ] && sudo mv /etc/X11/xorg.conf.d/95-dpms.conf /etc/X11/xorg.conf.d/95-dpms.conf_%Y-%m-%dT%H:%M:%S
@@ -61,7 +62,7 @@ x11:
 	sudo gpasswd -a $USER input
 	reboot
 
-eww:
+linux-eww:
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 	git clone https://github.com/elkowar/eww ~/github/eww
 	cd ~/github/eww
@@ -69,7 +70,7 @@ eww:
 	cd ~/github/eww/target/release
 	chmod +x ./eww
 
-manual:
+linux-manual:
 	@echo ""
 	@echo "After installation, perform the following:"
 	@echo ""
@@ -77,3 +78,27 @@ manual:
 	@echo "* Redshift - Update lon & lat in ~/.config/redshift/redshift.conf"
 	@echo "* Weather - Update key, lon & lat in ~/scripts/weather.sh"
 	@echo "* Crontab - Run 'crontab -e' and insert '*/30 * * * * ~/scripts/weather.sh'"
+
+mac-brew:
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	brew install --HEAD neovim
+	brew tap homebrew/cask-fonts && brew install font-jetbrains-mono-nerd-font font-inconsolata
+	brew install --cask zoom insomnia visual-studio-code rectangle spotify kitty
+	brew install tmux exa go ranger zsh-syntax-highlighting ripgrep fd upright git-delta romkatv/powerlevel10k/powerlevel10k
+
+mac-shell:
+	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+	mkdir ~/github
+	git clone https://github.com/braddellinger/dotfiles.git ~/github/dotfiles
+	mv ~/github/dotfiles/.tmux.conf ~
+	mv ~/github/dotfiles/.zshrc ~
+	mv ~/github/dotfiles/.gitconfig ~
+	mv ~/github/.config/ranger ~/.config
+	mv ~/github/.config/kitty ~/.config
+	mv ~/github/.config/nvim ~/.config
+	tic ~/xterm-256color-italic.terminfo
+
+mac-neovim:
+	git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+	nvim --headless +PackerInstall +qa
+	npm i -g vscode-langservers-extracted pyright typescript-language-server typescript
