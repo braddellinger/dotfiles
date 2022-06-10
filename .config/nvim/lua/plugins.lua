@@ -116,7 +116,13 @@ return require("packer").startup({
 			end,
 			requires = { "nvim-lua/plenary.nvim" },
 		})
-		use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
+		use({
+			"sindrets/diffview.nvim",
+			config = function()
+				vim.keymap.set("n", "<leader>d", ":DiffviewOpen<CR>", { silent = true })
+			end,
+			requires = "nvim-lua/plenary.nvim",
+		})
 		use({ "christoomey/vim-tmux-navigator" })
 		use({ "wbthomason/packer.nvim" })
 		use({ "nvim-lua/plenary.nvim" })
