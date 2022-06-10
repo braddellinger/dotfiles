@@ -1,4 +1,5 @@
 linux-all: linux-dirs linux-pacman linux-yay linux-fonts linux-shell linux-dotfiles linux-scripts linux-neovim linux-x11 linux-eww linux-manual
+
 mac-all: mac-brew mac-shell mac-neovim
 
 linux-dirs:
@@ -37,7 +38,6 @@ linux-dotfiles:
 
 linux-shell:
 	tic ~/xterm-256color-italic.terminfo
-	git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/github/powerlevel10k
 	chsh -s /bin/zsh
 
@@ -84,10 +84,9 @@ mac-brew:
 	brew install --HEAD neovim
 	brew tap homebrew/cask-fonts && brew install font-jetbrains-mono-nerd-font font-inconsolata
 	brew install --cask zoom insomnia visual-studio-code rectangle spotify kitty
-	brew install tmux exa go ranger zsh-syntax-highlighting ripgrep fd upright git-delta romkatv/powerlevel10k/powerlevel10k
+	brew install tmux exa go ranger zsh-syntax-highlighting ripgrep fd upright git-delta romkatv/powerlevel10k/powerlevel10k black prettier eslint stylua
 
 mac-shell:
-	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	mkdir ~/github
 	git clone https://github.com/braddellinger/dotfiles.git ~/github/dotfiles
 	mv ~/github/dotfiles/.tmux.conf ~
