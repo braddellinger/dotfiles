@@ -10,7 +10,7 @@ linux-dirs:
 	mkdir ~/github
 
 linux-pacman:
-	sudo pacman -S git kitty tmux zsh zsh-syntax-highlighting ripgrep fd exa htop ranger neofetch dictd fortune jq --needed # terminal
+	sudo pacman -S git kitty tmux zsh zsh-syntax-highlighting ripgrep fd exa htop ranger neofetch dictd fortune jq glow --needed # terminal
 	sudo pacman -S udiskie light rofi dunst redshift feh flameshot xss-lock papirus-icon-theme peek mpv code --needed # apps
 	sudo pacman -S xorg-server xorg-xinit xorg-xbacklight xorg-xrandr xbindkeys xclip xdg-utils --needed # x11
 	sudo pacman -S nodejs npm python --needed # dev
@@ -84,7 +84,7 @@ mac-brew:
 	brew install --HEAD neovim
 	brew tap homebrew/cask-fonts && brew install font-jetbrains-mono-nerd-font font-inconsolata
 	brew install --cask zoom insomnia visual-studio-code rectangle spotify kitty
-	brew install tmux exa go ranger zsh-syntax-highlighting ripgrep fd upright git-delta romkatv/powerlevel10k/powerlevel10k black prettier eslint stylua
+	brew install tmux exa go ranger zsh-syntax-highlighting ripgrep fd upright git-delta romkatv/powerlevel10k/powerlevel10k black prettier eslint stylua glow
 
 mac-shell:
 	mkdir ~/github
