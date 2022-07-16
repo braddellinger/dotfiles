@@ -123,6 +123,20 @@ return require("packer").startup({
 			end,
 			requires = "nvim-lua/plenary.nvim",
 		})
+		use({
+			"norcalli/nvim-colorizer.lua",
+			config = function()
+				require("colorizer").setup()
+				vim.cmd("autocmd BufReadPost *.conf setl ft=conf")
+			end,
+		})
+		use({
+			"ellisonleao/glow.nvim",
+			config = function()
+				vim.g.glow_border = "rounded"
+				vim.g.glow_style = "~/.config/glow/draculaStyle.json"
+			end,
+		})
 		use({ "christoomey/vim-tmux-navigator" })
 		use({ "wbthomason/packer.nvim" })
 		use({ "nvim-lua/plenary.nvim" })
