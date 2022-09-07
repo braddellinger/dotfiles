@@ -1,5 +1,5 @@
-local statusline_style = "plain"
-local tabline_style = "plain"
+local statusline_style = "sharp_sectioned"
+local tabline_style = "left_sharp_splits"
 local theme = "nord"
 
 require("_options")

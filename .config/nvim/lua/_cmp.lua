@@ -40,8 +40,10 @@ cmp.setup({
 	},
 	sources = {
 		{ name = "nvim_lsp" },
+		{ name = "cmdline" },
 		{ name = "buffer" },
 		{ name = "calc" },
+		{ name = "path" },
 	},
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
@@ -51,4 +53,24 @@ cmp.setup({
 			return vim_item
 		end,
 	},
+	window = {
+		documentation = cmp.config.window.bordered(),
+		completion = cmp.config.window.bordered(),
+	},
 })
+
+-- cmp.setup.cmdline("/", {
+-- 	mapping = cmp.mapping.preset.cmdline(),
+-- 	sources = {
+-- 		{ name = "buffer" },
+-- 	},
+-- })
+
+-- cmp.setup.cmdline(":", {
+-- 	mapping = cmp.mapping.preset.cmdline(),
+-- 	sources = cmp.config.sources({
+-- 		{ name = "path" },
+-- 	}, {
+-- 		{ name = "cmdline" },
+-- 	}),
+-- })

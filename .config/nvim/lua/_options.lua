@@ -17,7 +17,6 @@ vim.o.clipboard = "unnamedplus"
 vim.o.writebackup = false
 vim.wo.signcolumn = "yes"
 vim.o.splitright = true
-vim.o.updatetime = 300
 vim.o.showmode = true
 vim.o.wildmenu = true
 vim.g.mapleader = " "
@@ -34,10 +33,10 @@ vim.bo.autoindent = true
 vim.o.autoindent = true
 vim.bo.expandtab = true
 vim.o.expandtab = true
-vim.bo.shiftwidth = 4
-vim.o.shiftwidth = 4
-vim.bo.tabstop = 4
-vim.o.tabstop = 4
+vim.bo.shiftwidth = 2
+vim.o.shiftwidth = 2
+vim.bo.tabstop = 2
+vim.o.tabstop = 2
 
 -- Search
 vim.o.inccommand = "nosplit"
@@ -57,12 +56,6 @@ vim.g.border = "rounded"
 --     { '🭼', 'FloatBorder' },
 --     { '▏', 'FloatBorder' }
 -- }
-
--- Set fold appearance
--- function foldtext()
---     return vim.fn.getline(vim.v.foldstart)
--- end
--- vim.opt.foldtext = 'v:lua.foldtext()'
 
 -- Set cursor shape on leave
 vim.cmd("autocmd VimLeave * set guicursor=a:hor100")

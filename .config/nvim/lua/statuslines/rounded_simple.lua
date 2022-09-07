@@ -4,13 +4,13 @@ local colors = {
 	foreground = "%#StatusLineForeground#",
 	inactive_background = "%#StatusLineInactiveBackground#",
 	inactive_foreground = "%#StatusLineInactiveForeground#",
-	no_content = "%#StatusLineNC#",
+	no_content = "%#StatusLine#",
 }
 
 -- Set colors based on mode
 local function set_colors()
 	vim.api.nvim_command("hi StatusLine guibg=none guifg=none")
-	vim.api.nvim_command("hi StatusLineNC guibg=none guifg=none")
+	-- vim.api.nvim_command("hi StatusLineNC guibg=none guifg=none")
 	vim.api.nvim_command("hi StatusLineInactiveBackground guibg=none guifg=#5C6370")
 	vim.api.nvim_command("hi StatusLineInactiveForeground guibg=#5C6370 guifg=black")
 

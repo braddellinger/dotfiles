@@ -18,20 +18,18 @@ The core components which comprise my desktop environment.
 
 ## Installation
 
-The Makefile has not been tested. It assumes your $HOME directory is empty and may perform destructive actions. **Use the Makefile at your own risk.**
+The Makefile assumes your $HOME directory is empty and may perform destructive actions. It has not yet been tested. **Use the Makefile at your own risk.**
 
 **Mac:**
 
 1. Install everything at once with `make mac-all` or individual components with `make mac-{xxxx}`. Refer to [Makefile](Makefile) for options.
 
-**Arch or Manjaro:**
+**Arch-based distributions:**
 
 1. Install everything at once with `make linux-all` or individual components with `make linux-{xxxx}`. Refer to [Makefile](Makefile) for options.
 2. After installation, some configurations may require manual updates. Refer to the output of `make linux-manual`.
 
 ## Keybindings
-
-A summary of important keybindings.
 
 | Keybinding                        | Description                                                                                      |
 | --------------------------------- | ------------------------------------------------------------------------------------------------ |

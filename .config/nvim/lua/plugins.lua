@@ -1,93 +1,65 @@
--- Run :PackerCompile whenever plugins.lua is updated
-vim.cmd("autocmd BufWritePost plugins.lua source <afile> | PackerCompile")
-
 return require("packer").startup({
-	function()
+	function(use)
 		use({
 			"nvim-treesitter/nvim-treesitter",
+			run = ":TSUpdate",
 			config = function()
 				require("_treesitter")
 			end,
-			event = "BufRead",
-			run = ":TSUpdate",
-			opt = true,
 		})
 		use({
 			"nvim-telescope/telescope.nvim",
-			config = function()
-				require("_telescope")
-			end,
-			wants = { "plenary.nvim", "popup.nvim" },
 			requires = {
 				{
 					"nvim-telescope/telescope-fzf-native.nvim",
+					run = "make",
 					config = function()
 						require("telescope").load_extension("fzf")
 					end,
-					run = "make",
 				},
 				"nvim-lua/plenary.nvim",
-				"nvim-lua/popup.nvim",
-				"trouble.nvim",
+				"folke/trouble.nvim",
 			},
+			config = function()
+				require("_telescope")
+			end,
 		})
 		use({
 			"lewis6991/gitsigns.nvim",
 			config = function()
 				require("_gitsigns")
 			end,
-			requires = { "nvim-lua/plenary.nvim" },
-			event = "BufReadPre",
 		})
 		use({
 			"neovim/nvim-lspconfig",
 			config = function()
 				require("_lsp")
 			end,
-			event = "BufReadPre",
-			opt = true,
 		})
 		use({
 			"hrsh7th/nvim-cmp",
+			requires = {
+				"hrsh7th/cmp-nvim-lsp",
+				"hrsh7th/cmp-cmdline",
+				"hrsh7th/cmp-buffer",
+				"hrsh7th/cmp-path",
+				"hrsh7th/cmp-calc",
+			},
 			config = function()
 				require("_cmp")
 			end,
-			requires = {
-				"hrsh7th/cmp-nvim-lsp",
-				"hrsh7th/cmp-buffer",
-				"hrsh7th/cmp-calc",
-			},
-		})
-		use({
-			"VonHeikemen/searchbox.nvim",
-			config = function()
-				require("_searchbox")
-			end,
-			requires = { "MunifTanjim/nui.nvim" },
 		})
 		use({
 			"folke/trouble.nvim",
+			requires = { "kyazdani42/nvim-web-devicons" },
 			config = function()
 				require("_trouble")
 			end,
-			wants = "nvim-web-devicons",
 		})
 		use({
 			"numToStr/Comment.nvim",
 			config = function()
 				require("Comment").setup()
-			end,
-		})
-		use({
-			"folke/zen-mode.nvim",
-			config = function()
-				require("_zen")
-			end,
-		})
-		use({
-			"kyazdani42/nvim-web-devicons",
-			config = function()
-				require("nvim-web-devicons").setup({ default = true })
 			end,
 		})
 		use({
@@ -104,24 +76,24 @@ return require("packer").startup({
 		})
 		use({
 			"kyazdani42/nvim-tree.lua",
+			requires = { "kyazdani42/nvim-web-devicons" },
 			config = function()
 				require("_tree")
 			end,
-			requires = "nvim-web-devicons",
 		})
 		use({
 			"jose-elias-alvarez/null-ls.nvim",
+			requires = { "nvim-lua/plenary.nvim" },
 			config = function()
 				require("_null")
 			end,
-			requires = { "nvim-lua/plenary.nvim" },
 		})
 		use({
 			"sindrets/diffview.nvim",
+			requires = { "nvim-lua/plenary.nvim" },
 			config = function()
 				vim.keymap.set("n", "<leader>d", ":DiffviewOpen<CR>", { silent = true })
 			end,
-			requires = "nvim-lua/plenary.nvim",
 		})
 		use({
 			"norcalli/nvim-colorizer.lua",
@@ -131,16 +103,37 @@ return require("packer").startup({
 			end,
 		})
 		use({
-			"ellisonleao/glow.nvim",
+			-- Fixes bug: https://github.com/neovim/neovim/issues/12587
+			"antoinemadec/FixCursorHold.nvim",
 			config = function()
-				vim.g.glow_border = "rounded"
-				vim.g.glow_style = "~/.config/glow/draculaStyle.json"
+				vim.g.cursorhold_updatetime = 100
 			end,
 		})
 		use({ "christoomey/vim-tmux-navigator" })
+		use({ "kyazdani42/nvim-web-devicons" })
 		use({ "wbthomason/packer.nvim" })
 		use({ "nvim-lua/plenary.nvim" })
 		use({ "nvim-lua/popup.nvim" })
+		-- use({
+		-- 	"VonHeikemen/searchbox.nvim",
+		-- 	config = function()
+		-- 		require("_searchbox")
+		-- 	end,
+		-- 	requires = { "MunifTanjim/nui.nvim" },
+		-- })
+		-- use({
+		-- 	"folke/zen-mode.nvim",
+		-- 	config = function()
+		-- 		require("_zen")
+		-- 	end,
+		-- })
+		-- use({
+		-- 	"ellisonleao/glow.nvim",
+		-- 	config = function()
+		-- 		vim.g.glow_border = "rounded"
+		-- 		vim.g.glow_style = "~/.config/glow/draculaStyle.json"
+		-- 	end,
+		-- })
 
 		-- Colorschemes
 		----------------------------------------
@@ -186,17 +179,29 @@ return require("packer").startup({
 		--     config = function() vim.cmd('colorscheme challenger-deep') end,
 		--     as = 'challenger-deep'
 		-- }
-		-- use {
-		--     'catppuccin/nvim',
-		--     config = function() require('catppuccin').load() end,
-		--     as = 'catppuccin'
-		-- }
+		-- use({
+		-- 	"rmehri01/onenord.nvim",
+		-- 	config = function()
+		-- 		require("onenord").setup()
+		-- 	end,
+		-- })
 		use({
-			"rmehri01/onenord.nvim",
+			"catppuccin/nvim",
+			as = "catppuccin",
 			config = function()
-				require("onenord").setup()
+				vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+				require("catppuccin").setup()
+				vim.cmd("colorscheme catppuccin")
 			end,
 		})
+		-- use({
+		-- 	"rose-pine/neovim",
+		-- 	as = "rose-pine",
+		-- 	config = function()
+		-- 		require("rose-pine").setup({ dark_variant = "moon" })
+		-- 		vim.cmd("colorscheme rose-pine")
+		-- 	end,
+		-- })
 	end,
 	config = {
 		display = {

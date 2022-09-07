@@ -3,7 +3,7 @@ local actions = require("telescope.actions")
 
 require("telescope").setup({
 	defaults = {
-		-- borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+		borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 		file_ignore_patterns = { "node_modules", "vendor" },
 		layout_strategy = "horizontal",
 		sorting_strategy = "ascending",
@@ -13,7 +13,7 @@ require("telescope").setup({
 		selection_caret = "  ",
 		entry_prefix = "  ",
 		multi_icon = " ",
-		borderchars = { "" },
+		-- borderchars = { "" },
 		vimgrep_arguments = {
 			"rg",
 			"--with-filename",
@@ -64,13 +64,13 @@ vim.keymap.set("n", "<leader>g", ":Telescope live_grep<CR>", { silent = true })
 vim.keymap.set("n", "<leader>q", ":Telescope quickfix<CR>", { silent = true })
 vim.keymap.set("n", "<leader>b", ":Telescope buffers<CR>", { silent = true })
 
-vim.api.nvim_command("hi TelescopeResultsBorder guibg=#1e222a guifg=#1e222a")
-vim.api.nvim_command("hi TelescopePromptBorder guibg=#242932 guifg=#242932")
-vim.api.nvim_command("hi TelescopePreviewBorder guibg=#1c1f26 guifg=#1c1f26")
-vim.api.nvim_command("hi TelescopePromptNormal  guibg=#242932")
-vim.api.nvim_command("hi TelescopeResultsNormal guibg=#1e222a")
-vim.api.nvim_command("hi TelescopePreviewNormal guibg=#1c1f26")
-vim.api.nvim_command("hi TelescopePromptPrefix guibg=#242932")
-vim.api.nvim_command("hi TelescopeResultsTitle guifg=#1e222a")
-vim.api.nvim_command("hi TelescopePreviewTitle guifg=#1c1f26")
-vim.api.nvim_command("hi TelescopePromptTitle guifg=#242932")
+-- vim.api.nvim_command("hi TelescopeResultsBorder guibg=#1e222a guifg=#1e222a")
+-- vim.api.nvim_command("hi TelescopePromptBorder guibg=#242932 guifg=#242932")
+-- vim.api.nvim_command("hi TelescopePreviewBorder guibg=#1c1f26 guifg=#1c1f26")
+-- vim.api.nvim_command("hi TelescopePromptNormal  guibg=#242932")
+-- vim.api.nvim_command("hi TelescopeResultsNormal guibg=#1e222a")
+-- vim.api.nvim_command("hi TelescopePreviewNormal guibg=#1c1f26")
+-- vim.api.nvim_command("hi TelescopePromptPrefix guibg=#242932")
+-- vim.api.nvim_command("hi TelescopeResultsTitle guifg=#1e222a")
+-- vim.api.nvim_command("hi TelescopePreviewTitle guifg=#1c1f26")
+-- vim.api.nvim_command("hi TelescopePromptTitle guifg=#242932")

@@ -82,7 +82,7 @@ linux-manual:
 mac-brew:
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	brew install --HEAD neovim
-	brew tap homebrew/cask-fonts && brew install font-jetbrains-mono-nerd-font font-inconsolata
+	brew tap homebrew/cask-fonts && brew install font-jetbrains-mono-nerd-font font-inconsolata font-lekton-nerd-font
 	brew install --cask zoom insomnia visual-studio-code rectangle spotify kitty
 	brew install tmux exa go ranger zsh-syntax-highlighting ripgrep fd upright git-delta romkatv/powerlevel10k/powerlevel10k black prettier eslint stylua glow
 
