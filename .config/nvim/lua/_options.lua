@@ -23,6 +23,7 @@ vim.g.mapleader = " "
 vim.o.showcmd = true
 vim.o.foldlevel = 99
 vim.o.laststatus = 2
+vim.o.cmdheight = 0
 vim.o.scrolloff = 3
 vim.o.fcs = "eob: "
 vim.o.wrap = false

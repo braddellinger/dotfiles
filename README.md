@@ -7,7 +7,7 @@
 The core components which comprise my desktop environment.
 
 - **OS:** [Arch](https://www.archlinux.org), [Manjaro](https://manjaro.org) and [MacOS](https://www.apple.com/macos)
-- **Window manager:** [Awesome](https://awesomewm.org)
+- **Window manager:** [i3](https://i3wm.org/), [Awesome](https://awesomewm.org)
 - **Compositor:** [Picom](https://github.com/ibhagwan/picom)
 - **App launcher:** [Rofi](https://github.com/davatorium/rofi)
 - **Terminal:** [Kitty](https://github.com/kovidgoyal/kitty)
