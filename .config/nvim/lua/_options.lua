@@ -23,21 +23,30 @@ vim.g.mapleader = " "
 vim.o.showcmd = true
 vim.o.foldlevel = 99
 vim.o.laststatus = 2
-vim.o.cmdheight = 0
+-- vim.o.cmdheight = 0
 vim.o.scrolloff = 3
 vim.o.fcs = "eob: "
 vim.o.wrap = false
 vim.o.mouse = "a"
 
--- Indentation
+-- Default indentation
 vim.bo.autoindent = true
 vim.o.autoindent = true
 vim.bo.expandtab = true
 vim.o.expandtab = true
-vim.bo.shiftwidth = 2
-vim.o.shiftwidth = 2
-vim.bo.tabstop = 2
-vim.o.tabstop = 2
+vim.bo.shiftwidth = 4
+vim.o.shiftwidth = 4
+vim.bo.tabstop = 4
+vim.o.tabstop = 4
+
+-- Filetype indentation
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "html", "css", "javascript", "javascriptreact", "typescript", "typescriptreact", "json" },
+  callback = function()
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.tabstop = 2
+  end
+})
 
 -- Search
 vim.o.inccommand = "nosplit"
