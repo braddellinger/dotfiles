@@ -49,6 +49,18 @@ return require("packer").startup({
 				require("_cmp")
 			end,
 		})
+		-- use({
+		-- 	"folke/noice.nvim",
+		-- 	event = "VimEnter",
+		-- 	config = function()
+		-- 		require("_noice")
+		-- 	end,
+		-- 	requires = {
+		-- 		"MunifTanjim/nui.nvim",
+		-- 		"rcarriga/nvim-notify",
+		-- 		"hrsh7th/nvim-cmp",
+		-- 	},
+		-- })
 		use({
 			"folke/trouble.nvim",
 			requires = { "kyazdani42/nvim-web-devicons" },
@@ -102,6 +114,11 @@ return require("packer").startup({
 				vim.cmd("autocmd BufReadPost *.conf setl ft=conf")
 			end,
 		})
+		use({ "christoomey/vim-tmux-navigator" })
+		use({ "kyazdani42/nvim-web-devicons" })
+		use({ "wbthomason/packer.nvim" })
+		use({ "nvim-lua/plenary.nvim" })
+		use({ "nvim-lua/popup.nvim" })
 		use({
 			-- Fixes bug: https://github.com/neovim/neovim/issues/12587
 			"antoinemadec/FixCursorHold.nvim",
@@ -109,11 +126,6 @@ return require("packer").startup({
 				vim.g.cursorhold_updatetime = 100
 			end,
 		})
-		use({ "christoomey/vim-tmux-navigator" })
-		use({ "kyazdani42/nvim-web-devicons" })
-		use({ "wbthomason/packer.nvim" })
-		use({ "nvim-lua/plenary.nvim" })
-		use({ "nvim-lua/popup.nvim" })
 		-- use({
 		-- 	"VonHeikemen/searchbox.nvim",
 		-- 	config = function()
@@ -132,6 +144,28 @@ return require("packer").startup({
 		-- 	config = function()
 		-- 		vim.g.glow_border = "rounded"
 		-- 		vim.g.glow_style = "~/.config/glow/draculaStyle.json"
+		-- 	end,
+		-- })
+
+		-- Fun useless plugins
+		----------------------------------------
+		-- use({
+		-- 	"tamton-aquib/duck.nvim",
+		-- 	config = function()
+		-- 		vim.keymap.set("n", "<leader>dd", function()
+		-- 			require("duck").hatch()
+		-- 		end, {})
+		-- 		vim.keymap.set("n", "<leader>dk", function()
+		-- 			require("duck").cook()
+		-- 		end, {})
+		-- 	end,
+		-- })
+		-- use({
+		-- 	"eandrju/cellular-automaton.nvim",
+		-- 	config = function()
+		-- 		vim.keymap.set("n", "<leader>q", function()
+		-- 			vim.cmd("CellularAutomaton make_it_rain")
+		-- 		end, {})
 		-- 	end,
 		-- })
 
@@ -185,13 +219,20 @@ return require("packer").startup({
 		-- 		require("onenord").setup()
 		-- 	end,
 		-- })
+		-- use({
+		-- 	"catppuccin/nvim",
+		-- 	as = "catppuccin",
+		-- 	config = function()
+		-- 		vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+		-- 		require("catppuccin").setup()
+		-- 		vim.cmd("colorscheme catppuccin")
+		-- 	end,
+		-- })
 		use({
-			"catppuccin/nvim",
-			as = "catppuccin",
+			"sam4llis/nvim-tundra",
 			config = function()
-				vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
-				require("catppuccin").setup()
-				vim.cmd("colorscheme catppuccin")
+				vim.opt.background = "dark"
+				vim.cmd("colorscheme tundra")
 			end,
 		})
 		-- use({

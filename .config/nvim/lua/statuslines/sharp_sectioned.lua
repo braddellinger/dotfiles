@@ -1,71 +1,83 @@
-local colors = vim.g.line_colors
-
 -- Map keys to highlight groups
 local highlights = {
-	primary_background = "%#StatusLinePrimaryBackground#",
-	secondary_background = "%#StatusLineSecondaryBackground#",
-	primary_foreground = "%#StatusLinePrimaryForeground#",
-	secondary_foreground = "%#StatusLineSecondaryForeground#",
-	inactive_background = "%#StatusLineInactiveBackground#",
-	inactive_foreground = "%#StatusLineInactiveForeground#",
+	secondary_separators = "%#StatusLineSecondarySeparators#",
+	inactive_separators = "%#StatusLineInactiveSeparators#",
+	primary_separators = "%#StatusLinePrimarySeparators#",
+	secondary_text = "%#StatusLineSecondaryText#",
+	inactive_text = "%#StatusLineInactiveText#",
+	primary_text = "%#StatusLinePrimaryText#",
 	no_content = "%#StatusLine#",
 }
 
 -- Set highlights based on mode
 local function set_highlights()
-	vim.api.nvim_command("hi StatusLine guibg=" .. colors.none .. " guifg=" .. colors.none)
-	-- vim.api.nvim_command("hi StatusLineNC guibg=" .. colors.none .. " guifg=" .. colors.none)
-	vim.api.nvim_command(
-		"hi StatusLineInactiveBackground guibg=" .. colors.none .. " guifg=" .. colors.inactive.primary
-	)
-	vim.api.nvim_command(
-		"hi StatusLineInactiveForeground guibg=" .. colors.inactive.primary .. " guifg=" .. colors.text
-	)
-	vim.api.nvim_command(
-		"hi StatusLineSecondaryBackground guibg=" .. colors.none .. " guifg=" .. colors.normal.secondary
-	)
+	vim.api.nvim_set_hl(0, "StatusLine", { fg = "NONE", bg = "NONE" })
+	vim.api.nvim_set_hl(0, "StatusLineInactiveSeparators", {
+		fg = vim.api.nvim_get_hl_by_name("Comment", true).foreground,
+		bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+	})
+	vim.api.nvim_set_hl(0, "StatusLineInactiveText", {
+		fg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		bg = vim.api.nvim_get_hl_by_name("Comment", true).foreground,
+	})
+	vim.api.nvim_set_hl(0, "StatusLineSecondarySeparators", {
+		fg = vim.api.nvim_get_hl_by_name("Comment", true).foreground,
+		bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+	})
 
 	local mode = vim.api.nvim_get_mode().mode
 	if mode == "n" or mode == "c" then
-		vim.api.nvim_command(
-			"hi StatusLinePrimaryBackground guibg=" .. colors.none .. " guifg=" .. colors.normal.primary
-		)
-		vim.api.nvim_command(
-			"hi StatusLinePrimaryForeground guibg=" .. colors.normal.primary .. " guifg=" .. colors.text
-		)
-		vim.api.nvim_command(
-			"hi StatusLineSecondaryForeground guibg=" .. colors.normal.secondary .. " guifg=" .. colors.normal.primary
-		)
+		vim.api.nvim_set_hl(0, "StatusLinePrimarySeparators", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticHint", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		})
+		vim.api.nvim_set_hl(0, "StatusLinePrimaryText", {
+			fg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+			bg = vim.api.nvim_get_hl_by_name("DiagnosticHint", true).foreground,
+		})
+		vim.api.nvim_set_hl(0, "StatusLineSecondaryText", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticHint", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Comment", true).foreground,
+		})
 	elseif mode == "v" or mode == "V" or mode == "^V" then
-		vim.api.nvim_command(
-			"hi StatusLinePrimaryBackground guibg=" .. colors.none .. " guifg=" .. colors.visual.primary
-		)
-		vim.api.nvim_command(
-			"hi StatusLinePrimaryForeground guibg=" .. colors.visual.primary .. " guifg=" .. colors.text
-		)
-		vim.api.nvim_command(
-			"hi StatusLineSecondaryForeground guibg=" .. colors.visual.secondary .. " guifg=" .. colors.visual.primary
-		)
+		vim.api.nvim_set_hl(0, "StatusLinePrimarySeparators", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticInfo", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		})
+		vim.api.nvim_set_hl(0, "StatusLinePrimaryText", {
+			fg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+			bg = vim.api.nvim_get_hl_by_name("DiagnosticInfo", true).foreground,
+		})
+		vim.api.nvim_set_hl(0, "StatusLineSecondaryText", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticInfo", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Comment", true).foreground,
+		})
 	elseif mode == "i" then
-		vim.api.nvim_command(
-			"hi StatusLinePrimaryBackground guibg=" .. colors.none .. " guifg=" .. colors.insert.primary
-		)
-		vim.api.nvim_command(
-			"hi StatusLinePrimaryForeground guibg=" .. colors.insert.primary .. " guifg=" .. colors.text
-		)
-		vim.api.nvim_command(
-			"hi StatusLineSecondaryForeground guibg=" .. colors.insert.secondary .. " guifg=" .. colors.insert.primary
-		)
+		vim.api.nvim_set_hl(0, "StatusLinePrimarySeparators", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticWarn", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		})
+		vim.api.nvim_set_hl(0, "StatusLinePrimaryText", {
+			fg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+			bg = vim.api.nvim_get_hl_by_name("DiagnosticWarn", true).foreground,
+		})
+		vim.api.nvim_set_hl(0, "StatusLineSecondaryText", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticWarn", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Comment", true).foreground,
+		})
 	elseif mode == "R" or mode == "Rv" then
-		vim.api.nvim_command(
-			"hi StatusLinePrimaryBackground guibg=" .. colors.none .. " guifg=" .. colors.replace.primary
-		)
-		vim.api.nvim_command(
-			"hi StatusLinePrimaryForeground guibg=" .. colors.replace.primary .. " guifg=" .. colors.text
-		)
-		vim.api.nvim_command(
-			"hi StatusLineSecondaryForeground guibg=" .. colors.replace.secondary .. " guifg=" .. colors.replace.primary
-		)
+		vim.api.nvim_set_hl(0, "StatusLinePrimarySeparators", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticError", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		})
+		vim.api.nvim_set_hl(0, "StatusLinePrimaryText", {
+			fg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+			bg = vim.api.nvim_get_hl_by_name("DiagnosticError", true).foreground,
+		})
+		vim.api.nvim_set_hl(0, "StatusLineSecondaryText", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticError", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Comment", true).foreground,
+		})
 	end
 end
 
@@ -81,9 +93,9 @@ end
 
 -- Return modified symbol if file has unsaved changes
 local function modified()
-	local right_separator = highlights.secondary_background .. " "
-	local left_separator = highlights.secondary_background .. ""
-	local modified = highlights.secondary_foreground .. "  "
+	local right_separator = highlights.secondary_separators .. " "
+	local left_separator = highlights.secondary_separators .. ""
+	local modified = highlights.secondary_text .. "  "
 
 	if vim.bo.modified then
 		return table.concat({
@@ -116,15 +128,15 @@ end
 
 -- Construct active statusline
 local function active()
-	local lsp_diagnostics = highlights.secondary_background .. lsp_diagnostics()
-	local starting_separator = highlights.primary_background .. " "
-	local ending_separator = highlights.primary_background .. " "
-	local right_separator = highlights.primary_background .. ""
-	local left_separator = highlights.primary_background .. " "
-	local modified = highlights.primary_foreground .. modified()
-	local position = highlights.primary_foreground .. " %l:%c "
-	local filename = highlights.primary_foreground .. "%t "
-	local icon = highlights.primary_foreground .. icon()
+	local lsp_diagnostics = highlights.secondary_separators .. lsp_diagnostics()
+	local starting_separator = highlights.primary_separators .. " "
+	local ending_separator = highlights.primary_separators .. " "
+	local right_separator = highlights.primary_separators .. ""
+	local left_separator = highlights.primary_separators .. " "
+	local modified = highlights.primary_text .. modified()
+	local position = highlights.primary_text .. " %l:%c "
+	local filename = highlights.primary_text .. "%t "
+	local icon = highlights.primary_text .. icon()
 	local no_content = highlights.no_content
 	local spacer = "%="
 
@@ -146,11 +158,11 @@ end
 
 -- Construct inactive statusline
 local function inactive()
-	local starting_separator = highlights.inactive_background .. " "
-	local right_separator = highlights.inactive_background .. " "
-	local left_separator = highlights.inactive_background .. " "
-	local filename = highlights.inactive_foreground .. "%t "
-	local icon = highlights.inactive_foreground .. icon()
+	local starting_separator = highlights.inactive_separators .. " "
+	local right_separator = highlights.inactive_separators .. " "
+	local left_separator = highlights.inactive_separators .. " "
+	local filename = highlights.inactive_text .. "%t "
+	local icon = highlights.inactive_text .. icon()
 
 	return table.concat({
 		starting_separator,
@@ -166,7 +178,7 @@ local function tree()
 	return no_content
 end
 
--- Set statusline colors and return statusline based on status
+-- Set statusline highlights and return statusline based on status
 function statusline(status)
 	set_highlights()
 	if status == "active" then

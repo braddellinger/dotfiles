@@ -1,32 +1,61 @@
 -- Map keys to highlight groups
-local colors = {
-	background = "%#StatusLineBackground#",
-	foreground = "%#StatusLineForeground#",
-	inactive_background = "%#StatusLineInactiveBackground#",
-	inactive_foreground = "%#StatusLineInactiveForeground#",
+local highlights = {
+	inactive_separators = "%#StatusLineInactiveseparators#",
+	inactive_text = "%#StatusLineInactivetext#",
+	separators = "%#StatusLineseparators#",
 	no_content = "%#StatusLine#",
+	text = "%#StatusLinetext#",
 }
 
--- Set colors based on mode
-local function set_colors()
-	vim.api.nvim_command("hi StatusLine guibg=none guifg=none")
-	-- vim.api.nvim_command("hi StatusLineNC guibg=none guifg=none")
-	vim.api.nvim_command("hi StatusLineInactiveBackground guibg=none guifg=#5C6370")
-	vim.api.nvim_command("hi StatusLineInactiveForeground guibg=#5C6370 guifg=black")
+-- Set highlights bsaed on mode
+local function set_highlights()
+	vim.api.nvim_set_hl(0, "StatusLine", { fg = "NONE", bg = "NONE" })
+	vim.api.nvim_set_hl(0, "StatusLineInactiveSeparators", {
+		fg = vim.api.nvim_get_hl_by_name("Comment", true).foreground,
+		bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+	})
+	vim.api.nvim_set_hl(0, "StatusLineInactiveText", {
+		fg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		bg = vim.api.nvim_get_hl_by_name("Comment", true).foreground,
+	})
 
 	local mode = vim.api.nvim_get_mode().mode
 	if mode == "n" or mode == "c" then
-		vim.api.nvim_command("hi StatusLineBackground guibg=none guifg=#62d196")
-		vim.api.nvim_command("hi StatusLineForeground guibg=#62d196 guifg=black")
+		vim.api.nvim_set_hl(0, "StatusLineSeparators", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticHint", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		})
+		vim.api.nvim_set_hl(0, "StatusLineText", {
+			fg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+			bg = vim.api.nvim_get_hl_by_name("DiagnosticHint", true).foreground,
+		})
 	elseif mode == "v" or mode == "V" or mode == "^V" then
-		vim.api.nvim_command("hi StatusLineBackground guibg=none guifg=#65b2ff")
-		vim.api.nvim_command("hi StatusLineForeground guibg=#65b2ff guifg=black")
+		vim.api.nvim_set_hl(0, "StatusLineSeparators", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticInfo", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		})
+		vim.api.nvim_set_hl(0, "StatusLineText", {
+			fg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+			bg = vim.api.nvim_get_hl_by_name("DiagnosticInfo", true).foreground,
+		})
 	elseif mode == "i" then
-		vim.api.nvim_command("hi StatusLineBackground guibg=none guifg=#ff8080")
-		vim.api.nvim_command("hi StatusLineForeground guibg=#ff8080 guifg=black")
+		vim.api.nvim_set_hl(0, "StatusLineSeparators", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticWarn", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		})
+		vim.api.nvim_set_hl(0, "StatusLineText", {
+			fg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+			bg = vim.api.nvim_get_hl_by_name("DiagnosticWarn", true).foreground,
+		})
 	elseif mode == "R" or mode == "Rv" then
-		vim.api.nvim_command("hi StatusLineBackground guibg=none guifg=#E5C07B")
-		vim.api.nvim_command("hi StatusLineForeground guibg=#E5C07B guifg=black")
+		vim.api.nvim_set_hl(0, "StatusLineSeparators", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticError", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		})
+		vim.api.nvim_set_hl(0, "StatusLineText", {
+			fg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+			bg = vim.api.nvim_get_hl_by_name("DiagnosticError", true).foreground,
+		})
 	end
 end
 
@@ -69,14 +98,14 @@ end
 
 -- Construct active statusline
 local function active()
-	local lsp_diagnostics = colors.background .. lsp_diagnostics()
-	local right_separator = colors.background .. " "
-	local left_separator = colors.background .. " "
-	local modified = colors.foreground .. modified()
-	local position = colors.foreground .. " %l:%c "
-	local filename = colors.foreground .. "%t "
-	local icon = colors.foreground .. icon()
-	local no_content = colors.no_content
+	local lsp_diagnostics = highlights.separators .. lsp_diagnostics()
+	local right_separator = highlights.separators .. " "
+	local left_separator = highlights.separators .. " "
+	local modified = highlights.text .. modified()
+	local position = highlights.text .. " %l:%c "
+	local filename = highlights.text .. "%t "
+	local icon = highlights.text .. icon()
+	local no_content = highlights.no_content
 	local spacer = "%="
 
 	return table.concat({
@@ -96,10 +125,10 @@ end
 
 -- Construct inactive statusline
 local function inactive()
-	local right_separator = colors.inactive_background .. " "
-	local left_separator = colors.inactive_background .. " "
-	local filename = colors.inactive_foreground .. "%t "
-	local icon = colors.inactive_foreground .. icon()
+	local right_separator = highlights.inactive_separators .. " "
+	local left_separator = highlights.inactive_separators .. " "
+	local filename = highlights.inactive_text .. "%t "
+	local icon = highlights.inactive_text .. icon()
 
 	return table.concat({
 		left_separator,
@@ -111,13 +140,13 @@ end
 
 -- Construct tree statusline
 local function tree()
-	local no_content = colors.no_content
+	local no_content = highlights.no_content
 	return no_content
 end
 
--- Set statusline colors and return statusline based on status
+-- Set statusline highlights and return statusline based on status
 function statusline(status)
-	set_colors()
+	set_highlights()
 	if status == "active" then
 		return active()
 	end

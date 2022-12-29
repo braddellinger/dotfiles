@@ -1,4 +1,30 @@
-local colors = vim.g.line_colors
+-- Set highlights based on mode
+function set_highlights()
+	vim.api.nvim_set_hl(0, "TabLine", { fg = "NONE", bg = "NONE" })
+
+	local mode = vim.api.nvim_get_mode().mode
+	if mode == "n" or mode == "c" then
+		vim.api.nvim_set_hl(0, "TabLineSeparators", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticHint", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		})
+	elseif mode == "v" or mode == "V" or mode == "^V" then
+		vim.api.nvim_set_hl(0, "TabLineSeparators", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticInfo", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		})
+	elseif mode == "i" then
+		vim.api.nvim_set_hl(0, "TabLineSeparators", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticWarn", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		})
+	elseif mode == "R" or mode == "Rv" then
+		vim.api.nvim_set_hl(0, "TabLineSeparators", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticError", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		})
+	end
+end
 
 -- Return file icon if applicable
 local function icon(bufname)
@@ -7,28 +33,6 @@ local function icon(bufname)
 		return " " .. icon .. " "
 	else
 		return " "
-	end
-end
-
--- Set highlights based on mode
-function set_highlights()
-	vim.api.nvim_command("hi TabLine guibg=" .. colors.inactive_tab_background .. " guifg=" .. colors.inactive.primary)
-	vim.api.nvim_command("hi TabLineInactiveBackground guibg=" .. colors.none .. " guifg=" .. colors.inactive.primary)
-	vim.api.nvim_command("hi TabLineInactiveForeground guibg=" .. colors.inactive.primary .. " guifg=" .. colors.text)
-
-	local mode = vim.api.nvim_get_mode().mode
-	if mode == "n" or mode == "c" then
-		vim.api.nvim_command("hi TabLineBackground guibg=" .. colors.none .. " guifg=" .. colors.normal.primary)
-		vim.api.nvim_command("hi TabLineForeground guibg=" .. colors.normal.primary .. " guifg=" .. colors.text)
-	elseif mode == "v" or mode == "V" or mode == "^V" then
-		vim.api.nvim_command("hi TabLineBackground guibg=" .. colors.none .. " guifg=" .. colors.visual.primary)
-		vim.api.nvim_command("hi TabLineForeground guibg=" .. colors.visual.primary .. " guifg=" .. colors.text)
-	elseif mode == "i" then
-		vim.api.nvim_command("hi TabLineBackground guibg=" .. colors.none .. " guifg=" .. colors.insert.primary)
-		vim.api.nvim_command("hi TabLineForeground guibg=" .. colors.insert.primary .. " guifg=" .. colors.text)
-	elseif mode == "R" or mode == "Rv" then
-		vim.api.nvim_command("hi TabLineBackground guibg=" .. colors.none .. " guifg=" .. colors.replace.primary)
-		vim.api.nvim_command("hi TabLineForeground guibg=" .. colors.replace.primary .. " guifg=" .. colors.text)
 	end
 end
 
@@ -62,7 +66,7 @@ function tabline()
 		end
 
 		if t == vim.fn.tabpagenr() then
-			table.insert(tl, " %#TabLineBackground# " .. bufs .. "  ")
+			table.insert(tl, " %#TabLineSeparators# " .. bufs .. "  ")
 			table.insert(tl, "%#TabLine# ")
 		else
 			table.insert(tl, "%#TabLine#  " .. bufs .. "   ")

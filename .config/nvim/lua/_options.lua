@@ -1,71 +1,38 @@
--- Colors
-vim.o.termguicolors = true
-vim.o.background = "dark"
-vim.o.syntax = "on"
-
--- Backup & swap
-vim.o.backupdir = os.getenv("HOME") .. "/.config/nvim/backup//"
-vim.o.directory = os.getenv("HOME") .. "/.config/nvim/swp//"
-
--- Lines numbers
-vim.wo.relativenumber = true
-vim.wo.number = true
-
--- Other settings
+-- General options
 vim.opt.fillchars = { diff = " " }
-vim.o.clipboard = "unnamedplus"
-vim.o.writebackup = false
-vim.wo.signcolumn = "yes"
-vim.o.splitright = true
-vim.o.showmode = true
-vim.o.wildmenu = true
+vim.opt.clipboard = "unnamedplus"
+vim.opt.relativenumber = true
+vim.opt.termguicolors = true
+vim.opt.signcolumn = "yes"
+vim.opt.splitright = true
+vim.opt.ignorecase = true
+vim.opt.swapfile = false
+vim.opt.updatetime = 100
+vim.g.border = "rounded"
+vim.opt.foldlevel = 99
+vim.opt.laststatus = 2
+vim.opt.backup = false
+vim.opt.number = true
 vim.g.mapleader = " "
-vim.o.showcmd = true
-vim.o.foldlevel = 99
-vim.o.laststatus = 2
--- vim.o.cmdheight = 0
-vim.o.scrolloff = 3
-vim.o.fcs = "eob: "
-vim.o.wrap = false
-vim.o.mouse = "a"
+-- vim.opt.cmdheight = 0
+vim.opt.scrolloff = 3
+vim.opt.fcs = "eob: "
+vim.opt.wrap = false
+vim.opt.mouse = "a"
 
 -- Default indentation
-vim.bo.autoindent = true
-vim.o.autoindent = true
-vim.bo.expandtab = true
-vim.o.expandtab = true
-vim.bo.shiftwidth = 4
-vim.o.shiftwidth = 4
-vim.bo.tabstop = 4
-vim.o.tabstop = 4
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
 
 -- Filetype indentation
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "html", "css", "javascript", "javascriptreact", "typescript", "typescriptreact", "json" },
-  callback = function()
-    vim.opt_local.shiftwidth = 2
-    vim.opt_local.tabstop = 2
-  end
+	pattern = { "html", "css", "javascript", "javascriptreact", "typescript", "typescriptreact", "json" },
+	callback = function()
+		vim.opt_local.shiftwidth = 2
+		vim.opt_local.tabstop = 2
+	end,
 })
-
--- Search
-vim.o.inccommand = "nosplit"
-vim.o.ignorecase = true
-vim.o.incsearch = true
-vim.o.hlsearch = true
-
--- Reusable border object
-vim.g.border = "rounded"
--- vim.g.border = {
---     { '🭽', 'FloatBorder' },
---     { '▔', 'FloatBorder' },
---     { '🭾', 'FloatBorder' },
---     { '▕', 'FloatBorder' },
---     { '🭿', 'FloatBorder' },
---     { '▁', 'FloatBorder' },
---     { '🭼', 'FloatBorder' },
---     { '▏', 'FloatBorder' }
--- }
 
 -- Set cursor shape on leave
 vim.cmd("autocmd VimLeave * set guicursor=a:hor100")

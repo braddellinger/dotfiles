@@ -7,10 +7,6 @@ vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSig
 -- Lsp setup
 require("lspconfig").tsserver.setup({})
 require("lspconfig").pyright.setup({})
--- require("lspconfig").jsonls.setup({})
--- require("lspconfig").yamlls.setup({})
--- require("lspconfig").cssls.setup({})
--- require("lspconfig").html.setup({})
 require("lspconfig").eslint.setup({})
 require("lspconfig").gopls.setup({
 	cmd = { "gopls", "serve" },
@@ -48,7 +44,9 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "grn", vim.lsp.buf.rename, bufopts)
 	vim.keymap.set("n", "gca", vim.lsp.buf.code_action, bufopts)
 	vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-	vim.keymap.set("n", "gf", vim.lsp.buf.formatting, bufopts)
+	vim.keymap.set("n", "gf", function()
+		vim.lsp.buf.format({ async = true })
+	end, bufopts)
 end
 
 -- Use a loop to conveniently setup all LSP servers

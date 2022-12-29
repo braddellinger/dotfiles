@@ -1,71 +1,39 @@
-local colors = vim.g.line_colors
-
 -- Map keys to highlight groups
 local highlights = {
-	primary_background = "%#StatusLinePrimaryBackground#",
-	secondary_background = "%#StatusLineSecondaryBackground#",
-	primary_foreground = "%#StatusLinePrimaryForeground#",
-	secondary_foreground = "%#StatusLineSecondaryForeground#",
-	inactive_background = "%#StatusLineInactiveBackground#",
-	inactive_foreground = "%#StatusLineInactiveForeground#",
+	inactive_text = "%#StatusLineInactiveText#",
 	no_content = "%#StatusLine#",
+	text = "%#StatusLineText#",
 }
 
 -- Set highlights based on mode
 local function set_highlights()
-	vim.api.nvim_command("hi StatusLine guibg=" .. colors.none .. " guifg=" .. colors.none)
-	-- vim.api.nvim_command("hi StatusLineNC guibg=" .. colors.none .. " guifg=" .. colors.none)
-	vim.api.nvim_command(
-		"hi StatusLineInactiveBackground guibg=" .. colors.none .. " guifg=" .. colors.inactive.primary
-	)
-	vim.api.nvim_command(
-		"hi StatusLineInactiveForeground guibg=" .. colors.inactive.primary .. " guifg=" .. colors.text
-	)
-	vim.api.nvim_command(
-		"hi StatusLineSecondaryBackground guibg=" .. colors.none .. " guifg=" .. colors.normal.secondary
-	)
+	vim.api.nvim_set_hl(0, "StatusLine", { fg = "NONE", bg = "NONE" })
+	vim.api.nvim_set_hl(0, "StatusLineInactiveText", {
+		fg = vim.api.nvim_get_hl_by_name("Comment", true).foreground,
+		bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+	})
 
 	local mode = vim.api.nvim_get_mode().mode
 	if mode == "n" or mode == "c" then
-		vim.api.nvim_command(
-			"hi StatusLinePrimaryBackground guibg=" .. colors.none .. " guifg=" .. colors.normal.primary
-		)
-		vim.api.nvim_command(
-			"hi StatusLinePrimaryForeground guibg=" .. colors.normal.primary .. " guifg=" .. colors.text
-		)
-		vim.api.nvim_command(
-			"hi StatusLineSecondaryForeground guibg=" .. colors.normal.secondary .. " guifg=" .. colors.normal.primary
-		)
+		vim.api.nvim_set_hl(0, "StatusLineText", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticHint", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		})
 	elseif mode == "v" or mode == "V" or mode == "^V" then
-		vim.api.nvim_command(
-			"hi StatusLinePrimaryBackground guibg=" .. colors.none .. " guifg=" .. colors.visual.primary
-		)
-		vim.api.nvim_command(
-			"hi StatusLinePrimaryForeground guibg=" .. colors.visual.primary .. " guifg=" .. colors.text
-		)
-		vim.api.nvim_command(
-			"hi StatusLineSecondaryForeground guibg=" .. colors.visual.secondary .. " guifg=" .. colors.visual.primary
-		)
+		vim.api.nvim_set_hl(0, "StatusLineText", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticInfo", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		})
 	elseif mode == "i" then
-		vim.api.nvim_command(
-			"hi StatusLinePrimaryBackground guibg=" .. colors.none .. " guifg=" .. colors.insert.primary
-		)
-		vim.api.nvim_command(
-			"hi StatusLinePrimaryForeground guibg=" .. colors.insert.primary .. " guifg=" .. colors.text
-		)
-		vim.api.nvim_command(
-			"hi StatusLineSecondaryForeground guibg=" .. colors.insert.secondary .. " guifg=" .. colors.insert.primary
-		)
+		vim.api.nvim_set_hl(0, "StatusLineText", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticWarn", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		})
 	elseif mode == "R" or mode == "Rv" then
-		vim.api.nvim_command(
-			"hi StatusLinePrimaryBackground guibg=" .. colors.none .. " guifg=" .. colors.replace.primary
-		)
-		vim.api.nvim_command(
-			"hi StatusLinePrimaryForeground guibg=" .. colors.replace.primary .. " guifg=" .. colors.text
-		)
-		vim.api.nvim_command(
-			"hi StatusLineSecondaryForeground guibg=" .. colors.replace.secondary .. " guifg=" .. colors.replace.primary
-		)
+		vim.api.nvim_set_hl(0, "StatusLineText", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticError", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		})
 	end
 end
 
@@ -108,11 +76,11 @@ end
 
 -- Construct active statusline
 local function active()
-	local lsp_diagnostics = highlights.primary_background .. lsp_diagnostics()
-	local modified = highlights.primary_background .. modified()
-	local position = highlights.primary_background .. " %l:%c "
-	local filename = highlights.primary_background .. "%t "
-	local icon = highlights.primary_background .. icon()
+	local lsp_diagnostics = highlights.text .. lsp_diagnostics()
+	local modified = highlights.text .. modified()
+	local position = highlights.text .. " %l:%c "
+	local filename = highlights.text .. "%t "
+	local icon = highlights.text .. icon()
 	local spacer = "%="
 
 	return table.concat({
@@ -127,8 +95,8 @@ end
 
 -- Construct inactive statusline
 local function inactive()
-	local filename = highlights.inactive_background .. "%t "
-	local icon = highlights.inactive_background .. icon()
+	local filename = highlights.inactive_text .. "%t "
+	local icon = highlights.inactive_text .. icon()
 
 	return table.concat({
 		icon,

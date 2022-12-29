@@ -1,3 +1,55 @@
+-- Set highlights based on mode
+function set_highlights()
+	vim.api.nvim_set_hl(0, "TabLine", { fg = "NONE", bg = "NONE" })
+	vim.api.nvim_set_hl(0, "TabLineInactiveSeparators", {
+		fg = vim.api.nvim_get_hl_by_name("Comment", true).foreground,
+		bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+	})
+	vim.api.nvim_set_hl(0, "TabLineInactiveText", {
+		fg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		bg = vim.api.nvim_get_hl_by_name("Comment", true).foreground,
+	})
+
+	local mode = vim.api.nvim_get_mode().mode
+	if mode == "n" or mode == "c" then
+		vim.api.nvim_set_hl(0, "TabLineSeparators", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticHint", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		})
+		vim.api.nvim_set_hl(0, "TabLineText", {
+			fg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+			bg = vim.api.nvim_get_hl_by_name("DiagnosticHint", true).foreground,
+		})
+	elseif mode == "v" or mode == "V" or mode == "^V" then
+		vim.api.nvim_set_hl(0, "TabLineSeparators", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticInfo", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		})
+		vim.api.nvim_set_hl(0, "TabLineText", {
+			fg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+			bg = vim.api.nvim_get_hl_by_name("DiagnosticInfo", true).foreground,
+		})
+	elseif mode == "i" then
+		vim.api.nvim_set_hl(0, "TabLineSeparators", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticWarn", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		})
+		vim.api.nvim_set_hl(0, "TabLineText", {
+			fg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+			bg = vim.api.nvim_get_hl_by_name("DiagnosticWarn", true).foreground,
+		})
+	elseif mode == "R" or mode == "Rv" then
+		vim.api.nvim_set_hl(0, "TabLineSeparators", {
+			fg = vim.api.nvim_get_hl_by_name("DiagnosticError", true).foreground,
+			bg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+		})
+		vim.api.nvim_set_hl(0, "TabLineText", {
+			fg = vim.api.nvim_get_hl_by_name("Normal", true).background,
+			bg = vim.api.nvim_get_hl_by_name("DiagnosticError", true).foreground,
+		})
+	end
+end
+
 -- Return file icon if applicable
 local function icon(bufname)
 	local icon = require("nvim-web-devicons").get_icon(bufname, vim.fn.fnamemodify(bufname, ":e"), { default = true })
@@ -8,30 +60,9 @@ local function icon(bufname)
 	end
 end
 
--- Set colors based on mode
-function set_colors()
-	vim.api.nvim_command("hi TabLineInactiveBackground guibg=none guifg=#5C6370")
-	vim.api.nvim_command("hi TabLineInactiveForeground guibg=#5C6370 guifg=black")
-
-	local mode = vim.api.nvim_get_mode().mode
-	if mode == "n" or mode == "c" then
-		vim.api.nvim_command("hi TabLineBackground guibg=none guifg=#62d196")
-		vim.api.nvim_command("hi TabLineForeground guibg=#62d196 guifg=black")
-	elseif mode == "v" or mode == "V" or mode == "^V" then
-		vim.api.nvim_command("hi TabLineBackground guibg=none guifg=#65b2ff")
-		vim.api.nvim_command("hi TabLineForeground guibg=#65b2ff guifg=black")
-	elseif mode == "i" then
-		vim.api.nvim_command("hi TabLineBackground guibg=none guifg=#ff8080")
-		vim.api.nvim_command("hi TabLineForeground guibg=#ff8080 guifg=black")
-	elseif mode == "R" or mode == "Rv" then
-		vim.api.nvim_command("hi TabLineBackground guibg=none guifg=#E5C07B")
-		vim.api.nvim_command("hi TabLineForeground guibg=#E5C07B guifg=black")
-	end
-end
-
 -- Construct tabline
 function tabline()
-	set_colors()
+	set_highlights()
 	local tl = { " " }
 	local tabcount = vim.fn.tabpagenr("$")
 	for t = 1, tabcount do
@@ -59,13 +90,13 @@ function tabline()
 		end
 
 		if t == vim.fn.tabpagenr() then
-			table.insert(tl, "%#TabLineBackground#")
-			table.insert(tl, "%#TabLineForeground#" .. bufs .. " ")
-			table.insert(tl, "%#TabLineBackground#")
+			table.insert(tl, "%#TabLineSeparators#")
+			table.insert(tl, "%#TabLineText#" .. bufs .. " ")
+			table.insert(tl, "%#TabLineSeparators#")
 		else
-			table.insert(tl, "%#TabLineInactiveBackground#")
-			table.insert(tl, "%#TabLineInactiveForeground#" .. bufs .. " ")
-			table.insert(tl, "%#TabLineInactiveBackground#")
+			table.insert(tl, "%#TabLineInactiveSeparators#")
+			table.insert(tl, "%#TabLineInactiveText#" .. bufs .. " ")
+			table.insert(tl, "%#TabLineInactiveSeparators#")
 		end
 
 		if t ~= tabcount then
