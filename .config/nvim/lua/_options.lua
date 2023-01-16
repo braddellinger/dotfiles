@@ -1,4 +1,9 @@
 -- General options
+vim.opt.statuscolumn = table.concat({
+	"%=%{v:relnum?v:relnum:v:lnum}", -- Relative numbers
+	" ", -- Padding
+	"%s", -- Signs
+})
 vim.opt.fillchars = { diff = " " }
 vim.opt.clipboard = "unnamedplus"
 vim.opt.relativenumber = true
