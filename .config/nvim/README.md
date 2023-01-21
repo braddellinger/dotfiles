@@ -25,7 +25,3 @@
 | <kbd>[d</kbd>      | LSP go to previous diagnostic                |
 | <kbd>]d</kbd>      | LSP go to next diagnostic                    |
 | <kbd>gc</kbd>      | Toggle code comment                          |
-
-## To do
-
-- Modernize `autocmd` syntax

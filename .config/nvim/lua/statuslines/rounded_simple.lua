@@ -82,16 +82,16 @@ end
 local function lsp_diagnostics()
 	local display = ""
 	if #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR }) > 0 then
-		display = display .. "%#DiagnosticError#  "
+		display = display .. "%#DiagnosticError# " .. vim.g.diagnosticsigns.Error .. " "
 	end
 	if #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN }) > 0 then
-		display = display .. "%#DiagnosticWarn#  "
+		display = display .. "%#DiagnosticWarn# " .. vim.g.diagnosticsigns.Warn .. " "
 	end
 	if #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO }) > 0 then
-		display = display .. "%#DiagnosticInfo#  "
+		display = display .. "%#DiagnosticInfo# " .. vim.g.diagnosticsigns.Info .. " "
 	end
 	if #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT }) > 0 then
-		display = display .. "%#DiagnosticHint#  "
+		display = display .. "%#DiagnosticHint# " .. vim.g.diagnosticsigns.Hint .. " "
 	end
 	return display
 end
@@ -138,34 +138,29 @@ local function inactive()
 	})
 end
 
--- Construct tree statusline
-local function tree()
-	local no_content = highlights.no_content
-	return no_content
-end
-
 -- Set statusline highlights and return statusline based on status
 function statusline(status)
 	set_highlights()
 	if status == "active" then
 		return active()
-	end
-	if status == "inactive" then
+	elseif status == "inactive" then
 		return inactive()
-	end
-	if status == "tree" then
-		return tree()
 	end
 end
 
-vim.api.nvim_exec(
-	[[
-    augroup statusline
-    autocmd WinEnter,BufEnter * setlocal statusline=%!v:lua.statusline('active')
-    autocmd WinLeave,BufLeave * setlocal statusline=%!v:lua.statusline('inactive')
-    autocmd WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.statusline('tree')
-    autocmd WinLeave,BufLeave,FileType NvimTree setlocal statusline=%!v:lua.statusline('tree')
-    augroup end
-]],
-	false
-)
+-- Set statusline on enter/leave
+vim.api.nvim_create_augroup("statusline", { clear = true })
+vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
+	pattern = "*",
+	group = "statusline",
+	callback = function()
+		vim.opt_local.statusline = statusline("active")
+	end,
+})
+vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
+	pattern = "*",
+	group = "statusline",
+	callback = function()
+		vim.opt_local.statusline = statusline("inactive")
+	end,
+})

@@ -4,6 +4,12 @@ vim.opt.statuscolumn = table.concat({
 	" ", -- Padding
 	"%s", -- Signs
 })
+vim.g.diagnosticsigns = {
+	Error = "",
+	Warn = "",
+	Info = "",
+	Hint = "",
+}
 vim.opt.fillchars = { diff = " " }
 vim.opt.clipboard = "unnamedplus"
 vim.opt.relativenumber = true
@@ -19,7 +25,7 @@ vim.opt.laststatus = 2
 vim.opt.backup = false
 vim.opt.number = true
 vim.g.mapleader = " "
--- vim.opt.cmdheight = 0
+vim.opt.cmdheight = 0
 vim.opt.scrolloff = 3
 vim.opt.fcs = "eob: "
 vim.opt.wrap = false
@@ -40,4 +46,9 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Set cursor shape on leave
-vim.cmd("autocmd VimLeave * set guicursor=a:hor100")
+vim.api.nvim_create_autocmd("VimLeave", {
+	pattern = { "*" },
+	callback = function()
+		vim.opt.guicursor = "a:hor100"
+	end,
+})
