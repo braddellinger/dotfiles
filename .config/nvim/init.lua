@@ -18,6 +18,7 @@ require("keymaps")
 
 -- Plugins
 require("lazy").setup("plugins", {
+	change_detection = { notify = false },
 	ui = { border = vim.g.border },
 	defaults = { lazy = true },
 })
