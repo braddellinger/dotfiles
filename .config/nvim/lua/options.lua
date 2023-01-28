@@ -20,8 +20,9 @@ vim.opt.ignorecase = true
 vim.opt.swapfile = false
 vim.opt.updatetime = 100
 vim.g.border = "rounded"
-vim.opt.foldlevel = 99
+vim.opt.showtabline = 2
 vim.opt.laststatus = 2
+vim.opt.foldlevel = 99
 vim.opt.backup = false
 vim.opt.number = true
 vim.g.mapleader = " "
@@ -35,20 +36,3 @@ vim.opt.mouse = "a"
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
-
--- Filetype indentation
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "html", "css", "javascript", "javascriptreact", "typescript", "typescriptreact", "json" },
-	callback = function()
-		vim.opt_local.shiftwidth = 2
-		vim.opt_local.tabstop = 2
-	end,
-})
-
--- Set cursor shape on leave
-vim.api.nvim_create_autocmd("VimLeave", {
-	pattern = { "*" },
-	callback = function()
-		vim.opt.guicursor = "a:hor100"
-	end,
-})

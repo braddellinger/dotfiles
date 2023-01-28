@@ -1,4 +1,5 @@
 return {
+	{ "christoomey/vim-tmux-navigator", lazy = false },
 	{
 		"nvim-telescope/telescope.nvim",
 		cmd = "Telescope",
@@ -12,13 +13,13 @@ return {
 			},
 		},
 		keys = {
-			{ "<leader>c", "<cmd>Telescope git_commits<CR>" },
-			{ "<leader>f", "<cmd>Telescope find_files<CR>" },
-			{ "<leader>t", "<cmd>Telescope treesitter<CR>" },
-			{ "<leader>r", "<cmd>Telescope registers<CR>" },
-			{ "<leader>g", "<cmd>Telescope live_grep<CR>" },
-			{ "<leader>q", "<cmd>Telescope quickfix<CR>" },
-			{ "<leader>b", "<cmd>Telescope buffers<CR>" },
+			{ "<leader>c", "<cmd>Telescope git_commits<CR>", desc = "Telescope git commits" },
+			{ "<leader>t", "<cmd>Telescope treesitter<CR>", desc = "Telescope treesitter" },
+			{ "<leader>r", "<cmd>Telescope registers<CR>", desc = "Telescope registers" },
+			{ "<leader>q", "<cmd>Telescope quickfix<CR>", desc = "Telescope quickfix" },
+			{ "<leader>f", "<cmd>Telescope find_files<CR>", desc = "Telescope files" },
+			{ "<leader>b", "<cmd>Telescope buffers<CR>", desc = "Telescope buffers" },
+			{ "<leader>g", "<cmd>Telescope live_grep<CR>", desc = "Telescope grep" },
 		},
 		opts = {
 			defaults = {
@@ -97,13 +98,13 @@ return {
 		cmd = { "TroubleToggle", "Trouble" },
 		opts = { use_diagnostic_signs = true },
 		keys = {
-			{ "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>" },
-			{ "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>" },
+			{ "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Trouble document diagnostics" },
+			{ "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Trouble workspace diagnostics" },
 		},
 	},
 	{
 		"kyazdani42/nvim-tree.lua",
-		keys = { { "<leader>e", "<cmd>NvimTreeToggle<CR>" } },
+		keys = { { "<leader>e", "<cmd>NvimTreeToggle<CR>", desc = "Open tree" } },
 		opts = {
 			update_focused_file = { enable = true },
 			view = {
@@ -135,5 +136,14 @@ return {
 				},
 			},
 		},
+	},
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		config = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 500
+			require("which-key").setup({})
+		end,
 	},
 }

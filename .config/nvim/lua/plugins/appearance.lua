@@ -17,12 +17,12 @@ return {
 		event = "BufReadPre",
 		opts = {
 			signs = {
-				add = { text = "┃" },
-				change = { text = "┃" },
-				delete = { text = "_" },
-				untracked = { text = "" },
+				changedelete = { text = "│" },
 				topdelete = { text = "‾" },
-				changedelete = { text = "┃" },
+				untracked = { text = "" },
+				change = { text = "│" },
+				delete = { text = "_" },
+				add = { text = "│" },
 			},
 			on_attach = function(buffer)
 				local gs = package.loaded.gitsigns
@@ -68,7 +68,7 @@ return {
 			end,
 		},
 	},
-	{ "kyazdani42/nvim-web-devicons" },
+	{ "kyazdani42/nvim-web-devicons", lazy = true },
 	{
 		"dstein64/nvim-scrollview",
 		event = "BufReadPre",
@@ -77,6 +77,7 @@ return {
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		event = "BufReadPre",
+		enabled = false,
 		opts = {
 			filetype_exclude = {
 				"checkhealth",
@@ -101,10 +102,93 @@ return {
 		},
 	},
 	{
+		"echasnovski/mini.indentscope",
+		event = "BufReadPre",
+		opts = {
+			options = { try_as_border = true },
+			symbol = "│",
+		},
+		config = function(_, opts)
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = { "help", "NvimTree", "Trouble", "lazy" },
+				callback = function()
+					vim.b.miniindentscope_disable = true
+				end,
+			})
+			require("mini.indentscope").setup(opts)
+		end,
+	},
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {
+			lsp = {
+				override = {
+					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+					["vim.lsp.util.stylize_markdown"] = true,
+					["cmp.entry.get_documentation"] = true,
+				},
+			},
+			presets = {
+				long_message_to_split = true,
+				command_palette = true,
+				bottom_search = false,
+			},
+		},
+		dependencies = {
+			{ "MunifTanjim/nui.nvim" },
+			{
+				"rcarriga/nvim-notify",
+				opts = { timeout = 100 },
+			},
+		},
+	},
+	{
+		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
+		opts = {
+			options = {
+				component_separators = { left = "   ", right = "  " },
+				section_separators = { left = "", right = " " },
+				disabled_filetypes = { statusline = { "NvimTree", "lazy" } },
+				globalstatus = true,
+			},
+			sections = {
+				lualine_a = {
+					{ "filename", filetype_names = { TelescopePrompt = "Telescope" }, symbols = { modified = " " } },
+				},
+				lualine_b = { "" },
+				lualine_c = {
+					{
+						"diagnostics",
+						symbols = {
+							error = " " .. vim.g.diagnosticsigns.Error .. " ",
+							warn = " " .. vim.g.diagnosticsigns.Warn .. " ",
+							info = " " .. vim.g.diagnosticsigns.Info .. " ",
+							hint = " " .. vim.g.diagnosticsigns.Hint .. " ",
+						},
+					},
+				},
+				lualine_x = { { "filetype", icon_only = true } },
+				lualine_y = {},
+				lualine_z = { "location" },
+			},
+			inactive_sections = {
+				lualine_a = {},
+				lualine_b = {},
+				lualine_c = { "filename" },
+				lualine_x = {},
+				lualine_y = {},
+				lualine_z = {},
+			},
+		},
+		dependencies = { { "kyazdani42/nvim-web-devicons" } },
+	},
+	{
 		"sam4llis/nvim-tundra",
 		priority = 1000,
-		lazy = false,
 		config = function()
+			require("nvim-tundra").setup({})
 			vim.cmd([[colorscheme tundra]])
 		end,
 	},

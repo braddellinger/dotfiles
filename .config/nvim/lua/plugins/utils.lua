@@ -1,8 +1,7 @@
 return {
-	{ "nvim-lua/plenary.nvim" },
-	{ "christoomey/vim-tmux-navigator", lazy = false },
+	{ "nvim-lua/plenary.nvim", lazy = true },
 	{
 		"sindrets/diffview.nvim",
-		keys = { { "<leader>d", "<cmd>DiffviewOpen<CR>" } },
+		keys = { { "<leader>d", "<cmd>DiffviewOpen<CR>", desc = "Open git diff" } },
 	},
 }

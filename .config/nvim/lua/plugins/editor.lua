@@ -2,7 +2,10 @@ return {
 	{
 		"numToStr/Comment.nvim",
 		event = "BufReadPost",
-		opts = {},
+		opts = {
+			toggler = { line = "gc", block = "gb" },
+			opleader = { line = "gc", block = "gb" },
+		},
 	},
 	{
 		"jose-elias-alvarez/null-ls.nvim",

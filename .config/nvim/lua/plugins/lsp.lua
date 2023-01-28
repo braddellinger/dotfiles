@@ -6,7 +6,7 @@ return {
 			{
 				-- Fixes bug: https://github.com/neovim/neovim/issues/12587
 				"antoinemadec/FixCursorHold.nvim",
-				lazy = false,
+				event = "VeryLazy",
 				config = function()
 					vim.g.cursorhold_updatetime = 100
 				end,
@@ -22,7 +22,7 @@ return {
 			-- Keymaps
 			local on_attach = function(client, bufnr)
 				vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-				local bufopts = { noremap = true, silent = true, buffer = bufnr }
+				local bufopts = { silent = true, buffer = bufnr }
 				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
 				vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
 				vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)

@@ -20,9 +20,8 @@ require("keymaps")
 require("lazy").setup("plugins", {
 	change_detection = { notify = false },
 	ui = { border = vim.g.border },
-	defaults = { lazy = true },
 })
 
 -- Statusline and tabline
-require("statuslines/sharp_sectioned")
-require("tablines/left_sharp_splits")
+-- require("statuslines/sharp_sectioned")
+require("tablines/tabs")
