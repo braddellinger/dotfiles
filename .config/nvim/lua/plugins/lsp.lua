@@ -2,16 +2,6 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		event = "BufReadPre",
-		dependencies = {
-			{
-				-- Fixes bug: https://github.com/neovim/neovim/issues/12587
-				"antoinemadec/FixCursorHold.nvim",
-				event = "VeryLazy",
-				config = function()
-					vim.g.cursorhold_updatetime = 100
-				end,
-			},
-		},
 		config = function()
 			-- Set up lsp servers
 			local servers = { "pyright", "gopls", "eslint", "tsserver", "jsonls" }
@@ -81,10 +71,12 @@ return {
 				underline = true,
 			})
 
-			-- Display line diagnostics on cursor hold
+			-- Display diagnostics on cursor hold
 			vim.api.nvim_create_autocmd("CursorHold", {
-				pattern = { "*" },
-				command = "lua vim.diagnostic.open_float()",
+				buffer = bufnr,
+				callback = function()
+					vim.diagnostic.open_float()
+				end,
 			})
 		end,
 	},
